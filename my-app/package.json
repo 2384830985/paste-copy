@@ -1,11 +1,16 @@
 {
-  "name": "my-app",
+  "name": "aviewui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "lib/vcolorpicker.umd.js",
+  "author": "汤金鑫",
+  "license": "MIT",
+  "registory": "",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name aviewui --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
