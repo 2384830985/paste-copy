@@ -1,0 +1,267 @@
+// 当前按钮的padding 大小 形状固定
+.button-size(@padding; @font-size; @border-radius) {
+  padding: @padding;
+  font-size: @font-size;
+  border-radius: @border-radius;
+}
+
+// 当前按钮的颜色赋值  字体颜色 背景颜色 border 颜色
+.button-color(@color; @background; @border){
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+  > a:only-child {
+    color: currentColor;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: transparent;
+    }
+  }
+}
+
+.btn-color(@color,@name) {
+  .button-variant(white; @color; @color);
+
+  // 获取动画
+  &-animation {
+    .btn-animation(@color,@name);
+  }
+
+  // 获取基础的样式
+  &:hover{
+    .button-color(white;tint(@color, 20%); tint(@color, 20%))
+  }
+
+  &:active,
+  &.active{
+    .button-color(white;shade(@color, 20%); shade(@color, 20%));
+  }
+
+  &-plain{
+    .button-color(tint(@color, 20%);tint(@color, 90%); tint(@color, 50%))
+  }
+
+  &-plain:hover{
+    .button-color(white,@color,@color)
+  }
+
+  &-plain:active,
+  &-plain.active{
+    .button-color(white, @color,@color);
+  }
+
+  .active-btn-color(@color);
+  .btn-text(@color);
+  &-disabled{
+    .button-color(white,tint(@color,50), tint(@color,50))!important;
+    &-@{name}{
+      .button-color(tint(@color, 10%);tint(@color, 98%); tint(@color, 60%))!important;
+    }
+  }
+}
+
+// text
+.btn-text(@color){
+  &-text,
+  &-text:hover,
+  &-text:active,
+  &-text:focus{
+    color: @color;
+    background: none;
+    border: none;
+    box-shadow: none;
+    animation: none;
+  }
+  &-text:hover{
+    color: tint(@color, 20%);
+  }
+  &-text:active{
+    color: shade(@color, 20%);
+  }
+  &-text-disabled,
+  &-text-disabled:hover,
+  &-text-disabled:active,
+  &-text-disabled:focus{
+    color: tint(@color, 50%);
+  }
+}
+// 基础的按钮
+.btn(){
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: @btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  // 不换行
+  white-space: nowrap;
+  line-height: @line-height-base;
+  user-select: none;
+
+  // 基础的按钮执行 获取按钮的大小
+  .button-size(@btn-padding-base,@btn-font-size,@btn-border-radius);
+  // 过度效果
+  transition: color @transition-time linear, background-color @transition-time linear, border @transition-time linear, box-shadow @transition-time linear;
+
+  // 按钮下门店icon
+  > .@{css-prefix-iconfont} {
+    line-height: @line-height-base;
+    vertical-align: middle;
+  }
+
+  &-icon-only&-circle > .@{css-prefix-iconfont}{
+    vertical-align: baseline;
+  }
+
+  > span{
+    vertical-align: middle;
+  }
+
+  // 不要当前按钮的轮廓
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+  // 非 disabled 的清除下划线
+  &:not([disabled]):hover {
+    text-decoration: none;
+  }
+
+  // 非 disabled 的清除下划线
+  &:not([disabled]):active {
+    outline: 0;
+    // transition: none;  // 如果不注释此行，那么active会和focus同时触发，此时focus的开始动画transition会无效
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: @cursor-disabled;
+    > * {
+      pointer-events: none;
+    }
+  }
+  &-default-only{
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+  // 大按钮
+  &-large{
+    .button-size(@btn-padding-large,@btn-font-size-large,@btn-border-radius);
+    &-only{
+      width: 38px;
+      height: 38px;
+      padding: 0;
+    }
+  }
+  &-large-circle{
+    height: 36px;
+    border-radius: 18px;
+  }
+  &-default-circle{
+    height: 32px;
+    border-radius: 16px;
+  }
+
+  // 小按钮
+  &-small{
+    .button-size(@btn-padding-small,@btn-font-size,@btn-border-radius-small);
+    &-only{
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+  }
+  &-small-circle{
+    height: 24px;
+    border-radius: 12px;
+  }
+}
+
+.button-variant(@color; @background; @border){
+  .button-color(@color; @background; @border);
+  &:hover{
+    .button-color(tint(@color, 20%);tint(@background,20); tint(@border, 20%))
+  }
+
+  &:active,
+  &.active{
+    .button-color(shade(@color, 5%); shade(@background, 5%); shade(@border, 5%));
+  }
+}
+
+// 默认按钮
+.btn-default(){
+  // 添加默认大 按钮颜色 按钮背景色 按钮 border 默认的hover active
+  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+
+  // 获取基础的样式
+  &:hover{
+    .button-color(tint(@primary-color, 20%);tint(@primary-color, 90%); tint(@primary-color, 50%))
+  }
+
+  &:active,
+  &.active{
+    .button-color(shade(@primary-color, 20%); tint(@primary-color, 90%); shade(@primary-color, 50%));
+  }
+  // 获取动画效果
+  &-default-animation{
+    .btn-animation(@primary-color,default);
+  }
+  &-default-plain{
+    .button-color(tint(@primary-color, 10%);tint(@primary-color, 90%); tint(@primary-color, 50%))
+  }
+  &-default-plain:hover{
+    .button-color(white,@primary-color,@primary-color)
+  }
+
+  &-default-plain:active,
+  &-default-plain.active{
+    .button-color(white, @primary-color,@primary-color);
+  }
+
+  // 获取 box-shadow
+  .active-btn-color(@primary-color);
+  &-default{
+    .btn-text(@primary-color);
+  }
+
+  &-default-disabled{
+    .button-color(tint(@btn-default-color,50),shade(white,2), tint(@btn-default-border,50))!important;
+    &-default{
+      .button-color(tint(@primary-color, 25%);tint(@primary-color, 95%); tint(@primary-color, 60%))!important;
+    }
+  }
+}
+
+.btn-animation(@color,@name,@index:1) when (@index>0){
+  animation:@name .2s linear;
+  @keyframes @name
+   {
+    from   {box-shadow: 0 0 0 2px fade(@color, 20%);}
+    to   {box-shadow: 0 0 0 5px fade(@color, 10%);}
+    //0%   {box-shadow: 0 0 0 1px fade(@color, 20%)}
+    //25%  {box-shadow: 0 0 0 3px fade(@color, 20%)}
+    //50%  {box-shadow: 0 0 0 5px fade(@color, 20%)}
+    ////75%  {box-shadow: 0 0 0 6px fade(@color, 20%)}
+    //100% {box-shadow: 0 0 0 6px fade(@color, 20%)}
+   }
+}
+
+
+// Color
+// for tabindex
+.active-btn-color(@color) {
+  &:focus {
+    box-shadow: 0 0 0 2px fade(@color, 20%);
+  }
+}
