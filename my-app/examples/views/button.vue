@@ -1,3 +1,12 @@
+<style>
+  .home{
+    margin: 20px;
+    padding: 20px;
+  }
+  .home .AIvu-btn{
+    margin: 10px;
+  }
+</style>
 <template>
   <div class="home">
     <t-button type="success" :disabled="disabled" :loading="disabled" @click="disabled = true">
@@ -153,7 +162,6 @@
       <t-icon class="aiv-loading" type="Loading"></t-icon>
       <t-icon class="aiv-loading" type="loading5"></t-icon>
     </div>
-    <color-picker/>
   </div>
 </template>
 
@@ -166,7 +174,7 @@ export default {
             disabled: false
         }
     },
-    name: 'home',
+    name: 'button1',
     components: {
     },
     methods:{

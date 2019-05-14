@@ -1,4 +1,3 @@
-import ColorPicker from './component/color-picker'
 import TButton from './component/button'
 import TButtonGroup from './component/button-group'
 import TIcon from './component/icon'
@@ -6,7 +5,6 @@ import TIcon from './component/icon'
 // 存储组件列表
 const components = [
     TIcon,
-    ColorPicker,
     TButtonGroup,
     TButton
 ]
@@ -28,7 +26,6 @@ export default {
     install,
     // 以下是具体的组件列表
     TIcon,
-    ColorPicker,
     TButtonGroup,
     TButton
 }
