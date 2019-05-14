@@ -5,7 +5,7 @@
     >
         <t-icon :type="loadingType" :size="iconSize" class="aiv-loading" v-if="loading"></t-icon>
         <t-icon :type="icon" :size="iconSize" :customIcon="customIcon" v-if="(icon||customIcon)&&!loading"></t-icon>
-        <span><slot v-if="showSlot" ref="slot"></slot></span>
+        <span v-if="showSlot" ><slot ref="slot"></slot></span>
     </component>
 </template>
 <script>
@@ -41,7 +41,10 @@
                 default: 'default'
             },
             // 加载项
-            loading: Boolean,
+            loading: {
+                type: Boolean,
+                default: false
+            },
             // Loading 样式
             loadingType: {
                 type: String,
@@ -105,9 +108,9 @@
         },
         computed: {
             iconSize(){
-                let size = 14;
-                this.size==='large'? size = 18
-                    :this.size==='default'? size = 16
+                let size = 12;
+                this.size==='large'? size = 14
+                    :this.size==='default'? size = 12
                     :this.size==='small'? size = 12:'';
                 return size
             },
@@ -161,6 +164,8 @@
                 let that =this;
                 that.$emit('click',event);
                 that.btnAnimation();
+                const openInNewWindow = event.ctrlKey || event.metaKey;
+                this.handleCheckClick(event, openInNewWindow);
             },
             /**
              * 动画效果

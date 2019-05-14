@@ -1,11 +1,23 @@
 <template>
   <div class="home">
+    <t-button type="success" :disabled="disabled" :loading="disabled" @click="disabled = true">
+      <span v-if="!disabled">Click me!</span>
+      <span v-else>Loading...</span>
+    </t-button>
+    <t-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="large">
+      <span v-if="!disabled">Click me!</span>
+      <span v-else>Loading...</span>
+    </t-button>
+    <t-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="small">
+      <span v-if="!disabled">Click me!</span>
+      <span v-else>Loading...</span>
+    </t-button>
     <button-group circle>
       <t-button>1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
+      <t-button >1234535436456fdsdfsd</t-button>
     </button-group>
     <button-group size="small" circle>
-      <t-button type="primary">1234535436456fdsdfsd</t-button>
+      <t-button dashedtype="primary">1234535436456fdsdfsd</t-button>
       <t-button>1234535436456fdsdfsd</t-button>
     </button-group>
     <button-group size="large" circle>
@@ -14,7 +26,7 @@
     </button-group>
     <button-group>
       <t-button>1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
+      <t-button dashed>1234535436456fdsdfsd</t-button>
     </button-group>
     <button-group size="small">
       <t-button>1234535436456fdsdfsd</t-button>
@@ -24,14 +36,6 @@
       <t-button type="success">1234535436456fdsdfsd</t-button>
       <t-button>1234535436456fdsdfsd</t-button>
     </button-group>
-    <div class="AIvu-btn-group">
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-      <t-button class="AIvu-btn-group">1234535436456fdsdfsd</t-button>
-    </div>
     <br/>
     <div>
       默认
@@ -42,6 +46,13 @@
       <t-button type="warning">1234535436456fdsdfsd</t-button>
       <t-button type="info">1234535436456fdsdfsd</t-button>
       <t-button type="error">1234535436456fdsdfsd</t-button>
+    </div>
+    <br/>
+    <div>
+      click open
+      <t-button  to="/components/icon-en" type="primary">1234535436456fdsdfsd</t-button>
+      <t-button to="/components/icon-en" replace type="success">1234535436456fdsdfsd</t-button>
+      <t-button to="//iviewui.com" target="_blank" type="warning">1234535436456fdsdfsd</t-button>
     </div>
     <br/>
     <div>
@@ -149,12 +160,15 @@
 <script>
 // @ is an alias to /src
 
-import ButtonGroup from "../../packages/component/button/button-group";
 export default {
-  name: 'home',
-  components: {
-      ButtonGroup
-  },
+    data(){
+        return{
+            disabled: false
+        }
+    },
+    name: 'home',
+    components: {
+    },
     methods:{
         xxx(e){
             console.log(e)
