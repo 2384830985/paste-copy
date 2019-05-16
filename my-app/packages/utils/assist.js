@@ -94,7 +94,7 @@ export const findComponentsDownward = (context,componentName)=>{
  * 获取兄弟组件
  * @param context 当前组件 this
  * @param componentName 需要寻找的相同兄弟组件的 name
- * @param exceptMe 是否需要当前自己的节点
+ * @param exceptMe 是否需要当前自己的节点 true 是不需要 false 是需要
  */
 export const findBrothersComponents = (context,componentName,exceptMe = false)=>{
     let arr = context.$parent.$children.filter(function (item) { // 过滤

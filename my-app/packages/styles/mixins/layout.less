@@ -1,0 +1,33 @@
+@row-prefix-cls: ~"@{css-prefix}row";
+@col-prefix-cls: ~"@{css-prefix}col";
+.make-row(@gutter:0){
+  position: relative;
+  margin-left: (@gutter / -2);
+  margin-right: (@gutter / -2);
+  height: auto;
+  .clearfix
+}
+
+.loop-grid-columns(@index,@class) when (@index>0){
+  .@{col-prefix-cls}-span@{class}-@{index}{
+    display: block;
+    width: percentage(@index/@grid-columns);
+  };
+  .@{col-prefix-cls}@{class}-order-@{index}{
+    order: @index;
+  };
+  .@{col-prefix-cls}@{class}-push-@{index}{
+    left: percentage(@index/@grid-columns);
+  };
+  .@{col-prefix-cls}@{class}-pull-@{index}{
+    right: percentage(@index/@grid-columns);
+  };
+  .@{col-prefix-cls}@{class}-offset-@{index}{
+    margin-left: percentage(@index/@grid-columns);
+  };
+  .loop-grid-columns((@index - 1),@class);
+}
+
+.make-grid(@class: ~''){
+  .loop-grid-columns(@grid-columns,@class)
+}

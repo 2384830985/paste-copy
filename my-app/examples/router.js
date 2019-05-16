@@ -15,5 +15,9 @@ export default new Router({
           path: '/icon',
           component: (resolve) => require(['./views/icon.vue'], resolve)
       },
+      {
+          path: '/layout',
+          component: (resolve) => require(['./views/layout.vue'], resolve)
+      },
   ]
 })

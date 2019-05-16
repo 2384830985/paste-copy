@@ -4,11 +4,63 @@
     padding: 20px;
   }
   .home .AIvu-btn{
-    margin: 10px;
+    margin: 10px 5px;
+  }
+  .home .AIvu-btn-group .AIvu-btn{
+    margin: 10px 0;
   }
 </style>
 <template>
   <div class="home">
+    api
+    <div>
+      <span>type:'default', 'primary', 'info', 'success', 'warning', 'error'</span>
+    </div>
+    <div>
+      <span>loading:Boolean</span>
+    </div>
+    <div>
+      <span>loadingType:String (loading样式)</span>
+    </div>
+    <div>
+      <span>customIcon:String (icon 新增的class)</span>
+    </div>
+    <div>
+      <span>noMoreClickTime:Number (点击间隔时间)</span>
+    </div>
+    <div>
+      <span>icon:String</span>
+    </div>
+    <div>
+      <span>disabled:Boolean</span>
+    </div>
+    <div>
+      <span>plain:Boolean</span>
+    </div>
+    <div>
+      <span>long:Boolean（是否100%）</span>
+    </div>
+    <div>
+      <span>dashed:Boolean（是否虚线）</span>
+    </div>
+    <div>
+      <span>circle:Boolean（是否圆形）</span>
+    </div>
+    <div>
+      <span>text:Boolean（是否是文本）</span>
+    </div>
+    <div>
+      <span>ghost:Boolean（是否幽灵模式）</span>
+    </div>
+    <div>
+      <span>size:String（'small', 'large', 'default'）</span>
+    </div>
+    <div>
+      <span>htmlButton:'button', 'submit', 'reset'（默认的button 的值）</span>
+    </div>
+    <div>
+      <span>animationType:（是否动画效果 1开启 0关闭 默认1）</span>
+    </div>
     <t-button type="success" :disabled="disabled" :loading="disabled" @click="disabled = true">
       <span v-if="!disabled">Click me!</span>
       <span v-else>Loading...</span>
