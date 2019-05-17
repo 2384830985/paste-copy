@@ -10,12 +10,13 @@
 </template>
 <script>
     import {oneOf} from '../../utils/assist';
-    import mixinsLink from '../../mixins/link'
+    import mixinsLink from '../../mixins/link';
+    import borderAnimation from '../../mixins/borderAnimation'
     const prefixCls = 'AIvu-btn';
 
     export default {
         name: 't-button',
-        mixins: [mixinsLink],
+        mixins: [mixinsLink,borderAnimation],
         directives:{
             noMoreClick:{
                 inserted(el, binding) {
@@ -95,14 +96,10 @@
                 },
                 default: 'button'
             },
-            animationType: {
-                type: Number,
-                default: 1
-            }
+
         },
         data(){
             return{
-                animation: false,
                 showSlot: false
             }
         },
@@ -163,25 +160,13 @@
             handleClickLink(event){
                 let that =this;
                 that.$emit('click',event);
-                that.btnAnimation();
+                if (!that.text) {
+                    that.btnAnimation();
+                }
                 const openInNewWindow = event.ctrlKey || event.metaKey;
                 this.handleCheckClick(event, openInNewWindow);
             },
-            /**
-             * 动画效果
-             */
-            btnAnimation(){
-                let that =this
-                if (that.animationType===1&&!that.text) {
-                    that.animation = true;
-                    that.$nextTick(()=>{
-                        setTimeout(function () {
-                            that.animation = false;
-                            that.$forceUpdate()
-                        },200)
-                    })
-                }
-            }
+
         },
         mounted () {
             this.showSlot = this.$slots.default !== undefined;
