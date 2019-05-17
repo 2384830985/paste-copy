@@ -15,7 +15,7 @@
     const prefixCls = 'AIvu-btn';
 
     export default {
-        name: 't-button',
+        name: 'TButton',
         mixins: [mixinsLink,borderAnimation],
         directives:{
             noMoreClick:{
