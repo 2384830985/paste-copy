@@ -19,5 +19,9 @@ export default new Router({
           path: '/layout',
           component: (resolve) => require(['./views/layout.vue'], resolve)
       },
+      {
+          path: '/radio',
+          component: (resolve) => require(['./views/radio.vue'], resolve)
+      },
   ]
 })

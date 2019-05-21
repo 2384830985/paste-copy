@@ -1,3 +1,5 @@
+import TRadio from './component/radio'
+import TRadioGroup from './component/radio-group'
 import TButton from './component/button'
 import TButtonGroup from './component/button-group'
 import TIcon from './component/icon'
@@ -6,6 +8,8 @@ import TCol from './component/col'
 
 // 存储组件列表
 const components = [
+    TRadioGroup,
+    TRadio,
     TCol,
     TRow,
     TIcon,
@@ -33,9 +37,5 @@ export default {
     // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
     install,
     // 以下是具体的组件列表
-    TCol,
-    TRow,
-    TIcon,
-    TButtonGroup,
-    TButton
+    ...components
 }
