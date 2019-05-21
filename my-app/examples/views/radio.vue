@@ -14,6 +14,24 @@
             <p>falseValue: '' （错误的值）</p>
             <p>disabled: '' （是否禁用）</p>
         </div>
+        <div>
+            <p>事件</p>
+            <p>on-change</p>
+        </div>
+        <p>disabled</p>
+        <t-radio-group  v-model="radio" type="button">
+            <t-radio :label="1" :disabled="disabled">1</t-radio>
+            <t-radio :label="2" :disabled="disabled">2</t-radio>
+            <t-radio :label="3" :disabled="disabled">3</t-radio>
+        </t-radio-group>
+        <t-button @click="disabled=!disabled">disabled</t-button>
+        <p>disabled</p>
+        <t-radio-group  v-model="radio">
+            <t-radio :label="1" :disabled="disabled">1</t-radio>
+            <t-radio :label="2" :disabled="disabled">2</t-radio>
+            <t-radio :label="3" :disabled="disabled">3</t-radio>
+        </t-radio-group>
+        <t-button @click="disabled=!disabled">disabled</t-button>
         <p>铺满</p>
         <t-radio-group  v-model="radio2" type="button" entity >
             <t-radio :label="1">1</t-radio>
@@ -67,6 +85,7 @@
                 radio: 2,
                 radio1: 1,
                 radio2: 1,
+                disabled: true
             }
         },
         methods:{
