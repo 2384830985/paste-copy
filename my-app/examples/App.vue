@@ -19,6 +19,7 @@
           <li><router-link to="/icon">icon</router-link></li>
           <li><router-link to="/layout">layout</router-link></li>
           <li><router-link to="/radio">radio</router-link></li>
+          <li><router-link to="/checkbox">checkbox</router-link></li>
         </ul>
       </nav>
     </div>

@@ -1,3 +1,5 @@
+import TCheckboxGroup from './component/checkbox-group'
+import TCheckbox from './component/checkbox'
 import TRadio from './component/radio'
 import TRadioGroup from './component/radio-group'
 import TButton from './component/button'
@@ -5,9 +7,12 @@ import TButtonGroup from './component/button-group'
 import TIcon from './component/icon'
 import TRow from './component/row'
 import TCol from './component/col'
+import './styles/index.less'
 
 // 存储组件列表
 const components = [
+    TCheckboxGroup,
+    TCheckbox,
     TRadioGroup,
     TRadio,
     TCol,
