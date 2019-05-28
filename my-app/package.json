@@ -1,6 +1,6 @@
 {
   "name": "aviewui",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "lib/aviewui.umd.min.js",
   "author": "汤金鑫",

@@ -1,3 +1,4 @@
+import TInput from './component/input'
 import TCheckboxGroup from './component/checkbox-group'
 import TCheckbox from './component/checkbox'
 import TRadio from './component/radio'
@@ -11,6 +12,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
+    TInput,
     TCheckboxGroup,
     TCheckbox,
     TRadioGroup,

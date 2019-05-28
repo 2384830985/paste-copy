@@ -27,5 +27,9 @@ export default new Router({
           path: '/checkbox',
           component: (resolve) => require(['./views/checkbox.vue'], resolve)
       },
+      {
+          path: '/input',
+          component: (resolve) => require(['./views/input.vue'], resolve)
+      },
   ]
 })
