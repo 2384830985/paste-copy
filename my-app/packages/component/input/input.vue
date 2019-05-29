@@ -280,8 +280,11 @@
         },
         watch:{
             value(val){
-                this.currentValue = val;
-                this.updateValue(val,'input')
+                if (!this.onDisabled()) {
+                    this.updateValue(val,'input')
+                }else {
+                    this.currentValue = val;
+                }
             }
         },
         mounted(){
