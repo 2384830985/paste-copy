@@ -51,6 +51,7 @@
       height: 100%;
       right: 0;
       width: 32px;
+      color: #808695;
       .avi{
         line-height: 32px;
       }
@@ -73,6 +74,29 @@
     border-right: 0;
     border-top-left-radius: @border-radius-mini;
     border-bottom-left-radius: @border-radius-mini;
+    vertical-align: middle;
+    position: relative;
+    width: 1px;
+    white-space: nowrap;
+    border-image: initial;
+    padding: 0px 20px;
+    .@{select-prefix-cls}-wrapper{
+      margin: -12px -20px;
+    }
+    .@{select-prefix-cls}{
+      margin: 0 0 0 -1px;
+    }
+    .@{input-prefix-cls}-i-type-right{
+      border-top-right-radius: 0!important;
+      border-bottom-right-radius: 0!important;
+      border-right: 0;
+      &:hover{
+        box-shadow: 1px 0 0 0 @primary-color;
+      }
+      &:focus{
+        box-shadow: 1px 0 0 0 @primary-color;
+      }
+    }
   }
   &-group-append{
     display: table-cell;
@@ -85,6 +109,29 @@
     border-left: 0;
     border-top-right-radius: @border-radius-mini;
     border-bottom-right-radius: @border-radius-mini;
+    vertical-align: middle;
+    position: relative;
+    width: 1px;
+    white-space: nowrap;
+    border-image: initial;
+    padding: 0px 20px;
+    .@{select-prefix-cls}-wrapper{
+      margin: -12px -20px;
+    }
+    .@{select-prefix-cls}{
+      margin: 0 -1px 0 0;
+    }
+    .@{input-prefix-cls}-i-type-right{
+      border-top-left-radius: 0!important;
+      border-bottom-left-radius: 0!important;
+      border-left: 0;
+      &:hover{
+        box-shadow: -1px 0 0 0 @primary-color;
+      }
+      &:focus{
+        box-shadow: -1px 0 0 0 @primary-color;
+      }
+    }
   }
   &-small{
     height: 24px;

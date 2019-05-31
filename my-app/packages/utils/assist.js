@@ -85,8 +85,8 @@ export const findComponentsDownward = (context,componentName)=>{
         if (child.$options.name===componentName) {
             components.push(child);
         }
-        components.concat(findComponentsDownward(child,componentName));
-        return components
+        const foundChilds = findComponentsDownward(child,componentName);
+        return components.concat(foundChilds)
     },[])
 };
 

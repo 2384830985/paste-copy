@@ -21,6 +21,7 @@
           <li><router-link to="/radio">radio</router-link></li>
           <li><router-link to="/checkbox">checkbox</router-link></li>
           <li><router-link to="/input">input</router-link></li>
+          <li><router-link to="/select">select</router-link></li>
         </ul>
       </nav>
     </div>

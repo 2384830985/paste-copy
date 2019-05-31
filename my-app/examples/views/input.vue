@@ -9,8 +9,48 @@
                          >
                 </t-input>
                 <t-input placeholder="123"
-                         disabled
+                         style="margin-bottom: 20px"
                          >
+                    <t-select slot="prepend">
+                        <t-option-group label="水果">
+                            <t-option label="西瓜" value="0"></t-option>
+                            <t-option label="西瓜苹果" value="1" disabled></t-option>
+                            <t-option label="西瓜香蕉" value="2"></t-option>
+                            <t-option label="西草莓" value="3"></t-option>
+                        </t-option-group>
+                    </t-select>
+                    <t-select slot="append">
+                        <t-option-group label="水果">
+                            <t-option label="西瓜" value="0"></t-option>
+                            <t-option label="西瓜苹果" value="1" disabled></t-option>
+                            <t-option label="西瓜香蕉" value="2"></t-option>
+                            <t-option label="西草莓" value="3"></t-option>
+                        </t-option-group>
+                    </t-select>
+                </t-input>
+                <t-input placeholder="123"
+                         style="margin-bottom: 20px"
+                         >
+                    <t-select slot="prepend">
+                        <t-option-group label="水果">
+                            <t-option label="西瓜" value="0"></t-option>
+                            <t-option label="西瓜苹果" value="1" disabled></t-option>
+                            <t-option label="西瓜香蕉" value="2"></t-option>
+                            <t-option label="西草莓" value="3"></t-option>
+                        </t-option-group>
+                    </t-select>
+                </t-input>
+                <t-input placeholder="123"
+                         style="margin-bottom: 20px"
+                         >
+                    <t-select slot="append">
+                        <t-option-group label="水果">
+                            <t-option label="西瓜" value="0"></t-option>
+                            <t-option label="西瓜苹果" value="1" disabled></t-option>
+                            <t-option label="西瓜香蕉" value="2"></t-option>
+                            <t-option label="西草莓" value="3"></t-option>
+                        </t-option-group>
+                    </t-select>
                 </t-input>
             </div>
         </div>
@@ -126,6 +166,11 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+    /*.AIvu-select .AIvu-input,.AIvu-select-wrapper {*/
+        /*width: 130px;*/
+    /*}*/
+    /*.AIvu-select > .AIvu-input {*/
+        /*display: block;*/
+    /*}*/
 </style>

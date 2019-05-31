@@ -17,22 +17,29 @@
                        :name="name"
                        @input="onInput"
                        @focus="onFocus"
+                       @keyup.enter="handleEnter"
+                       @keyup="handleKeyup"
+                       @keypress="handleKeypress"
+                       @keydown="handleKeydown"
+                       @compositionstart="handleComposition"
+                       @compositionupdate="handleComposition"
+                       @compositionend="handleComposition"
                        :placeholder="placeholder">
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right']" v-if="icon" @click="onIconClickRight">
-                <i :class="['avi',icon]"></i>
-            </span>
+                    <i :class="['avi',icon,classIcon]"></i>
+                </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right']" v-else-if="search&&searchButton===false" @click="onIconClickRight">
-                <i :class="['avi','avi-search']"></i>
-            </span>
+                    <i :class="['avi','avi-search']"></i>
+                </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-left']" v-if="iconLeft" @click="onIconClickLeft">
-                <i :class="['avi',iconLeft]"></i>
-            </span>
+                    <i :class="['avi',iconLeft]"></i>
+                </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right',{
-                    [`${prefixCls}-clear`]: icon||(search&&searchButton===false)
-            }]"
-                      v-if="clearable && currentValue && !disabled" @click="onClearValue">
-                <i :class="['avi','avi-clear']"></i>
-            </span>
+                        [`${prefixCls}-clear`]: icon||(search&&searchButton===false)
+                }]"
+                          v-if="clearable && currentValue && !disabled" @click.stop="onClearValue">
+                    <i :class="['avi','avi-clear']"></i>
+                </span>
             </div>
             <div :class="[prefixCls+'-search',{
             [`${prefixCls}-search-radius`]: !append
@@ -105,11 +112,11 @@
             },
             // 左边当icon
             iconLeft:{
-                type: String,
+                type: String|Boolean,
             },
             // 右边当icon
             icon:{
-                type: String,
+                type: String|Boolean,
             },
             value:{
                 type: [Number,String],
@@ -136,6 +143,10 @@
             search: {
                 type: Boolean,
                 default: false
+            },
+            classIcon: {
+                type: String|Boolean,
+                default: ''
             },
             searchButton: {
                 type: Boolean|String,
@@ -179,6 +190,7 @@
                 prepend: false,
                 append: false,
                 prefixCls: prefixCls,
+                isOnComposition: false,
                 currentValueLength: 0,
             }
         },
@@ -244,15 +256,38 @@
                     this.updateValue('','input')
                 }
             },
+            handleComposition(event) {
+                if (event.type === 'compositionstart') {
+                    this.isOnComposition = true;
+                }
+                if (event.type === 'compositionend') {
+                    this.isOnComposition = false;
+                    this.onInput(event);
+                }
+            },
             onBlur(event){
                 if (!this.onDisabled()) {
                     this.updateValue(event.target.value,'blur')
                 }
             },
             onInput(event){
+                if (this.isOnComposition) return;
                 if (!this.onDisabled()) {
                     this.updateValue(event.target.value,'input')
                 }
+            },
+            handleKeypress(event) {
+                this.$emit('on-keypress', event.target.value);
+            },
+            handleKeydown(event) {
+                this.$emit('on-keydown', event.target.value);
+            },
+            handleEnter (event) {
+                this.$emit('on-enter', event.target.value);
+                if (this.search)  this.$emit('onIconClickRight',this.currentValue);
+            },
+            handleKeyup (event) {
+                this.$emit('on-keyup', event.target.value);
             },
             onFocus(event){
                 if (!this.onDisabled()) {

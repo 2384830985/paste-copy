@@ -31,5 +31,9 @@ export default new Router({
           path: '/input',
           component: (resolve) => require(['./views/input.vue'], resolve)
       },
+      {
+          path: '/select',
+          component: (resolve) => require(['./views/select.vue'], resolve)
+      },
   ]
 })
