@@ -1,6 +1,53 @@
 <template>
     <div style="margin: 20px">
         <div style="margin: 20px">
+            {{multiplexx}}
+            <t-select v-model="multiplexx" size="small" filterable multiple>
+                <t-option-group label="水果">
+                    <t-option label="西瓜" value="0"></t-option>
+                    <t-option label="西瓜苹果" value="1" disabled></t-option>
+                    <t-option label="西瓜香蕉" value="2"></t-option>
+                    <t-option label="西草莓" value="3"></t-option>
+                </t-option-group>
+                <t-option-group label="杂项" >
+                    <t-option label="栗子" value="4"></t-option>
+                    <t-option label="鱼" disabled value="5"></t-option>
+                    <t-option label="西瓜耳机" value="6"></t-option>
+                    <t-option label="西瓜馒头" value="7"></t-option>
+                </t-option-group>
+            </t-select>
+            <t-select v-model="multiplexx" multiple filterable>
+                <t-option-group label="水果">
+                    <t-option label="西瓜" value="0"></t-option>
+                    <t-option label="西瓜苹果" value="1" disabled></t-option>
+                    <t-option label="西瓜香蕉" value="2"></t-option>
+                    <t-option label="西草莓" value="3"></t-option>
+                </t-option-group>
+                <t-option-group label="杂项" >
+                    <t-option label="栗子" value="4"></t-option>
+                    <t-option label="鱼" disabled value="5"></t-option>
+                    <t-option label="西瓜耳机" disabled value="6"></t-option>
+                    <t-option label="西瓜馒头" value="7"></t-option>
+                </t-option-group>
+            </t-select>
+            <t-select v-model="multiplexx" size="large" multiple filterable>
+                <t-option-group label="水果">
+                    <t-option label="西瓜" value="0"></t-option>
+                    <t-option label="西瓜苹果" value="1" disabled></t-option>
+                    <t-option label="西瓜香蕉" value="2"></t-option>
+                    <t-option label="西草莓" value="3"></t-option>
+                </t-option-group>
+                <t-option-group label="杂项" >
+                    <t-option label="栗子" value="4"></t-option>
+                    <t-option label="鱼" disabled value="5"></t-option>
+                    <t-option label="西瓜耳机" disabled value="6"></t-option>
+                    <t-option label="西瓜馒头" value="7"></t-option>
+                </t-option-group>
+            </t-select>
+        </div>
+        <hr/>
+
+        <div style="margin: 20px">
             <t-select v-model="xxxx" clearable filterable>
                 <t-option-group label="水果">
                     <t-option label="西瓜" value="0"></t-option>
@@ -106,7 +153,8 @@
         name: "select1",
         data(){
             return{
-                xxxx: ''
+                xxxx: '',
+                multiplexx: ['0','1']
             }
         },
         methods:{

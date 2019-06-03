@@ -14,6 +14,7 @@
     import {findComponentUpward} from '../../utils/assist'
     export default {
         name: "TOption",
+        inject: ['select'],
         props:{
             value:{
                 type: [Number,String],
@@ -67,9 +68,12 @@
                     return
                 }
                 const select = findComponentUpward(this,'TSelect');
-            // &&(select.currentValue!==this.value)
                 if (select) {
-                    select.updateValue(this.value)
+                    select.updateValue(
+                        {value:this.value},
+                        {label:this.label},
+                        {choice:!this.choice},
+                    )
                 }
             }
         },
@@ -79,6 +83,7 @@
             }
         },
         mounted(){
+            // console.log(this.select)
             // console.log(this.$slots.default)
         }
     }

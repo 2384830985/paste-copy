@@ -15,6 +15,30 @@
              @keydown.tab="handleKeydown"
              @keydown.delete="handleKeydown"
         >
+            <div :class="[`${prefixCls}-tag`]"
+                 v-if="multiple"
+                 ref="tag"
+                :style="tagStyle">
+                <div :class="[
+                    `${prefixCls}-tag-list`,
+                    {
+                        [`${prefixCls}-tag-${size}`]:!!size
+                    }
+                ]" v-for="(item,index) in tagList" :key="index">
+                    {{item.label}}
+                    <t-icon type="close" @click.stop="closeTagList(item)" :class="`${prefixCls}-tag-close`"></t-icon>
+                </div>
+                <input
+                        ref="tagInput"
+                        :class="`${prefixCls}-tag-input`"
+                        :style="tagInputClass"
+                        @blur="tagOnBlur"
+                        v-model="tagInputValue"
+                        @click.stop
+                        @focus="tagOnFocus"
+                        @input="tagOnSearchInput"
+                        type="text"/>
+            </div>
             <t-input :placeholder="placeholders"
                      :readonly="readonly"
                      ref="input"
@@ -61,6 +85,11 @@
             TransferDom: TransferDom
         },
         mixins: [Emitter],
+        provide(){
+            return{
+                "select": this
+            }
+        },
         props:{
             value:{
                 type: [Number,String,Array],
@@ -84,16 +113,16 @@
                 type: Boolean,
                 default: false
             },
-            // 多选
-            multiple:{
-                type: Boolean,
-                default: false
-            },
             clearable:{
                 type: Boolean,
                 default: false
             },
             disabled:{
+                type: Boolean,
+                default: false
+            },
+            // 多选
+            multiple:{
                 type: Boolean,
                 default: false
             },
@@ -104,7 +133,7 @@
         data(){
             return {
                 wrapperStyleClass: {},
-                readonly: !this.filterable,
+                readonly: !this.filterable || this.multiple,
                 prefixCls: prefixCls,
                 iconShow: false,
                 inputValue: '',
@@ -116,7 +145,13 @@
                 optionList: [],
                 placeholders: this.placeholder,
                 dropShowData: false,
-                optionGroup: []
+                inputFocus: false,
+                tagStyle: {},
+                tagInputClass: {},
+                optionGroup: [],
+                createdOne: 1,
+                tagInputValue: '',
+                tagList: []
             }
         },
         computed:{
@@ -129,7 +164,8 @@
                 return [
                     `${prefixCls}`,
                     {
-                        [`${prefixCls}-clearable`]: this.clearable
+                        [`${prefixCls}-clearable`]: this.clearable,
+                        [`${prefixCls}-focus`]: this.inputFocus,
                     }
                 ]
             },
@@ -191,13 +227,16 @@
                     this.iconShow = false;
                     // input 离焦
                     this.$refs.input.$refs.input.blur();
-                    if (this.filterable) {
+                    if (this.filterable&&this.tagList.length===0&&!this.inputFocus) {
                         this.inputValue = this.oldInputValue;
                         this.placeholders = this.oldInputValue?this.oldInputValue:
                             this.placeholder?this.placeholder:
                                 '请选择';
                     }
                 }
+            },
+            tagOnSearchInput(event){
+                this.searchInput(this.tagInputValue)
             },
             searchInput(val){
                 // 进行搜索
@@ -245,7 +284,22 @@
                 this.dispatch('FormItem', 'on-form-change', this.currentValue);
             },
             onFocus(val){
+                let that = this;
+                console.log(that.filterable)
+                console.log(that.multiple)
+                if (that.multiple&&that.filterable) {
+                    that.$refs.tagInput.focus();
+                    that.inputFocus = true
+                }
                 this.$emit('onFocus',val);
+            },
+            tagOnBlur(){
+                this.inputFocus = false;
+                this.tagInputValue = ''
+            },
+            tagOnFocus(){
+                this.inputFocus = true;
+                this.iconShow = true;
             },
             onBlur(val){
                 this.$emit('onBlur',val)
@@ -264,6 +318,7 @@
             // 键盘触发事件
             handleKeydown(event){
                 if (event.key === 'Backspace'){
+                    console.log('dianji'+'Backspace')
                     return; // so we don't call preventDefault
                 }
                 if (this.iconShow) {
@@ -276,13 +331,18 @@
                         this.upAndDown(-1)
                         //    【tab】
                     } else if (event.key === 'Tab') {
+                        console.log('dianji'+'Tab')
                         event.stopPropagation();
                         this.onClickOutside()
                         //    回车键
                     }else if (event.key === 'Enter') {
-                        this.updateValue(this.optionDate[this.choiceIndex].value)
+                        console.log('dianji'+'Enter')
+                        if (this.choiceIndex>-1) {
+                            this.updateValue({value:this.optionDate[this.choiceIndex].value,})
+                        }
                         //    Escape 取消建【esc】
                     }else if (event.key === 'Escape') {
+                        console.log('dianji'+'Escape')
                         event.stopPropagation();
                         this.onClickOutside()
                     }
@@ -325,44 +385,128 @@
                 this.oldOptionDate = this.optionDate;
             },
             updateValue(val){
+                console.log(123)
                 let that = this;
-                // console.log(val)
-                if (!!val) {
+                if (!!val.value) {
                     if (this.optionList) {
+                        if (that.multiple) {
+                            // 如果当前状态是多选且当前的value 是 string 类型的说明当前得是新增修改
+                            if (typeof val.value==="string") {
+                                let yesIndex = that.currentValue.indexOf(val.value);
+                                if (yesIndex!==-1) {
+                                    that.currentValue.splice(yesIndex,1)
+                                }else {
+                                    that.currentValue.push(val.value)
+                                }
+                            }
+                        }
+                        that.tagList = [];
                         this.optionList.forEach((item,index)=>{
-                            // 非多选当时候
                             if (!that.multiple) {
-                                item.choice = item.value === val;
+                                // 非多选当时候
+                                item.choice = item.value === val.value;
                                 if (item.choice) {
                                     that.currentValue = item.value;
                                     that.inputValue = item.label;
                                     that.oldInputValue = JSON.parse(JSON.stringify(this.inputValue));
-                                    that.getOptionDate();
                                     this.onClickOutside();
-                                    that.onInput();
+                                }
+                            }else {
+                                // 多选
+                                if (that.currentValue.indexOf(item.value)!==-1) {
+                                    item.choice = true;
+                                    that.tagList.push({
+                                        label: item.label,
+                                        value: item.value,
+                                    })
+                                }else {
+                                    item.choice = false;
                                 }
                             }
-                        })
+                        });
+                        if (that.multiple) {
+                            that.calculationInputHeight();
+                            this.tagInputValue = '';
+                            this.searchInput('')
+                        }
+                        if (this.createdOne===1) {
+                            ++this.createdOne;
+                            this.getOptionDate();
+                        }
+                        // input 当前是 watch 进来的不需要进行一个赋值
+                        if (val.watch !== true) {
+                            that.onInput();
+                        }
                     }
                 }else {
                     this.onClear()
                 }
+            },
+            /**
+             * 删除多数组
+             */
+            closeTagList(item){
+                console.log(item)
+                this.updateValue({value:item.value})
+            },
+            /**
+             * 计算input的高度
+             */
+            calculationInputHeight(){
+                this.$nextTick(function () {
+                    if (this.tagList.length>0&&this.multiple) {
+                        let height = this.$refs.tag.getBoundingClientRect().height;
+                        let node = [].filter.call(this.$refs.input.$el.childNodes,(item)=>{return item.className==='AIvu-input-group-input' });
+                        node = [].filter.call(node[0].childNodes,(item)=>{return item.tagName==='INPUT'});
+                        if (height>40) {
+                            node[0].style.height = height+'px'
+                        }else {
+                            node[0].style.height = ''
+                        }
+                        this.broadcast('drop', 'on-update-popper');
+                    }
+                })
+            },
+            changeTagList(val){
+                val.length===0?this.placeholders = this.placeholder: this.placeholders =''
             }
         },
         mounted(){
+            this.tagStyle = {
+                maxWidth: `${this.$refs.reference.getBoundingClientRect().width}px`,
+                width: '100%'
+            };
+            this.tagInputClass = {
+                maxWidth:  `${this.$refs.reference.getBoundingClientRect().width-55}px`,
+            };
             this.optionGroup = findComponentsDownward(this,'TOptionGroup');
             this.getOptionDate();
+            if (this.multiple) {
+                this.calculationInputHeight();
+                this.changeTagList(this.tagList)
+            }
             if (this.value) {
-                this.updateValue(this.value)
+                this.updateValue({value:this.value})
+            }
+        },
+        created(){
+            if (this.multiple && !Array.isArray(this.value)) {
+                this.$emit('input', []);
+            }
+            if (!this.multiple && Array.isArray(this.value)) {
+                this.$emit('input', '');
             }
         },
         watch:{
             filterable(val){
                 this.readonly = !val
             },
-            value(val){
-                this.updateValue(val)
-            }
+            value(val,old){
+                this.updateValue({value:val,watch:true})
+            },
+            tagList(val){
+                this.changeTagList(val)
+            },
         },
     }
 </script>

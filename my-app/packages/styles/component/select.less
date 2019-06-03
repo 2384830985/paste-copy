@@ -4,6 +4,11 @@
 .@{select-prefix-cls}{
   position: relative;
   z-index: 10;
+  &-focus{
+    .@{input-prefix-cls}{
+      .active()
+    }
+  }
   &-drop{
     width: inherit;
     max-height: 200px;
@@ -23,7 +28,7 @@
   }
 
   &-choice{
-    background: #f3f3f3;
+    //background: #f3f3f3;
     color: @primary-color;
   }
   &-avi-dropIn{
@@ -33,7 +38,7 @@
     animation: aviMoveLeftOut @transition-time @ease-in-out;
   }
   &-icon{
-    transform: rotate(180deg);
+    transform: translateY(-50%) rotate(180deg)  !important;
     transition: all @animation-time @ease-in-out;
   }
   &-clearable{
@@ -81,6 +86,77 @@
     text-align: center;
     cursor: default;
     font-size: 14px;
+  }
+  &-tag{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: normal;
+    white-space: normal;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4px 32px 4px 7px;
+    &-list{
+      color: tint(@black-color,30);
+      cursor: default;
+      max-width: 99%;
+      position: relative;
+      overflow: hidden;
+      transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      padding: 0 20px 0 10px;
+      white-space: nowrap;
+      text-overflow:ellipsis;
+      background: tint(@info-color,90);
+      margin: 3px 4px 3px 0;
+      font-size: 14px;
+      border: 1px solid @border-color-base;
+      border-radius: @border-radius-mini;
+      &:hover{
+        color: tint(@black-color,50);;
+      }
+    }
+    &-small{
+      margin: 1px 4px 1px 0;
+      font-size: 12px;
+    }
+    &-large{
+      font-size: 16px;
+    }
+    &-input{
+      display: block;
+      background:none;
+      outline:none;
+      border:0;
+      flex-grow: 1;
+      &:hover{
+        background:none;
+        outline:none;
+        border:0;
+      }
+      &:focus{
+        background:none;
+        outline:none;
+        border:0;
+      }
+    }
+    &-close{
+      cursor: pointer;
+      position: absolute;
+      font-size: inherit;
+      right: 4px;
+      top: 0;
+      color: tint(@info-color,20);
+    }
+    &-large > &-close{
+      font-size: 14px;
+      right: 3px;
+      top: 2px;
+    }
+  }
+  .@{input-prefix-cls-wrapper}{
+    //display: block;
   }
 }
 .@{select-prefix-cls-wrapper}{

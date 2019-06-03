@@ -22,37 +22,66 @@
         data(){
             return{
                 popper: null,
-                styles: {}
+                styles: {},
+                popperStatus: false,
             }
+        },
+        methods:{
+            update () {
+                if (this.popper) {
+                    this.$nextTick(() => {
+                        this.popper.update();
+                        this.popperStatus = true;
+                    });
+                } else {
+                    this.$nextTick(() => {
+                        this.popper = new Popper(this.$parent.$refs.reference, this.$el, {
+                            placement: this.placement,
+                            modifiers: {
+                                computeStyle:{
+                                    gpuAcceleration: false
+                                },
+                                preventOverflow :{
+                                    boundariesElement: 'window'
+                                }
+                            },
+                            onCreate:()=>{
+                                // this.resetTransformOrigin();
+                                this.$nextTick(this.popper.update());
+                            },
+                            onUpdate:()=>{
+                                // this.resetTransformOrigin();
+                            }
+                        });
+                    });
+                }
+            },
+            destroy () {
+                if (this.popper) {
+                    setTimeout(() => {
+                        if (this.popper && !this.popperStatus) {
+                            this.popper.destroy();
+                            this.popper = null;
+                        }
+                        this.popperStatus = false;
+                    }, 300);
+                }
+            },
         },
         mounted(){
             console.log()
             this.styles = {
                 width: this.$options.parent.$el.getBoundingClientRect().width+'px'
             }
-            this.$nextTick(() => {
-                // console.log(this.$parent.$refs)
-                // console.log(this.$parent.$refs.reference.getBoundingClientRect())
-                // console.log(this.$parent.$refs.reference.clientWidth)
-                this.popper = new Popper(this.$parent.$refs.reference, this.$el, {
-                    placement: this.placement,
-                    modifiers: {
-                        computeStyle:{
-                            gpuAcceleration: false
-                        },
-                        preventOverflow :{
-                            boundariesElement: 'window'
-                        }
-                    },
-                    onCreate:()=>{
-                        // this.resetTransformOrigin();
-                        // this.$nextTick(this.popper.update());
-                    },
-                    onUpdate:()=>{
-                        // this.resetTransformOrigin();
-                    }
-                });
-            });
+        },
+        created () {
+            this.$on('on-update-popper', this.update);
+            this.$on('on-destroy-popper', this.destroy);
+        },
+        beforeDestroy () {
+            if (this.popper) {
+                this.popper.destroy();
+            }
         }
     }
 </script>
