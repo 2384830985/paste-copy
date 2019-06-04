@@ -1,6 +1,6 @@
 <template>
     <ul v-show="show">
-        <li v-if="label" class="AIvu-select-option-title">{{label}}</li>
+        <li v-if="label" class="pc-select-option-title">{{label}}</li>
         <slot></slot>
     </ul>
 </template>
@@ -8,7 +8,7 @@
 <script>
     import {findComponentsDownward} from '../../utils/assist'
     export default {
-        name: "TOptionGroup",
+        name: "PcOptionGroup",
         props:{
             label: {
                 type: String
@@ -25,7 +25,7 @@
         },
         methods:{
             updateValue(){
-                let optionList = findComponentsDownward(this,'TOption');
+                let optionList = findComponentsDownward(this,'PcOption');
                 if (optionList.length>0) {
                     let {disabled} = this;
                     optionList.forEach(item=>{

@@ -19,61 +19,61 @@
             <p>on-change</p>
         </div>
         <p>disabled</p>
-        <t-radio-group  v-model="radio" type="button">
-            <t-radio :label="1" :disabled="disabled">1</t-radio>
-            <t-radio :label="2" :disabled="disabled">2</t-radio>
-            <t-radio :label="3" :disabled="disabled">3</t-radio>
-        </t-radio-group>
-        <t-button @click="disabled=!disabled">disabled</t-button>
+        <pc-radio-group  v-model="radio" type="button">
+            <pc-radio :label="1" :disabled="disabled">1</pc-radio>
+            <pc-radio :label="2" :disabled="disabled">2</pc-radio>
+            <pc-radio :label="3" :disabled="disabled">3</pc-radio>
+        </pc-radio-group>
+        <pc-button @click="disabled=!disabled">disabled</pc-button>
         <p>disabled</p>
-        <t-radio-group  v-model="radio">
-            <t-radio :label="1" :disabled="disabled">1</t-radio>
-            <t-radio :label="2" :disabled="disabled">2</t-radio>
-            <t-radio :label="3" :disabled="disabled">3</t-radio>
-        </t-radio-group>
-        <t-button @click="disabled=!disabled">disabled</t-button>
+        <pc-radio-group  v-model="radio">
+            <pc-radio :label="1" :disabled="disabled">1</pc-radio>
+            <pc-radio :label="2" :disabled="disabled">2</pc-radio>
+            <pc-radio :label="3" :disabled="disabled">3</pc-radio>
+        </pc-radio-group>
+        <pc-button @click="disabled=!disabled">disabled</pc-button>
         <p>铺满</p>
-        <t-radio-group  v-model="radio2" type="button" entity >
-            <t-radio :label="1">1</t-radio>
-            <t-radio :label="2" disabled>2</t-radio>
-            <t-radio :label="3">3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio2" type="button" entity >
+            <pc-radio :label="1">1</pc-radio>
+            <pc-radio :label="2" disabled>2</pc-radio>
+            <pc-radio :label="3">3</pc-radio>
+        </pc-radio-group>
         <p>small</p>
-        <t-radio-group  v-model="radio2" type="button" size="small">
-            <t-radio :label="1" >1</t-radio>
-            <t-radio :label="2" >2</t-radio>
-            <t-radio :label="3" >3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio2" type="button" size="small">
+            <pc-radio :label="1" >1</pc-radio>
+            <pc-radio :label="2" >2</pc-radio>
+            <pc-radio :label="3" >3</pc-radio>
+        </pc-radio-group>
         <p>default</p>
-        <t-radio-group  v-model="radio" type="button">
-            <t-radio :label="1" disabled>1</t-radio>
-            <t-radio :label="2">2</t-radio>
-            <t-radio :label="3" size="large">3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio" type="button">
+            <pc-radio :label="1" disabled>1</pc-radio>
+            <pc-radio :label="2">2</pc-radio>
+            <pc-radio :label="3" size="large">3</pc-radio>
+        </pc-radio-group>
         <p>large</p>
-        <t-radio-group  v-model="radio2" type="button" size="large">
-            <t-radio :label="1" >1</t-radio>
-            <t-radio :label="2" >2</t-radio>
-            <t-radio :label="3" disabled size="large">3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio2" type="button" size="large">
+            <pc-radio :label="1" >1</pc-radio>
+            <pc-radio :label="2" >2</pc-radio>
+            <pc-radio :label="3" disabled size="large">3</pc-radio>
+        </pc-radio-group>
         <p>small</p>
-        <t-radio-group  v-model="radio2" >
-            <t-radio :label="1" disabled size="small">1</t-radio>
-            <t-radio :label="2"  size="small">2</t-radio>
-            <t-radio :label="3"  size="small">3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio2" >
+            <pc-radio :label="1" disabled size="small">1</pc-radio>
+            <pc-radio :label="2"  size="small">2</pc-radio>
+            <pc-radio :label="3"  size="small">3</pc-radio>
+        </pc-radio-group>
         <p>default</p>
-        <t-radio-group  v-model="radio1">
-            <t-radio :label="1" disabled>1</t-radio>
-            <t-radio :label="2">2</t-radio>
-            <t-radio :label="3" size="large">3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio1">
+            <pc-radio :label="1" disabled>1</pc-radio>
+            <pc-radio :label="2">2</pc-radio>
+            <pc-radio :label="3" size="large">3</pc-radio>
+        </pc-radio-group>
         <p>large</p>
-        <t-radio-group  v-model="radio2" size="large">
-            <t-radio :label="1" size="large" >1</t-radio>
-            <t-radio :label="2" size="large" >2</t-radio>
-            <t-radio :label="3" size="large" >3</t-radio>
-        </t-radio-group>
+        <pc-radio-group  v-model="radio2" size="large">
+            <pc-radio :label="1" size="large" >1</pc-radio>
+            <pc-radio :label="2" size="large" >2</pc-radio>
+            <pc-radio :label="3" size="large" >3</pc-radio>
+        </pc-radio-group>
     </div>
 </template>
 

@@ -1,7 +1,7 @@
-import TRadioGroup from '../radio/radio-group'
+import PcRadioGroup from '../radio/radio-group'
 
-TRadioGroup.install = function (Vue) {
-    Vue.component(TRadioGroup.name,TRadioGroup)
+PcRadioGroup.install = function (Vue) {
+    Vue.component(PcRadioGroup.name,PcRadioGroup)
 };
 
-export default TRadioGroup
+export default PcRadioGroup

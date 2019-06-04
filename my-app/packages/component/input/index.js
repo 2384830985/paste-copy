@@ -1,7 +1,7 @@
-import TInput from './input';
+import PcInput from './input';
 
-TInput.install = function (Vue) {
-    Vue.component(TInput.name,TInput)
+PcInput.install = function (Vue) {
+    Vue.component(PcInput.name,PcInput)
 };
 
-export default TInput
+export default PcInput

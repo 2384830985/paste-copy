@@ -1,7 +1,7 @@
-import TRadio from './radio'
+import PcRadio from './radio'
 
-TRadio.install = function (Vue) {
-    Vue.component(TRadio.name,TRadio)
+PcRadio.install = function (Vue) {
+    Vue.component(PcRadio.name,PcRadio)
 };
 
-export default TRadio
+export default PcRadio

@@ -6,6 +6,14 @@ module.exports = {
             filename: 'index.html'
         }
     },
+    lintOnSave: false,
+    devServer: {
+        port: 1234,
+        overlay: {
+            warnings: false,
+            errors: false
+        },
+    },
     productionSourceMap:false,
     // chainWebpack:config => {
     //     config.module

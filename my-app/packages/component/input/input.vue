@@ -26,25 +26,25 @@
                        @compositionend="handleComposition"
                        :placeholder="placeholder">
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right']" v-if="icon" @click="onIconClickRight">
-                    <i :class="['avi',icon,classIcon]"></i>
+                    <i :class="['pc-icon',icon,classIcon]"></i>
                 </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right']" v-else-if="search&&searchButton===false" @click="onIconClickRight">
-                    <i :class="['avi','avi-search']"></i>
+                    <i :class="['pc-icon','pc-icon-search']"></i>
                 </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-left']" v-if="iconLeft" @click="onIconClickLeft">
-                    <i :class="['avi',iconLeft]"></i>
+                    <i :class="['pc-icon',iconLeft]"></i>
                 </span>
                 <span :class="[prefixCls+'-icon',prefixCls+'-icon-right',{
                         [`${prefixCls}-clear`]: icon||(search&&searchButton===false)
                 }]"
                           v-if="clearable && currentValue && !disabled" @click.stop="onClearValue">
-                    <i :class="['avi','avi-clear']"></i>
+                    <i :class="['pc-icon','pc-icon-clear']"></i>
                 </span>
             </div>
             <div :class="[prefixCls+'-search',{
             [`${prefixCls}-search-radius`]: !append
         }]" v-if="search&&searchButton" @click="onIconClickRight">
-                <i v-if="searchButton===true" class="avi avi-search"></i>
+                <i v-if="searchButton===true" class="pc-icon pc-icon-search"></i>
                 <template v-else>{{searchButton}}</template>
             </div>
             <div :class="[prefixCls + '-group-append']" v-if="append" @click="onAppend">
@@ -80,9 +80,9 @@
 <script>
     import {oneOf} from "../../utils/assist";
     import Emitter from '../../mixins/emitter'
-    const prefixCls = 'AIvu-input';
+    const prefixCls = 'pc-input';
     export default {
-        name: "TInput",
+        name: "PcInput",
         mixins: [Emitter],
         props:{
             // 规定当在表单中提交时，文本区域中的文本如何换行。。 textarea
@@ -158,7 +158,7 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 }
             },
             // 知否只读

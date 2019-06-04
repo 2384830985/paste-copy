@@ -1,110 +1,110 @@
 <template>
     <div style="margin: 20px">
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList"
+            <pc-checkbox-group v-model="checkBoxList"
                               type="button"
                               entity>
-                <t-checkbox :label="1"></t-checkbox>
-                <t-checkbox :label="2"></t-checkbox>
-                <t-checkbox :label="3"></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
-            <t-button @click="xxx">123</t-button>
+                <pc-checkbox :label="1"></pc-checkbox>
+                <pc-checkbox :label="2"></pc-checkbox>
+                <pc-checkbox :label="3"></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
+            <pc-button @click="xxx">123</pc-button>
         </div>
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList"
+            <pc-checkbox-group v-model="checkBoxList"
                               type="button"
                               entity>
-                <t-checkbox :label="1" disabled></t-checkbox>
-                <t-checkbox :label="2"></t-checkbox>
-                <t-checkbox :label="3" disabled></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
+                <pc-checkbox :label="1" disabled></pc-checkbox>
+                <pc-checkbox :label="2"></pc-checkbox>
+                <pc-checkbox :label="3" disabled></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
         </div>
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList" type="button" size="small">
-                <t-checkbox :label="1"></t-checkbox>
-                <t-checkbox :label="2" disabled></t-checkbox>
-                <t-checkbox :label="3" disabled></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
+            <pc-checkbox-group v-model="checkBoxList" type="button" size="small">
+                <pc-checkbox :label="1"></pc-checkbox>
+                <pc-checkbox :label="2" disabled></pc-checkbox>
+                <pc-checkbox :label="3" disabled></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
         </div>
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList" type="button">
-                <t-checkbox :label="1" disabled></t-checkbox>
-                <t-checkbox :label="2" ></t-checkbox>
-                <t-checkbox :label="3"></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
+            <pc-checkbox-group v-model="checkBoxList" type="button">
+                <pc-checkbox :label="1" disabled></pc-checkbox>
+                <pc-checkbox :label="2" ></pc-checkbox>
+                <pc-checkbox :label="3"></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
         </div>
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList" type="button" size="large">
-                <t-checkbox :label="1"></t-checkbox>
-                <t-checkbox :label="2"></t-checkbox>
-                <t-checkbox :label="3"></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
+            <pc-checkbox-group v-model="checkBoxList" type="button" size="large">
+                <pc-checkbox :label="1"></pc-checkbox>
+                <pc-checkbox :label="2"></pc-checkbox>
+                <pc-checkbox :label="3"></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
         </div>
         <div style="margin: 20px">
-            <t-checkbox-group v-model="checkBoxList">
-                <t-checkbox :label="1"></t-checkbox>
-                <t-checkbox :label="2"></t-checkbox>
-                <t-checkbox :label="3"></t-checkbox>
-                <t-checkbox :label="4"></t-checkbox>
-            </t-checkbox-group>
+            <pc-checkbox-group v-model="checkBoxList">
+                <pc-checkbox :label="1"></pc-checkbox>
+                <pc-checkbox :label="2"></pc-checkbox>
+                <pc-checkbox :label="3"></pc-checkbox>
+                <pc-checkbox :label="4"></pc-checkbox>
+            </pc-checkbox-group>
         </div>
         <div style="margin: 20px">
-            <t-checkbox v-model="xx" size="small" disabled indeterminate>
+            <pc-checkbox v-model="xx" size="small" disabled indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="large" disabled indeterminate>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="large" disabled indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="default" disabled indeterminate>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="default" disabled indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="default" disabled>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="default" disabled>
                 123
-            </t-checkbox>
+            </pc-checkbox>
         </div>
         <div style="margin: 20px">
-            <t-checkbox v-model="xx" size="small" indeterminate>
+            <pc-checkbox v-model="xx" size="small" indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="large" indeterminate>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="large" indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="default" indeterminate>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="default" indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="default">
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="default">
                 123
-            </t-checkbox>
+            </pc-checkbox>
         </div>
         <div style="margin: 20px">
-            <t-checkbox v-model="xx" size="small">
+            <pc-checkbox v-model="xx" size="small">
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="large">
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="large">
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" size="default">
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" size="default">
                 123
-            </t-checkbox>
+            </pc-checkbox>
         </div>
         <div style="margin: 20px">
-            <t-checkbox v-model="xx" indeterminate>
+            <pc-checkbox v-model="xx" indeterminate>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx" disabled>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx" disabled>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx1" disabled>
+            </pc-checkbox>
+            <pc-checkbox v-model="xx1" disabled>
                 123
-            </t-checkbox>
-            <t-checkbox v-model="xx">
+            </pc-checkbox>
+            <pc-checkbox v-model="xx">
                 123
-            </t-checkbox>
+            </pc-checkbox>
         </div>
     </div>
 

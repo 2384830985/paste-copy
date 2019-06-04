@@ -1,7 +1,7 @@
-import TOption from '../select/option'
+import PcOption from '../select/option'
 
-TOption.install = function (Vue) {
-    Vue.component(TOption.name,TOption)
+PcOption.install = function (Vue) {
+    Vue.component(PcOption.name,PcOption)
 }
 
-export default TOption
+export default PcOption

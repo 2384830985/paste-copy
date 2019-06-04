@@ -30,7 +30,7 @@
                      v-if="!maxTagCount || maxTagCount>index"
                 >
                     {{item.label}}
-                    <t-icon type="close" @click.stop="closeTagList(item)" :class="`${prefixCls}-tag-close`"></t-icon>
+                    <pc-icon type="close" @click.stop="closeTagList(item)" :class="`${prefixCls}-tag-close`"></pc-icon>
                 </div>
                 <!-- 超出-->
                 <div v-if="tagList.length > maxTagCount" style="padding-right: 4px;padding-left: 4px" :class="[
@@ -52,7 +52,7 @@
                         @input="tagOnSearchInput"
                         type="text"/>
             </div>
-            <t-input :placeholder="placeholders"
+            <pc-input :placeholder="placeholders"
                      :readonly="readonly"
                      ref="input"
                      :size="size"
@@ -67,7 +67,7 @@
                         iconShow?`${prefixCls}-icon`:'',
                      ]"
                      :icon="icon"
-            ></t-input>
+            ></pc-input>
         </div>
         <Drop v-show="iconShow"
               v-transfer-dom
@@ -85,14 +85,14 @@
 </template>
 
 <script>
-    const prefixCls = "AIvu-select";
+    const prefixCls = "pc-select";
     import * as vClickOutside from 'v-click-outside-x';
     import TransferDom from '../../directives/transfer-dom'
     import {oneOf,findComponentsDownward} from "../../utils/assist";
     import Emitter from '../../mixins/emitter'
     import Drop from './drop'
     export default {
-        name: "TSelect",
+        name: "PcSelect",
         directives: {
             clickOutside: vClickOutside.directive,
             TransferDom: TransferDom
@@ -118,7 +118,7 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 }
             },
             // 搜索
@@ -189,7 +189,7 @@
             icon(){
                 let icon = false;
                 if (!this.clearable) {
-                    icon = 'avi-caret-down'
+                    icon = 'pc-icon-caret-down'
                 }
                 return icon
             }
@@ -386,7 +386,7 @@
             getOptionDate(){
                 let that = this;
                 this.optionDate = [];
-                this.optionList = findComponentsDownward(this,'TOption');
+                this.optionList = findComponentsDownward(this,'PcOption');
                 this.optionDate = this.optionList.filter(item=>{return !item.disableds});
                 this.optionDate.forEach((item,index)=>{
                     if (item.choice) {
@@ -466,7 +466,7 @@
                 this.$nextTick(function () {
                     if (this.tagList.length>0&&this.multiple) {
                         let height = this.$refs.tag.getBoundingClientRect().height;
-                        let node = [].filter.call(this.$refs.input.$el.childNodes,(item)=>{return item.className==='AIvu-input-group-input' });
+                        let node = [].filter.call(this.$refs.input.$el.childNodes,(item)=>{return item.className==='pc-input-group-input' });
                         node = [].filter.call(node[0].childNodes,(item)=>{return item.tagName==='INPUT'});
                         if (height>40) {
                             node[0].style.height = height+'px'
@@ -489,7 +489,7 @@
             this.tagInputClass = {
                 maxWidth:  `${this.$refs.reference.getBoundingClientRect().width-55}px`,
             };
-            this.optionGroup = findComponentsDownward(this,'TOptionGroup');
+            this.optionGroup = findComponentsDownward(this,'PcOptionGroup');
             this.getOptionDate();
             if (this.multiple) {
                 this.calculationInputHeight();

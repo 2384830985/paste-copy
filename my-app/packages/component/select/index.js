@@ -1,7 +1,7 @@
-import TSelect from './select'
+import PcSelect from './select'
 
-TSelect.install = function (Vue) {
-    Vue.component(TSelect.name,TSelect)
+PcSelect.install = function (Vue) {
+    Vue.component(PcSelect.name,PcSelect)
 };
 
-export default TSelect
+export default PcSelect

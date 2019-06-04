@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    const prefixCls = 'avi';
+    const prefixCls = 'pc-icon';
     export default {
-        name: "t-icon",
+        name: "PcIcon",
         props: {
             type: {
                 type: String,
@@ -51,7 +51,7 @@
 </script>
 
 <style scoped>
-    .avi{
+    .pc{
         vertical-align: middle;
         line-height: 1.5;
     }

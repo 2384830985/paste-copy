@@ -16,12 +16,12 @@
 </template>
 
 <script>
-    const prefixCls = 'AIvu-checkbox';
+    const prefixCls = 'pc-checkbox';
     import {oneOf,findComponentUpward} from "../../utils/assist";
     import borderAnimation from "../../mixins/borderAnimation";
     import Emitter from '../../mixins/emitter'
     export default {
-        name: "TCheckbox",
+        name: "PcCheckbox",
         mixins:[Emitter,borderAnimation],
         props:{
             label:{
@@ -37,9 +37,9 @@
                     return oneOf(value,['small', 'large', 'default'])
                 },
                 // 添加默认的按钮大小
-                // this.$AVIEW.size 如果有默认注入的按钮大小那么就用默认的
+                // this.$PASTE.size 如果有默认注入的按钮大小那么就用默认的
                 default(){
-                    return !this.$AVIEW || this.$AVIEW.size === '' ? 'default' : this.$AVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 },
             },
             value:{
@@ -92,7 +92,7 @@
                     `${prefixCls}-inner`,
                     {
                         [`${prefixCls}-focus`]: this.focusInner,
-                        [`AIvu-btn-default-animation`]: this.animation,
+                        [`pc-btn-default-animation`]: this.animation,
                     }
                 ]
             },
@@ -102,7 +102,7 @@
                 currentValue: this.value,
                 focusInner: false,
                 group: false,
-                checkBoxGroup: findComponentUpward(this,'TCheckboxGroup')
+                checkBoxGroup: findComponentUpward(this,'PcCheckboxGroup')
             }
         },
         methods:{

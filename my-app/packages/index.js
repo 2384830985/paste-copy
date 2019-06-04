@@ -1,33 +1,33 @@
-import TOptionGroup from './component/option-group'
-import TInput from './component/input'
-import TSelect from './component/select'
-import TOption from './component/option'
-import TCheckboxGroup from './component/checkbox-group'
-import TCheckbox from './component/checkbox'
-import TRadio from './component/radio'
-import TRadioGroup from './component/radio-group'
-import TButton from './component/button'
-import TButtonGroup from './component/button-group'
-import TIcon from './component/icon'
-import TRow from './component/row'
-import TCol from './component/col'
+import PcOptionGroup from './component/option-group'
+import PcInput from './component/input'
+import PcSelect from './component/select'
+import PcOption from './component/option'
+import PcCheckboxGroup from './component/checkbox-group'
+import PcCheckbox from './component/checkbox'
+import PcRadio from './component/radio'
+import PcRadioGroup from './component/radio-group'
+import PcButton from './component/button'
+import PcButtonGroup from './component/button-group'
+import PcIcon from './component/icon'
+import PcRow from './component/row'
+import PcCol from './component/col'
 import './styles/index.less'
 
 // 存储组件列表
 const components = [
-    TOptionGroup,
-    TOption,
-    TSelect,
-    TInput,
-    TCheckboxGroup,
-    TCheckbox,
-    TRadioGroup,
-    TRadio,
-    TCol,
-    TRow,
-    TIcon,
-    TButtonGroup,
-    TButton
+    PcOptionGroup,
+    PcOption,
+    PcSelect,
+    PcInput,
+    PcCheckboxGroup,
+    PcCheckbox,
+    PcRadioGroup,
+    PcRadio,
+    PcCol,
+    PcRow,
+    PcIcon,
+    PcButtonGroup,
+    PcButton
 ]
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
 const install = function (Vue,opts={}) {
@@ -36,7 +36,7 @@ const install = function (Vue,opts={}) {
     // 遍历注册全局组件
     components.map(component => Vue.component(component.name, component))
 
-    Vue.prototype.$AVIEW = {
+    Vue.prototype.$PASTE = {
         size: opts.size || '',
     }
 }

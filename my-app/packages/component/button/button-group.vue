@@ -6,9 +6,9 @@
 
 <script>
     import {oneOf} from '../../utils/assist';
-    const prefixCls = 'AIvu-btn-group';
+    const prefixCls = 'pc-btn-group';
     export default {
-        name: "button-group",
+        name: "PcButtonGroup",
         props: {
             // 当前按钮的大小
             size: {
@@ -17,9 +17,9 @@
                     return oneOf(value,['small', 'large', 'default'])
                 },
                 // 添加默认的按钮大小
-                // this.$AVIEW.size 如果有默认注入的按钮大小那么就用默认的
+                // this.$PASTE.size 如果有默认注入的按钮大小那么就用默认的
                 default(){
-                    return !this.$AVIEW || this.$AVIEW.size === '' ? 'default' : this.$AVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 },
             },
             circle: {

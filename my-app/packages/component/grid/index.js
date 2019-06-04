@@ -1,4 +1,4 @@
-import TCol from './col';
-import TRow from './row';
+import PcCol from './col';
+import PcRow from './row';
 
-export {TCol,TRow}
+export {PcCol,PcRow}

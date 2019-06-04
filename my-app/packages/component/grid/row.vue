@@ -6,9 +6,9 @@
 
 <script>
     import {findComponentDownward,findBrothersComponents,oneOf} from '../../utils/assist'
-    const prefixCls = 'AIvu-row';
+    const prefixCls = 'pc-row';
     export default {
-        name: "t-row",
+        name: "PcRow",
         props: {
             gutter:{
                 type: Number,
@@ -60,8 +60,8 @@
              * @param val
              */
             updateGutter(val){
-                let col = findComponentDownward(this,'t-col');
-                let colList = findBrothersComponents(col,'t-col',false);
+                let col = findComponentDownward(this,'PcCol');
+                let colList = findBrothersComponents(col,'PcCol',false);
                 if (colList.length>0) {
                     colList.forEach(item=>{
                         item.gutter = val

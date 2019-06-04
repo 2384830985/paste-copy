@@ -2,61 +2,61 @@
     <div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123"
+                <pc-input placeholder="123"
                          type="textarea"
                          disabled
                          rows="5"
                          >
-                </t-input>
-                <t-input placeholder="123"
+                </pc-input>
+                <pc-input placeholder="123"
                          style="margin-bottom: 20px"
                          >
-                    <t-select slot="prepend">
-                        <t-option-group label="水果">
-                            <t-option label="西瓜" value="0"></t-option>
-                            <t-option label="西瓜苹果" value="1" disabled></t-option>
-                            <t-option label="西瓜香蕉" value="2"></t-option>
-                            <t-option label="西草莓" value="3"></t-option>
-                        </t-option-group>
-                    </t-select>
-                    <t-select slot="append">
-                        <t-option-group label="水果">
-                            <t-option label="西瓜" value="0"></t-option>
-                            <t-option label="西瓜苹果" value="1" disabled></t-option>
-                            <t-option label="西瓜香蕉" value="2"></t-option>
-                            <t-option label="西草莓" value="3"></t-option>
-                        </t-option-group>
-                    </t-select>
-                </t-input>
-                <t-input placeholder="123"
+                    <pc-select slot="prepend">
+                        <pc-option-group label="水果">
+                            <pc-option label="西瓜" value="0"></pc-option>
+                            <pc-option label="西瓜苹果" value="1" disabled></pc-option>
+                            <pc-option label="西瓜香蕉" value="2"></pc-option>
+                            <pc-option label="西草莓" value="3"></pc-option>
+                        </pc-option-group>
+                    </pc-select>
+                    <pc-select slot="append">
+                        <pc-option-group label="水果">
+                            <pc-option label="西瓜" value="0"></pc-option>
+                            <pc-option label="西瓜苹果" value="1" disabled></pc-option>
+                            <pc-option label="西瓜香蕉" value="2"></pc-option>
+                            <pc-option label="西草莓" value="3"></pc-option>
+                        </pc-option-group>
+                    </pc-select>
+                </pc-input>
+                <pc-input placeholder="123"
                          style="margin-bottom: 20px"
                          >
-                    <t-select slot="prepend">
-                        <t-option-group label="水果">
-                            <t-option label="西瓜" value="0"></t-option>
-                            <t-option label="西瓜苹果" value="1" disabled></t-option>
-                            <t-option label="西瓜香蕉" value="2"></t-option>
-                            <t-option label="西草莓" value="3"></t-option>
-                        </t-option-group>
-                    </t-select>
-                </t-input>
-                <t-input placeholder="123"
+                    <pc-select slot="prepend">
+                        <pc-option-group label="水果">
+                            <pc-option label="西瓜" value="0"></pc-option>
+                            <pc-option label="西瓜苹果" value="1" disabled></pc-option>
+                            <pc-option label="西瓜香蕉" value="2"></pc-option>
+                            <pc-option label="西草莓" value="3"></pc-option>
+                        </pc-option-group>
+                    </pc-select>
+                </pc-input>
+                <pc-input placeholder="123"
                          style="margin-bottom: 20px"
                          >
-                    <t-select slot="append">
-                        <t-option-group label="水果">
-                            <t-option label="西瓜" value="0"></t-option>
-                            <t-option label="西瓜苹果" value="1" disabled></t-option>
-                            <t-option label="西瓜香蕉" value="2"></t-option>
-                            <t-option label="西草莓" value="3"></t-option>
-                        </t-option-group>
-                    </t-select>
-                </t-input>
+                    <pc-select slot="append">
+                        <pc-option-group label="水果">
+                            <pc-option label="西瓜" value="0"></pc-option>
+                            <pc-option label="西瓜苹果" value="1" disabled></pc-option>
+                            <pc-option label="西瓜香蕉" value="2"></pc-option>
+                            <pc-option label="西草莓" value="3"></pc-option>
+                        </pc-option-group>
+                    </pc-select>
+                </pc-input>
             </div>
         </div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123"
+                <pc-input placeholder="123"
                          type="textarea"
                          v-model="xxxxxxxx"
                          rows="5"
@@ -64,12 +64,12 @@
                          showWordLimit
                          :maxlength="100"
                          >
-                </t-input>
+                </pc-input>
             </div>
         </div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123"
+                <pc-input placeholder="123"
                          @onAppend="onAppend"
                          @onPrepend="onPrepend"
                          type="password"
@@ -79,18 +79,18 @@
                          icon-left="avi-warning-circle">
                     <span slot="prepend">http://</span>
                     <span slot="append">.com</span>
-                </t-input>
+                </pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" search clearable  icon-left="avi-warning-circle" size="small"></t-input>
+                <pc-input placeholder="123" search clearable  icon-left="avi-warning-circle" size="small"></pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" search  clearable  icon-left="avi-warning-circle" size="large"></t-input>
+                <pc-input placeholder="123" search  clearable  icon-left="avi-warning-circle" size="large"></pc-input>
             </div>
         </div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123"
+                <pc-input placeholder="123"
                          @onAppend="onAppend"
                          @onPrepend="onPrepend"
                          type="password"
@@ -101,45 +101,45 @@
                          icon-left="avi-warning-circle">
                     <span slot="prepend">http://</span>
                     <span slot="append">.com</span>
-                </t-input>
+                </pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" search clearable  :searchButton="1" icon-left="avi-warning-circle" size="small"></t-input>
+                <pc-input placeholder="123" search clearable  :searchButton="1" icon-left="avi-warning-circle" size="small"></pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" search  clearable  :searchButton="123" icon-left="avi-warning-circle" size="large"></t-input>
+                <pc-input placeholder="123" search  clearable  :searchButton="123" icon-left="avi-warning-circle" size="large"></pc-input>
             </div>
         </div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123"
+                <pc-input placeholder="123"
                          @onAppend="onAppend"
                          @onPrepend="onPrepend"
                          clearable
                          icon-left="avi-warning-circle">
                     <span slot="prepend">http://</span>
                     <span slot="append">.com</span>
-                </t-input>
+                </pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" icon-left="avi-warning-circle" clearable size="small"></t-input>
+                <pc-input placeholder="123" icon-left="avi-warning-circle" clearable size="small"></pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" icon-left="avi-warning-circle" clearable size="large"></t-input>
+                <pc-input placeholder="123" icon-left="avi-warning-circle" clearable size="large"></pc-input>
             </div>
         </div>
         <div>
             <div style="margin: 20px">
-                <t-input placeholder="123" icon="avi-warning-circle">
+                <pc-input placeholder="123" icon="avi-warning-circle">
                     <span slot="prepend">http://</span>
                     <span slot="append">.com</span>
-                </t-input>
+                </pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" icon="avi-warning-circle" size="small"></t-input>
+                <pc-input placeholder="123" icon="avi-warning-circle" size="small"></pc-input>
             </div>
             <div style="margin: 20px">
-                <t-input placeholder="123" icon="avi-warning-circle" size="large"></t-input>
+                <pc-input placeholder="123" icon="avi-warning-circle" size="large"></pc-input>
             </div>
         </div>
 
@@ -167,10 +167,5 @@
 </script>
 
 <style>
-    /*.AIvu-select .AIvu-input,.AIvu-select-wrapper {*/
-        /*width: 130px;*/
-    /*}*/
-    /*.AIvu-select > .AIvu-input {*/
-        /*display: block;*/
-    /*}*/
+
 </style>

@@ -7,9 +7,9 @@
 <script>
     import {oneOf,findComponentsDownward} from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
-    const prefixCls = 'AIvu-radio-group';
+    const prefixCls = 'pc-radio-group';
     export default {
-        name: "TRadioGroup",
+        name: "PcRadioGroup",
         mixins: [Emitter],
         props:{
             type:{
@@ -40,7 +40,7 @@
                 default(){
                     let time = new Date().getTime();
                     let index = 0;
-                    return `AView-${time}-${++index}`
+                    return `pc-${time}-${++index}`
                 }
             }
         },
@@ -63,7 +63,7 @@
         },
         methods:{
             updateValue(){
-                let radioList = findComponentsDownward(this,'TRadio');
+                let radioList = findComponentsDownward(this,'PcRadio');
                 if (radioList) {
                     radioList.forEach(item=>{
                         item.currentValue = item.label === this.currentValue;

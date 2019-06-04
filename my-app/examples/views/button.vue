@@ -3,10 +3,10 @@
     margin: 20px;
     padding: 20px;
   }
-  .home .AIvu-btn{
+  .home .pc-btn{
     margin: 10px 5px;
   }
-  .home .AIvu-btn-group .AIvu-btn{
+  .home .pc-btn-group .pc-btn{
     margin: 10px 0;
   }
 </style>
@@ -61,158 +61,158 @@
     <div>
       <span>animationType:（是否动画效果 1开启 0关闭 默认1）</span>
     </div>
-    <t-button type="success" :disabled="disabled" :loading="disabled" @click="disabled = true">
+    <pc-button type="success" :disabled="disabled" :loading="disabled" @click="disabled = true">
       <span v-if="!disabled">Click me!</span>
       <span v-else>Loading...</span>
-    </t-button>
-    <t-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="large">
+    </pc-button>
+    <pc-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="large">
       <span v-if="!disabled">Click me!</span>
       <span v-else>Loading...</span>
-    </t-button>
-    <t-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="small">
+    </pc-button>
+    <pc-button :disabled="disabled" :loading="disabled" @click="disabled = true" size="small">
       <span v-if="!disabled">Click me!</span>
       <span v-else>Loading...</span>
-    </t-button>
-    <button-group circle>
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button >1234535436456fdsdfsd</t-button>
-    </button-group>
-    <button-group size="small" circle>
-      <t-button dashedtype="primary">1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
-    </button-group>
-    <button-group size="large" circle>
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button type="primary">1234535436456fdsdfsd</t-button>
-    </button-group>
-    <button-group>
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button dashed>1234535436456fdsdfsd</t-button>
-    </button-group>
-    <button-group size="small">
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
-    </button-group>
-    <button-group size="large" >
-      <t-button type="success">1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
-    </button-group>
+    </pc-button>
+    <pc-button-group circle>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button >1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
+    <pc-button-group size="small" circle>
+      <pc-button dashedtype="primary">1234535436456fdsdfsd</pc-button>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
+    <pc-button-group size="large" circle>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button type="primary">1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
+    <pc-button-group>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button dashed>1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
+    <pc-button-group size="small">
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
+    <pc-button-group size="large" >
+      <pc-button type="success">1234535436456fdsdfsd</pc-button>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+    </pc-button-group>
     <br/>
     <div>
       默认
 
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button @click="xxx" type="primary">1234535436456fdsdfsd</t-button>
-      <t-button type="success">1234535436456fdsdfsd</t-button>
-      <t-button type="warning">1234535436456fdsdfsd</t-button>
-      <t-button type="info">1234535436456fdsdfsd</t-button>
-      <t-button type="error">1234535436456fdsdfsd</t-button>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button @click="xxx" type="primary">1234535436456fdsdfsd</pc-button>
+      <pc-button type="success">1234535436456fdsdfsd</pc-button>
+      <pc-button type="warning">1234535436456fdsdfsd</pc-button>
+      <pc-button type="info">1234535436456fdsdfsd</pc-button>
+      <pc-button type="error">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       click open
-      <t-button  to="/components/icon-en" type="primary">1234535436456fdsdfsd</t-button>
-      <t-button to="/components/icon-en" replace type="success">1234535436456fdsdfsd</t-button>
-      <t-button to="//iviewui.com" target="_blank" type="warning">1234535436456fdsdfsd</t-button>
+      <pc-button  to="/components/icon-en" type="primary">1234535436456fdsdfsd</pc-button>
+      <pc-button to="/components/icon-en" replace type="success">1234535436456fdsdfsd</pc-button>
+      <pc-button to="//iviewui.com" target="_blank" type="warning">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       朴素
-      <t-button  plain>1234535436456fdsdfsd</t-button>
-      <t-button plain type="primary">1234535436456fdsdfsd</t-button>
-      <t-button  plain type="success">1234535436456fdsdfsd</t-button>
-      <t-button  plain type="warning">1234535436456fdsdfsd</t-button>
-      <t-button  plain type="info">1234535436456fdsdfsd</t-button>
-      <t-button  plain type="error">1234535436456fdsdfsd</t-button>
+      <pc-button  plain>1234535436456fdsdfsd</pc-button>
+      <pc-button plain type="primary">1234535436456fdsdfsd</pc-button>
+      <pc-button  plain type="success">1234535436456fdsdfsd</pc-button>
+      <pc-button  plain type="warning">1234535436456fdsdfsd</pc-button>
+      <pc-button  plain type="info">1234535436456fdsdfsd</pc-button>
+      <pc-button  plain type="error">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       朴素
-      <t-button disabled plain>1234535436456fdsdfsd</t-button>
-      <t-button plain disabled type="primary">1234535436456fdsdfsd</t-button>
-      <t-button disabled plain type="success">1234535436456fdsdfsd</t-button>
-      <t-button disabled plain type="warning">1234535436456fdsdfsd</t-button>
-      <t-button disabled plain type="info">1234535436456fdsdfsd</t-button>
-      <t-button plain disabled type="error">1234535436456fdsdfsd</t-button>
+      <pc-button disabled plain>1234535436456fdsdfsd</pc-button>
+      <pc-button plain disabled type="primary">1234535436456fdsdfsd</pc-button>
+      <pc-button disabled plain type="success">1234535436456fdsdfsd</pc-button>
+      <pc-button disabled plain type="warning">1234535436456fdsdfsd</pc-button>
+      <pc-button disabled plain type="info">1234535436456fdsdfsd</pc-button>
+      <pc-button plain disabled type="error">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       text
-      <t-button disabled text>1234535436456fdsdfsd</t-button>
-      <t-button disabled type="success" text>1234535436456fdsdfsd</t-button>
-      <t-button disabled type="warning" text>1234535436456fdsdfsd</t-button>
-      <t-button disabled type="info" text>1234535436456fdsdfsd</t-button>
-      <t-button disabled type="error" text>1234535436456fdsdfsd</t-button>
+      <pc-button disabled text>1234535436456fdsdfsd</pc-button>
+      <pc-button disabled type="success" text>1234535436456fdsdfsd</pc-button>
+      <pc-button disabled type="warning" text>1234535436456fdsdfsd</pc-button>
+      <pc-button disabled type="info" text>1234535436456fdsdfsd</pc-button>
+      <pc-button disabled type="error" text>1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       大小
-      <t-button size="large">1234535436456fdsdfsd</t-button>
-      <t-button>1234535436456fdsdfsd</t-button>
-      <t-button size="small">1234535436456fdsdfsd</t-button>
-      <t-button size="small">1234535436456fdsdfsd</t-button>
+      <pc-button size="large">1234535436456fdsdfsd</pc-button>
+      <pc-button>1234535436456fdsdfsd</pc-button>
+      <pc-button size="small">1234535436456fdsdfsd</pc-button>
+      <pc-button size="small">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <!--<div>-->
       <!--圆形-->
-      <!--<t-button plain  circle size="large">1234535436456fdsdfsd</t-button>-->
-      <!--<t-button plain  circle size="default">1234535436456fdsdfsd</t-button>-->
-      <!--<t-button plain  circle size="small">1234535436456fdsdfsd</t-button>-->
+      <!--<pc-button plain  circle size="large">1234535436456fdsdfsd</pc-button>-->
+      <!--<pc-button plain  circle size="default">1234535436456fdsdfsd</pc-button>-->
+      <!--<pc-button plain  circle size="small">1234535436456fdsdfsd</pc-button>-->
     <!--</div>-->
     <!--<br/>-->
     <div>
       圆形
-      <t-button  circle size="large">1234535436456fdsdfsd</t-button>
-      <t-button  circle size="default">1234535436456fdsdfsd</t-button>
-      <t-button  circle size="small">1234535436456fdsdfsd</t-button>
+      <pc-button  circle size="large">1234535436456fdsdfsd</pc-button>
+      <pc-button  circle size="default">1234535436456fdsdfsd</pc-button>
+      <pc-button  circle size="small">1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
       虚线
-      <t-button dashed size="large">1234535436456fdsdfsd</t-button>
-      <t-button dashed>1234535436456fdsdfsd</t-button>
-      <t-button dashed size="small">1234535436456fdsdfsd</t-button>
-      <t-button dashed ghost circle>1234535436456fdsdfsd</t-button>
+      <pc-button dashed size="large">1234535436456fdsdfsd</pc-button>
+      <pc-button dashed>1234535436456fdsdfsd</pc-button>
+      <pc-button dashed size="small">1234535436456fdsdfsd</pc-button>
+      <pc-button dashed ghost circle>1234535436456fdsdfsd</pc-button>
     </div>
     <br/>
     <div>
-      <t-button circle dashed size="large" icon="time-circle"></t-button>
-      <t-button circle size="small" icon="time-circle"></t-button>
-      <t-button circle icon="time-circle"></t-button>
-      <t-button circle dashed size="small" icon="time-circle"></t-button>
-      <t-button circle dashed size="large" icon="time-circle"></t-button>
+      <pc-button circle dashed size="large" icon="time-circle"></pc-button>
+      <pc-button circle size="small" icon="time-circle"></pc-button>
+      <pc-button circle icon="time-circle"></pc-button>
+      <pc-button circle dashed size="small" icon="time-circle"></pc-button>
+      <pc-button circle dashed size="large" icon="time-circle"></pc-button>
     </div>
     <br/>
     <div>
-      <t-button circle type="success" dashed size="large" icon="time-circle"></t-button>
-      <t-button circle type="warning" size="small" icon="time-circle"></t-button>
-      <t-button circle type="info" icon="time-circle"></t-button>
-      <t-button circle type="error" dashed size="small" icon="time-circle"></t-button>
-      <t-button circle type="error" dashed size="large" icon="time-circle"></t-button>
-      <t-button circle loading dashed size="large" icon="time-circle"></t-button>
+      <pc-button circle type="success" dashed size="large" icon="time-circle"></pc-button>
+      <pc-button circle type="warning" size="small" icon="time-circle"></pc-button>
+      <pc-button circle type="info" icon="time-circle"></pc-button>
+      <pc-button circle type="error" dashed size="small" icon="time-circle"></pc-button>
+      <pc-button circle type="error" dashed size="large" icon="time-circle"></pc-button>
+      <pc-button circle loading dashed size="large" icon="time-circle"></pc-button>
     </div>
     <div>
-      <t-button loading circle type="success" dashed size="large" icon="time-circle"></t-button>
-      <t-button loading circle type="warning" size="small" icon="time-circle"></t-button>
-      <t-button loading circle type="info" icon="time-circle"></t-button>
-      <t-button loading circle type="error" dashed size="small" icon="time-circle"></t-button>
-      <t-button loading circle type="error" dashed size="large" icon="time-circle"></t-button>
+      <pc-button loading circle type="success" dashed size="large" icon="time-circle"></pc-button>
+      <pc-button loading circle type="warning" size="small" icon="time-circle"></pc-button>
+      <pc-button loading circle type="info" icon="time-circle"></pc-button>
+      <pc-button loading circle type="error" dashed size="small" icon="time-circle"></pc-button>
+      <pc-button loading circle type="error" dashed size="large" icon="time-circle"></pc-button>
     </div>
     <div>
-      <t-button disabled >123</t-button>
-      <t-button disabled circle type="success" size="large" icon="time-circle"></t-button>
-      <t-button disabled circle type="warning" size="small" icon="time-circle"></t-button>
-      <t-button disabled circle type="info" icon="time-circle"></t-button>
-      <t-button disabled circle type="error"  size="small" icon="time-circle"></t-button>
-      <t-button loading disabled circle type="error"  size="large" icon="time-circle"></t-button>
+      <pc-button disabled >123</pc-button>
+      <pc-button disabled circle type="success" size="large" icon="time-circle"></pc-button>
+      <pc-button disabled circle type="warning" size="small" icon="time-circle"></pc-button>
+      <pc-button disabled circle type="info" icon="time-circle"></pc-button>
+      <pc-button disabled circle type="error"  size="small" icon="time-circle"></pc-button>
+      <pc-button loading disabled circle type="error"  size="large" icon="time-circle"></pc-button>
     </div>
     <div>
-      <t-icon class="aiv-loading" type="loading1"></t-icon>
-      <t-icon class="aiv-loading" type="loading2"></t-icon>
-      <t-icon class="aiv-loading" type="loading3"></t-icon>
-      <t-icon class="aiv-loading" type="loading4"></t-icon>
-      <t-icon class="aiv-loading" type="Loading"></t-icon>
-      <t-icon class="aiv-loading" type="loading5"></t-icon>
+      <pc-icon class="pc-icon-loading" type="loading1"></pc-icon>
+      <pc-icon class="pc-icon-loading" type="loading2"></pc-icon>
+      <pc-icon class="pc-icon-loading" type="loading3"></pc-icon>
+      <pc-icon class="pc-icon-loading" type="loading4"></pc-icon>
+      <pc-icon class="pc-icon-loading" type="Loading"></pc-icon>
+      <pc-icon class="pc-icon-loading" type="loading5"></pc-icon>
     </div>
   </div>
 </template>

@@ -3,8 +3,8 @@
                @click="handleClickLink" :disabled="disabled"
                v-no-more-click="noMoreClickTime"
     >
-        <t-icon :type="loadingType" :size="iconSize" class="aiv-loading" v-if="loading"></t-icon>
-        <t-icon :type="icon" :size="iconSize" :customIcon="customIcon" v-if="(icon||customIcon)&&!loading"></t-icon>
+        <pc-icon :type="loadingType" :size="iconSize" class="pc-icon-loading" v-if="loading"></pc-icon>
+        <pc-icon :type="icon" :size="iconSize" :customIcon="customIcon" v-if="(icon||customIcon)&&!loading"></pc-icon>
         <span v-if="showSlot" ><slot ref="slot"></slot></span>
     </component>
 </template>
@@ -12,10 +12,10 @@
     import {oneOf} from '../../utils/assist';
     import mixinsLink from '../../mixins/link';
     import borderAnimation from '../../mixins/borderAnimation'
-    const prefixCls = 'AIvu-btn';
+    const prefixCls = 'pc-btn';
 
     export default {
-        name: 'TButton',
+        name: 'PcButton',
         mixins: [mixinsLink,borderAnimation],
         directives:{
             noMoreClick:{
@@ -83,9 +83,9 @@
                     return oneOf(value,['small', 'large', 'default'])
                 },
                 // 添加默认的按钮大小
-                // this.$AVIEW.size 如果有默认注入的按钮大小那么就用默认的
+                // this.$PASTE.size 如果有默认注入的按钮大小那么就用默认的
                 default(){
-                    return !this.$AVIEW || this.$AVIEW.size === '' ? 'default' : this.$AVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 },
             },
             // 默认的button 的值

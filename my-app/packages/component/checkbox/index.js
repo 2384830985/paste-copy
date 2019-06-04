@@ -1,7 +1,7 @@
-import TCheckbox from './checkbox'
+import PcCheckbox from './checkbox'
 
-TCheckbox.install = function (Vue) {
-    Vue.component(TCheckbox.name,TCheckbox)
+PcCheckbox.install = function (Vue) {
+    Vue.component(PcCheckbox.name,PcCheckbox)
 }
 
-export default TCheckbox
+export default PcCheckbox

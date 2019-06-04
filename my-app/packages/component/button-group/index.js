@@ -1,8 +1,8 @@
-import ButtonGroup from '../button/button-group'
+import PcButtonGroup from '../button/button-group'
 
 /* istanbul ignore next */
-ButtonGroup.install = function(Vue) {
-    Vue.component(ButtonGroup.name, ButtonGroup);
+PcButtonGroup.install = function(Vue) {
+    Vue.component(PcButtonGroup.name, PcButtonGroup);
 };
 
-export default ButtonGroup
+export default PcButtonGroup

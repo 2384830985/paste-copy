@@ -1,8 +1,8 @@
-import TButton from './button.vue';
+import PcButton from './button.vue';
 
 /* istanbul ignore next */
-TButton.install = function(Vue) {
-    Vue.component(TButton.name, TButton);
+PcButton.install = function(Vue) {
+    Vue.component(PcButton.name, PcButton);
 };
 
-export default TButton
+export default PcButton

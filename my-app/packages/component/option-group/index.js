@@ -1,7 +1,7 @@
-import TOptionGroup from '../select/option-group'
+import PcOptionGroup from '../select/option-group'
 
-TOptionGroup.install = function (Vue) {
-    Vue.component(TOptionGroup.name,TOptionGroup)
+PcOptionGroup.install = function (Vue) {
+    Vue.component(PcOptionGroup.name,PcOptionGroup)
 }
 
-export default TOptionGroup
+export default PcOptionGroup

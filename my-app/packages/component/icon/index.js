@@ -1,8 +1,8 @@
-import Icon from './icon'
+import PcIcon from './icon'
 
 /* istanbul ignore next */
-Icon.install = function(Vue) {
-    Vue.component(Icon.name, Icon);
+PcIcon.install = function(Vue) {
+    Vue.component(PcIcon.name, PcIcon);
 };
 
-export default Icon
+export default PcIcon

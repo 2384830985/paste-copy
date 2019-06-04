@@ -5,11 +5,11 @@
 </template>
 
 <script>
-    const prefixCls = 'AIvu-checkbox-group';
+    const prefixCls = 'pc-checkbox-group';
     import {oneOf,findComponentsDownward} from "../../utils/assist";
     import Emitter from '../../mixins/emitter'
     export default {
-        name: "TCheckboxGroup",
+        name: "PcCheckboxGroup",
         mixins: [Emitter],
         props:{
             type: {
@@ -32,9 +32,9 @@
                     return oneOf(value,['small', 'large', 'default'])
                 },
                 // 添加默认的按钮大小
-                // this.$AVIEW.size 如果有默认注入的按钮大小那么就用默认的
+                // this.$PASTE.size 如果有默认注入的按钮大小那么就用默认的
                 default(){
-                    return !this.$AVIEW || this.$AVIEW.size === '' ? 'default' : this.$AVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 },
             },
         },
@@ -57,7 +57,7 @@
         },
         methods:{
             updateValue(){
-                let checkBoxList = findComponentsDownward(this,'TCheckbox');
+                let checkBoxList = findComponentsDownward(this,'PcCheckbox');
                 if (checkBoxList) {
                     const { currentValue } = this;
                     checkBoxList.forEach(item=>{

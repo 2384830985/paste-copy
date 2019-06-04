@@ -1,31 +1,31 @@
 <template>
     <div style="display: flex;flex-wrap: wrap;margin: 0 20px;padding: 0 20px">
         <div class="m-1">
-            <t-icon class="aiv-loading" type="loading1"></t-icon>
+            <pc-icon class="pc-icon-loading" type="loading1"></pc-icon>
             <div>loading1</div>
         </div>
         <div class="m-1">
-            <t-icon class="aiv-loading" type="loading2"></t-icon>
+            <pc-icon class="pc-icon-loading" type="loading2"></pc-icon>
             <div>loading2</div>
         </div>
         <div class="m-1">
-            <t-icon class="aiv-loading" type="loading3"></t-icon>
+            <pc-icon class="pc-icon-loading" type="loading3"></pc-icon>
             <div>loading3</div>
         </div>
         <div class="m-1">
-            <t-icon class="aiv-loading" type="loading4"></t-icon>
+            <pc-icon class="pc-icon-loading" type="loading4"></pc-icon>
             <div>loading4</div>
         </div>
         <div class="m-1">
-            <t-icon class="aiv-loading" type="Loading"></t-icon>
+            <pc-icon class="pc-icon-loading" type="Loading"></pc-icon>
             <div>Loading</div>
         </div>
         <div class="m-1">
-            <t-icon class="aiv-loading text-center" type="loading5"></t-icon>
+            <pc-icon class="pc-icon-loading text-center" type="loading5"></pc-icon>
             <div>loading5</div>
         </div>
         <div class="m-1" v-for="item in iconList" :key="item">
-            <t-icon class="text-center" :type="item"></t-icon>
+            <pc-icon class="text-center" :type="item"></pc-icon>
             <div>{{item}}</div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
-    <div class="AIvu-select-drop" :style="styles">
+    <div class="pc-select-drop" :style="styles">
         <slot></slot>
-        <ul class="AIvu-select-ul AIvu-select-noData" v-if="showData">暂无匹配数据</ul>
+        <ul class="pc-select-ul pc-select-noData" v-if="showData">暂无匹配数据</ul>
     </div>
 </template>
 

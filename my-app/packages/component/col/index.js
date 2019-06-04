@@ -1,8 +1,8 @@
-import {TCol} from '../grid/index'
+import {PcCol} from '../grid/index'
 
 /* istanbul ignore next */
-TCol.install = function(Vue) {
-    Vue.component(TCol.name, TCol);
+PcCol.install = function(Vue) {
+    Vue.component(PcCol.name, PcCol);
 };
 
-export default TCol
+export default PcCol

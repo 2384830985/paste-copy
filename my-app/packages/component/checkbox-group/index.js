@@ -1,7 +1,7 @@
-import TChekeboxGroup from '../checkbox/checkbox-group'
+import PcCheckboxGroup from '../checkbox/checkbox-group'
 
-TChekeboxGroup.install = function (Vue) {
-    Vue.component(TChekeboxGroup.name,TChekeboxGroup)
+PcCheckboxGroup.install = function (Vue) {
+    Vue.component(PcCheckboxGroup.name,PcCheckboxGroup)
 }
 
-export default TChekeboxGroup
+export default PcCheckboxGroup

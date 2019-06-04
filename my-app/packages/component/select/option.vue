@@ -5,15 +5,15 @@
         @mouseleave="handleMouseleave"
         @click="handleClick">
         <slot>{{label}}</slot>
-        <t-icon type="check" :class="[`${prefixCls}-check`]" v-if="choice&&!$slots.default"></t-icon>
+        <pc-icon type="check" :class="[`${prefixCls}-check`]" v-if="choice&&!$slots.default"></pc-icon>
     </li>
 </template>
 
 <script>
-    const prefixCls = 'AIvu-select';
+    const prefixCls = 'pc-select';
     import {findComponentUpward} from '../../utils/assist'
     export default {
-        name: "TOption",
+        name: "PcOption",
         inject: ['select'],
         props:{
             value:{
@@ -67,7 +67,7 @@
                 if (this.disableds) {
                     return
                 }
-                const select = findComponentUpward(this,'TSelect');
+                const select = findComponentUpward(this,'PcSelect');
                 if (select) {
                     select.updateValue(
                         {value:this.value},

@@ -19,9 +19,9 @@
     import borderAnimation from '../../mixins/borderAnimation';
     import Emitter from '../../mixins/emitter'
     import {oneOf,findComponentUpward} from "../../utils/assist";
-    const prefixCls = 'AIvu-radio';
+    const prefixCls = 'pc-radio';
     export default {
-        name: "TRadio",
+        name: "PcRadio",
         mixins: [borderAnimation,Emitter],
         props:{
             value: {
@@ -38,9 +38,9 @@
                     return oneOf(value,['small', 'large', 'default'])
                 },
                 // 添加默认的按钮大小
-                // this.$AVIEW.size 如果有默认注入的按钮大小那么就用默认的
+                // this.$PASTE.size 如果有默认注入的按钮大小那么就用默认的
                 default(){
-                    return !this.$AVIEW || this.$AVIEW.size === '' ? 'default' : this.$AVIEW.size;
+                    return !this.$PASTE || this.$PASTE.size === '' ? 'default' : this.$PASTE.size;
                 },
             },
             trueValue: {
@@ -68,7 +68,7 @@
                     `${prefixCls}-inner`,
                     {
                         [`${prefixCls}-focus`]: this.focusInner,
-                        [`AIvu-btn-default-animation`]: this.animation,
+                        [`pc-btn-default-animation`]: this.animation,
                     }
                 ]
             },
@@ -89,7 +89,6 @@
                         [`${prefixCls}-wrapper-choice`]: this.currentValue,
                         [`${prefixCls}-wrapper-disabled`]: !!this.disabled,
                         [`${prefixCls}-wrapper-focus`]: this.focusInner,
-                        // [`AIvu-btn-default-animation`]: this.animation,
                     }
                 ]
             }
@@ -101,7 +100,7 @@
                 focusInner: false,
                 groupName: this.name,
                 group: false,
-                superior: findComponentUpward(this,'TRadioGroup')
+                superior: findComponentUpward(this,'PcRadioGroup')
             }
         },
         methods:{

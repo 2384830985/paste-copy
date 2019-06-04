@@ -1,8 +1,8 @@
-import {TRow} from '../grid/index'
+import {PcRow} from '../grid/index'
 
 /* istanbul ignore next */
-TRow.install = function(Vue) {
-    Vue.component(TRow.name, TRow);
+PcRow.install = function(Vue) {
+    Vue.component(PcRow.name, PcRow);
 };
 
-export default TRow
+export default PcRow

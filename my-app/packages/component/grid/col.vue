@@ -6,9 +6,9 @@
 
 <script>
     import {findComponentUpward} from '../../utils/assist'
-    const prefixCls = 'AIvu-col';
+    const prefixCls = 'pc-col';
     export default {
-        name: "t-col",
+        name: "PcCol",
         props:{
             span: [String,Number],
             push: [String,Number],
@@ -70,7 +70,7 @@
         },
         methods: {
             updateGutter () {
-                const Row = findComponentUpward(this, 't-row');
+                const Row = findComponentUpward(this, 'PcRow');
                 if (Row) {
                     Row.updateGutter(Row.gutter);
                 }
