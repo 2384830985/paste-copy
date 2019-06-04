@@ -19,20 +19,33 @@
                  v-if="multiple"
                  ref="tag"
                 :style="tagStyle">
+                <!-- 标签-->
                 <div :class="[
                     `${prefixCls}-tag-list`,
                     {
                         [`${prefixCls}-tag-${size}`]:!!size
                     }
-                ]" v-for="(item,index) in tagList" :key="index">
+                ]" v-for="(item,index) in tagList"
+                     :key="index"
+                     v-if="!maxTagCount || maxTagCount>index"
+                >
                     {{item.label}}
                     <t-icon type="close" @click.stop="closeTagList(item)" :class="`${prefixCls}-tag-close`"></t-icon>
+                </div>
+                <!-- 超出-->
+                <div v-if="tagList.length > maxTagCount" style="padding-right: 4px;padding-left: 4px" :class="[
+                    `${prefixCls}-tag-list`,
+                    {
+                        [`${prefixCls}-tag-${size}`]:!!size
+                    }]">
+                    +{{tagList.length-maxTagCount}}...
                 </div>
                 <input
                         ref="tagInput"
                         :class="`${prefixCls}-tag-input`"
                         :style="tagInputClass"
                         @blur="tagOnBlur"
+                        v-if="filterable"
                         v-model="tagInputValue"
                         @click.stop
                         @focus="tagOnFocus"
@@ -125,6 +138,10 @@
             multiple:{
                 type: Boolean,
                 default: false
+            },
+            // 最大 tag 数量
+            maxTagCount:{
+                type: Number,
             },
         },
         components: {
@@ -285,8 +302,6 @@
             },
             onFocus(val){
                 let that = this;
-                console.log(that.filterable)
-                console.log(that.multiple)
                 if (that.multiple&&that.filterable) {
                     that.$refs.tagInput.focus();
                     that.inputFocus = true
@@ -318,7 +333,6 @@
             // 键盘触发事件
             handleKeydown(event){
                 if (event.key === 'Backspace'){
-                    console.log('dianji'+'Backspace')
                     return; // so we don't call preventDefault
                 }
                 if (this.iconShow) {
@@ -331,18 +345,15 @@
                         this.upAndDown(-1)
                         //    【tab】
                     } else if (event.key === 'Tab') {
-                        console.log('dianji'+'Tab')
                         event.stopPropagation();
                         this.onClickOutside()
                         //    回车键
                     }else if (event.key === 'Enter') {
-                        console.log('dianji'+'Enter')
                         if (this.choiceIndex>-1) {
                             this.updateValue({value:this.optionDate[this.choiceIndex].value,})
                         }
                         //    Escape 取消建【esc】
                     }else if (event.key === 'Escape') {
-                        console.log('dianji'+'Escape')
                         event.stopPropagation();
                         this.onClickOutside()
                     }
@@ -385,11 +396,11 @@
                 this.oldOptionDate = this.optionDate;
             },
             updateValue(val){
-                console.log(123)
                 let that = this;
                 if (!!val.value) {
                     if (this.optionList) {
                         if (that.multiple) {
+                            that.tagList = [];
                             // 如果当前状态是多选且当前的value 是 string 类型的说明当前得是新增修改
                             if (typeof val.value==="string") {
                                 let yesIndex = that.currentValue.indexOf(val.value);
@@ -400,7 +411,6 @@
                                 }
                             }
                         }
-                        that.tagList = [];
                         this.optionList.forEach((item,index)=>{
                             if (!that.multiple) {
                                 // 非多选当时候
@@ -427,7 +437,7 @@
                         if (that.multiple) {
                             that.calculationInputHeight();
                             this.tagInputValue = '';
-                            this.searchInput('')
+                            this.searchInput('');
                         }
                         if (this.createdOne===1) {
                             ++this.createdOne;
@@ -446,7 +456,7 @@
              * 删除多数组
              */
             closeTagList(item){
-                console.log(item)
+                if (this.disabled) return;
                 this.updateValue({value:item.value})
             },
             /**
