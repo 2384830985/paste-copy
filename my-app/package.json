@@ -1,8 +1,8 @@
 {
-  "name": "aviewui",
-  "version": "0.1.3",
+  "name": "paste-copy",
+  "version": "0.0.1",
   "private": false,
-  "main": "lib/aviewui.umd.min.js",
+  "main": "lib/paste.umd.min.js",
   "author": "汤金鑫",
   "license": "MIT",
   "registory": "",
@@ -10,7 +10,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name aviewui --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name paste --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
