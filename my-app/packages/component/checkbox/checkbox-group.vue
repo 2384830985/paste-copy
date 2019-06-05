@@ -77,7 +77,7 @@
                 }
                 this.$emit('on-change',this.currentValue);
                 this.$emit('input', this.currentValue);
-                this.dispatch('FormItem', 'on-form-change', this.currentValue);
+                this.dispatch('PcFormItem', 'on-form-change', this.currentValue);
             }
         },
         watch:{

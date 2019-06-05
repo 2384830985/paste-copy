@@ -35,5 +35,9 @@ export default new Router({
           path: '/select',
           component: (resolve) => require(['./views/select.vue'], resolve)
       },
+      {
+          path: '/form',
+          component: (resolve) => require(['./views/form.vue'], resolve)
+      },
   ]
 })
