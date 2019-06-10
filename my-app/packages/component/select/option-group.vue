@@ -1,6 +1,6 @@
 <template>
     <ul v-show="show">
-        <li v-if="label" class="pc-select-option-title">{{label}}</li>
+        <li v-if="label" class="pc-select-option-title" @click.stop >{{label}}</li>
         <slot></slot>
     </ul>
 </template>

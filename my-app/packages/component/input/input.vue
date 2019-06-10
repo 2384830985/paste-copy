@@ -300,7 +300,6 @@
                         value = value.replace(/(^\s*)|(\s*$)/g, "");
                     }
                     this.currentValue = value;
-                    this.$forceUpdate();
                     this.$emit(type, value);
                     if (type==='blur') {
                         this.dispatch('PcFormItem', 'on-form-blur', value);

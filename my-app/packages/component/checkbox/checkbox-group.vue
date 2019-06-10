@@ -59,10 +59,11 @@
             updateValue(){
                 let checkBoxList = findComponentsDownward(this,'PcCheckbox');
                 if (checkBoxList) {
-                    const { currentValue } = this;
                     checkBoxList.forEach(item=>{
-                        if (currentValue.indexOf(item.label)!==-1) {
+                        if (this.currentValue.indexOf(item.label)>-1) {
                             item.currentValue = true;
+                        }else {
+                            item.currentValue = false;
                         }
                     })
                 }
@@ -82,6 +83,7 @@
         },
         watch:{
             value(to){
+                this.currentValue = to;
                 this.updateValue()
             }
         }
