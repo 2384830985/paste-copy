@@ -1,0 +1,49 @@
+@table-prefix-cls: ~"@{css-prefix}table";
+
+.@{table-prefix-cls}{
+  overflow: hidden;
+  border: 1px solid @border-color-base;
+  table{
+    width: inherit;
+    /*表格合并*/
+    border-collapse: collapse;
+    border-spacing: 0;
+    /*隐藏表格中空单元格上的边框和背景*/
+    empty-cells: show;
+    height: 100%;
+    max-width: 100%;
+  }
+  th{
+    background: tint(@info-color,95);
+    color: #5c6b77;
+    font-weight: 600;
+    /*不进行换行*/
+    white-space: nowrap;
+  }
+  th,td{
+    padding: 8px 16px;
+    border-bottom: 1px solid @border-color-base;
+    text-align: left;
+    min-width: 50px;
+  }
+  &-border{
+    th,td{
+      border: 1px solid @border-color-base;
+    }
+  }
+  tbody{
+    tr{
+      &:hover{
+        background: tint(@primary-color,90);
+      }
+    }
+    tr:last-child{
+      td{
+        border-bottom: 0 solid @border-color-base;
+      }
+    }
+  }
+  &-stripe{
+    background: tint(@info-color,95);
+  }
+}

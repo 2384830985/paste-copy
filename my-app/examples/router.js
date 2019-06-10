@@ -39,5 +39,9 @@ export default new Router({
           path: '/form',
           component: (resolve) => require(['./views/form.vue'], resolve)
       },
+      {
+          path: '/table',
+          component: (resolve) => require(['./views/table.vue'], resolve)
+      },
   ]
 })
