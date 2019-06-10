@@ -1,0 +1,66 @@
+@alert-type: ~"@{css-prefix}alert";
+@icon-prefix: ~"@{css-prefix}icon";
+
+.@{alert-type} {
+    &-wrap {
+        position: relative;
+        padding: 8px 48px 8px 16px;
+        border-radius: @border-radius-small;
+        color: @text-color;
+        font-size: @font-size-small;
+        line-height: 16px;
+        margin-bottom: 10px;
+        .bigIcon {
+            font-size: 24px;
+        }
+    }
+    &-title {
+        font-size:14px;
+        font-weight: bold;
+    }
+    &-content {
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+    &-success {
+        border: @border-width-base @border-style-base tint(@success-color, 90%);
+        background: tint(@success-color, 90%);
+        .@{icon-prefix}-success {
+            color: @success-color
+        }
+    }
+    &-info {
+        border: @border-width-base @border-style-base tint(@primary-color, 90%);
+        background: tint(@primary-color, 90%);
+        .@{icon-prefix}-info {
+            color: @primary-color
+        }
+    }
+    &-warning {
+        border: @border-width-base @border-style-base tint(@warning-color, 90%);
+        background: tint(@warning-color, 90%);
+        .@{icon-prefix}-warning {
+            color: @warning-color
+        }
+    }
+    &-error {
+        border: @border-width-base @border-style-base tint(@error-color, 90%);
+        background: tint(@error-color, 90%);
+        .@{icon-prefix}-error {
+            color: @error-color
+        }
+    }
+    &-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        font-size: 12px;
+        .@{icon-prefix} {
+            font-size: 12px;
+        }
+        span {
+            color: @link-color;
+        }
+    }
+}
