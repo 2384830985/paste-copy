@@ -22,6 +22,7 @@
           <li><router-link to="/checkbox">checkbox</router-link></li>
           <li><router-link to="/input">input</router-link></li>
           <li><router-link to="/select">select</router-link></li>
+          <li><router-link to="/alert">alert</router-link></li>
           <li><router-link to="/form">form</router-link></li>
           <li><router-link to="/table">table</router-link></li>
         </ul>

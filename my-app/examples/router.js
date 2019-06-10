@@ -36,6 +36,10 @@ export default new Router({
           component: (resolve) => require(['./views/select.vue'], resolve)
       },
       {
+        path: '/alert',
+        component: (resolve) => require(['./views/alert.vue'], resolve)
+      },
+      {
           path: '/form',
           component: (resolve) => require(['./views/form.vue'], resolve)
       },
