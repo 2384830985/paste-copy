@@ -76,7 +76,7 @@
                 this.updateValue();
                 this.$emit('input', val);
                 this.$emit('on-change', val);
-                this.dispatch('FormItem', 'on-form-change', val);
+                this.dispatch('PcFormItem', 'on-form-change', val);
             }
         },
         watch:{

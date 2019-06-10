@@ -1,0 +1,48 @@
+@form-prefix-cls: ~"@{css-prefix}form";
+
+.@{form-prefix-cls}{
+  &-item{
+    margin-bottom: 24px;
+    vertical-align: top;
+    zoom: 1;
+    &-error{
+      .@{input-prefix-cls}{
+        .active(@error-color);
+        &:hover{
+          .hover(@error-color);
+        }
+        &:focus{
+          .active(@error-color)
+        }
+      }
+    }
+    &-label{
+      padding: 0 12px 0 0;
+      font-size: 12px;
+      display: inline;
+      line-height: 32px;
+      float: left;
+    }
+    &-required{
+      &:before{
+        font-size: inherit;
+        content: '*';
+        color: @error-color
+      }
+    }
+    &-massage{
+      padding-top: 6px;
+      color: @error-color;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      line-height: 1;
+    }
+    &-content{
+      position: relative;
+      line-height: 32px;
+      font-size: 12px;
+    }
+  }
+
+}

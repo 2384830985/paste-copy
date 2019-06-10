@@ -59,10 +59,11 @@
             updateValue(){
                 let checkBoxList = findComponentsDownward(this,'PcCheckbox');
                 if (checkBoxList) {
-                    const { currentValue } = this;
                     checkBoxList.forEach(item=>{
-                        if (currentValue.indexOf(item.label)!==-1) {
+                        if (this.currentValue.indexOf(item.label)>-1) {
                             item.currentValue = true;
+                        }else {
+                            item.currentValue = false;
                         }
                     })
                 }
@@ -77,11 +78,12 @@
                 }
                 this.$emit('on-change',this.currentValue);
                 this.$emit('input', this.currentValue);
-                this.dispatch('FormItem', 'on-form-change', this.currentValue);
+                this.dispatch('PcFormItem', 'on-form-change', this.currentValue);
             }
         },
         watch:{
             value(to){
+                this.currentValue = to;
                 this.updateValue()
             }
         }

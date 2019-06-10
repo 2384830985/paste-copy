@@ -300,12 +300,11 @@
                         value = value.replace(/(^\s*)|(\s*$)/g, "");
                     }
                     this.currentValue = value;
-                    this.$forceUpdate();
                     this.$emit(type, value);
                     if (type==='blur') {
-                        this.dispatch('FormItem', 'on-form-blur', value);
+                        this.dispatch('PcFormItem', 'on-form-blur', value);
                     }else {
-                        this.dispatch('FormItem', 'on-form-change', value);
+                        this.dispatch('PcFormItem', 'on-form-change', value);
                     }
                 }
             },
@@ -315,11 +314,7 @@
         },
         watch:{
             value(val){
-                if (!this.onDisabled()) {
-                    this.updateValue(val,'input')
-                }else {
-                    this.currentValue = val;
-                }
+                this.currentValue = val;
             }
         },
         mounted(){

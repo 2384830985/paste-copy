@@ -298,7 +298,7 @@
             onInput(val){
                 this.$emit('input',this.currentValue);
                 this.$emit('on-change',this.currentValue);
-                this.dispatch('FormItem', 'on-form-change', this.currentValue);
+                this.dispatch('PcFormItem', 'on-form-change', this.currentValue);
             },
             onFocus(val){
                 let that = this;
@@ -325,7 +325,6 @@
                 this.oldInputValue = '';
                 this.currentValue = '';
                 this.inputValue = '';
-                this.onInput();
                 this.optionList.forEach(item=>{
                     item.choice = false
                 })
@@ -399,6 +398,7 @@
                 let that = this;
                 if (!!val.value) {
                     if (this.optionList) {
+                        console.log(val.value)
                         if (that.multiple) {
                             that.tagList = [];
                             // 如果当前状态是多选且当前的value 是 string 类型的说明当前得是新增修改
@@ -512,6 +512,7 @@
                 this.readonly = !val
             },
             value(val,old){
+                this.currentValue = val;
                 this.updateValue({value:val,watch:true})
             },
             tagList(val){

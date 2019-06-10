@@ -126,7 +126,7 @@
                     })
                 }else {
                     this.$emit('input', value?this.trueValue:this.falseValue);
-                    this.dispatch('FormItem', 'on-form-change', value);
+                    this.dispatch('PcFormItem', 'on-form-change', value);
                 }
             },
             onFocus(){

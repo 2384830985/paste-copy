@@ -22,7 +22,11 @@
           <li><router-link to="/checkbox">checkbox</router-link></li>
           <li><router-link to="/input">input</router-link></li>
           <li><router-link to="/select">select</router-link></li>
+<<<<<<< HEAD
           <li><router-link to="/alert">alert</router-link></li>
+=======
+          <li><router-link to="/form">form</router-link></li>
+>>>>>>> adcdfb2d1b7246b4f5b07484b0c04dbc17661151
         </ul>
       </nav>
     </div>

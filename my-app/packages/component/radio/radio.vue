@@ -122,7 +122,7 @@
                     }
                 }else {
                     this.$emit('on-change', value);
-                    this.dispatch('FormItem', 'on-form-change', value);
+                    this.dispatch('PcFormItem', 'on-form-change', value);
                 }
             },
             onBlur(){
