@@ -1,3 +1,4 @@
+import PcTable from './component/table'
 import PcFormItem from './component/form-item'
 import PcForm from './component/form'
 import PcOptionGroup from './component/option-group'
@@ -18,6 +19,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
+    PcTable,
     PcFormItem,
     PcForm,
     PcOptionGroup,
