@@ -12,7 +12,9 @@
                         ]
                     "
         >
-            <td v-for="(items,indexs) in columns" :key="indexs">
+            <td v-for="(items,indexs) in columns"
+                :width="items.width"
+                :key="indexs">
                 <template v-if="items.render">
                     <Render :row="item" :column="items" :index="index" :render="items.render"></Render>
                 </template>
