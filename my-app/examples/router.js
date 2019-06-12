@@ -47,5 +47,9 @@ export default new Router({
           path: '/table',
           component: (resolve) => require(['./views/table.vue'], resolve)
       },
+      {
+        path: '/breadcrumb',
+        component: (resolve) => require(['./views/breadcrumb.vue'], resolve)
+    }
   ]
 })
