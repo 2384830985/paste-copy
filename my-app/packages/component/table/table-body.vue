@@ -3,14 +3,18 @@
            :style="{'width':styles+'px'}"
     >
         <tbody>
-        <tr v-for="(item,index) in data"
+        <tr v-for="(item,index) in tableData"
             :key="index"
-            :class="
-                        [
-                            stripe?(index%2 !==0) ?`${preFixCls}-stripe`:'':'',
-                            rowClassName({row:item,index,data})
-                        ]
-                    "
+            @mouseenter.stop="handelMouseenter(item,index)"
+            @mouseleave.stop="handelMouseleave(item,index)"
+            :class="[
+                    `${preFixCls}-tr`,
+                    stripe?(index%2 !==0) ?`${preFixCls}-stripe`:'':'',
+                    item.isHover?`${preFixCls}-isHover`:'',
+                        {
+                            // [`${rowClassName({row:item,index,data})}`]: !!rowClassName,
+                        }
+                    ]"
         >
             <td v-for="(items,indexs) in columns"
                 :width="items.width"
@@ -33,8 +37,10 @@
 
 <script>
     const preFixCls = 'pc-table';
+    import {findComponentUpward,findComponentsDownward} from '../../utils/assist'
     export default {
         name: "PcTableBody",
+        inject: ['table'],
         props: {
             columns: {
                 type: Array,
@@ -52,6 +58,10 @@
                 type: Boolean,
                 default: false
             },
+            childrenShow: {
+                type: Boolean,
+                default: false
+            },
             border: {
                 type: Boolean
             },
@@ -62,12 +72,48 @@
                 type: String|Number
             },
             rowClassName:{
-                type: Function
+                type: Function,
+                default: ()=>{}
             }
         },
         data(){
             return{
-                preFixCls: preFixCls
+                preFixCls: preFixCls,
+                tableData: this.data,
+                brotherData: [],
+            }
+        },
+        methods:{
+            handelMouseenter(item,index){
+                this.handelData();
+                this.$nextTick(()=>{
+                    this.brotherData.forEach(item=>{
+                        item.tableData[index].isHover = true;
+                        item.$forceUpdate();
+                    })
+                });
+                this.$forceUpdate()
+            },
+            handelMouseleave(item,index){
+                this.$nextTick(()=>{
+                    this.brotherData.forEach(item=>{
+                        item.tableData[index].isHover = false;
+                        item.$forceUpdate();
+                    })
+                })
+            },
+            handelData(){
+                let table = findComponentUpward(this,'PcTable');
+                this.brotherData = findComponentsDownward(table,'PcTableBody');
+            }
+        },
+        mounted(){
+            this.handelData();
+        },
+        watch:{
+            data(val){
+                this.handelData();
+                this.tableData = val
             }
         }
     }

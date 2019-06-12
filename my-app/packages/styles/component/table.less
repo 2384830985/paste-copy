@@ -9,14 +9,28 @@
     top: 0;
     left: 0;
     z-index: 3;
-    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+    ::-webkit-scrollbar{
+      display:none;
+    }
+    &-box{
+      box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+    }
   }
   &-right{
+    border-left: 1px solid @border-color-base;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 3;
-    box-shadow: -2px 0 6px -2px rgba(0,0,0,.2);
+    &-box{
+      box-shadow: -2px 0 6px -2px rgba(0,0,0,.2);
+    }
+    ::-webkit-scrollbar{
+      display:none;
+    }
+  }
+  &-hidden{
+    visibility:hidden
   }
   table{
     width: inherit;
@@ -28,9 +42,10 @@
     //height: 100%;
     max-width: 100%;
     table-layout: fixed;
-    tr{
-      background: white;
-    }
+  }
+  &-tr{
+    background: white;
+    min-height: 35px;
   }
   th{
     background: tint(@info-color,95);
@@ -106,11 +121,6 @@
     }
   }
   tbody{
-    tr{
-      &:hover{
-        background: tint(@primary-color,90);
-      }
-    }
     &::-webkit-scrollbar {width: 5px;height: 5px;}
     &::-webkit-scrollbar-track,::-webkit-scrollbar-thumb {border-radius: 999px;border:0px solid transparent;}
     &::-webkit-scrollbar-track {box-shadow: 1px 1px 5px rgba(100,100,100,.2) inset;}
@@ -118,6 +128,12 @@
     &::-webkit-scrollbar-corner {background: transparent}
   }
   &-stripe{
-    background: tint(@info-color,95)!important;
+    background: tint(@info-color,95)
   }
+  &-isHover{
+    background: tint(@primary-color,90)
+  }
+  //&-stripe:hover{
+  //  background: tint(@primary-color,90)!important;
+  //}
 }
