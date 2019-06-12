@@ -14,20 +14,21 @@
   <div id="app">
     <div class="container">
       <nav>
-        <ul>
-          <li><router-link to="/button">button</router-link></li>
-          <li><router-link to="/icon">icon</router-link></li>
-          <li><router-link to="/layout">layout</router-link></li>
-          <li><router-link to="/radio">radio</router-link></li>
-          <li><router-link to="/checkbox">checkbox</router-link></li>
-          <li><router-link to="/input">input</router-link></li>
-          <li><router-link to="/select">select</router-link></li>
-          <li><router-link to="/alert">alert</router-link></li>
-          <li><router-link to="/form">form</router-link></li>
-          <li><router-link to="/table">table</router-link></li>
-        </ul>
+        <pc-breadcrumb>
+          <pc-breadcrumb-item :to='{path: "/"+item}' v-for='(item, index) in list' :key='index'>{{item}}</pc-breadcrumb-item>
+        </pc-breadcrumb>
       </nav>
     </div>
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      list: ['button', 'icon', 'layout', 'radio', 'checkbox', 'input', 'select', 'alert', 'form', 'table', 'breadcrumb']
+    }
+  }
+}
+</script>
+

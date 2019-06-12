@@ -1,0 +1,24 @@
+.pc-breadcrumb-wrap {
+    font-size: 14px;
+    .pc-breadcrum-item {
+        &:last-child {
+            .pc-breadcrum-separator {
+                display: none;
+            }
+        }
+        .pc-breadcrum-separator {
+            padding: 0 9px;
+        }
+        .pc-breadcrum-name {
+            display: inline-block;
+            
+        }
+        .islink {
+            cursor: pointer;
+            font-weight: bold;
+            &:hover {
+                color: tint(@primary-color,20%)
+            }
+        }
+    }
+}
