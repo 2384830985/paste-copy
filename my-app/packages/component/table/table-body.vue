@@ -7,6 +7,7 @@
             :key="index"
             @mouseenter.stop="handelMouseenter(item,index)"
             @mouseleave.stop="handelMouseleave(item,index)"
+            :height="item.height"
             :class="[
                     `${preFixCls}-tr`,
                     stripe?(index%2 !==0) ?`${preFixCls}-stripe`:'':'',
@@ -105,6 +106,25 @@
             handelData(){
                 let table = findComponentUpward(this,'PcTable');
                 this.brotherData = findComponentsDownward(table,'PcTableBody');
+                let index = 0;
+                let max = 0;
+                this.brotherData.forEach((item,indexs)=>{
+                    if (item.columns.length > max) {
+                        max = item.columns.length
+                        index = indexs
+                    }
+                })
+                let height = [];
+                this.brotherData[index].$el.childNodes[0].childNodes.forEach(item=>{
+                    height.push(item.getBoundingClientRect().height)
+                })
+                this.brotherData.forEach((item,indexs)=>{
+                    if (index!==indexs) {
+                        item.tableData.forEach((items,i)=>{
+                            items.height = height[i]
+                        })
+                    }
+                })
             }
         },
         mounted(){
