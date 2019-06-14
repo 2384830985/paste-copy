@@ -1,6 +1,14 @@
 <template>
     <div style="margin: 20px;">
         <div style="margin: 20px">
+            <pc-table :columns="columns4"
+                      :data="data"
+                      stripe
+                      height="400"
+                      border
+            ></pc-table>
+        </div>
+        <div style="margin: 20px">
             <pc-table :columns="columnss"
                       :data="data"
                       stripe
@@ -10,7 +18,7 @@
             ></pc-table>
         </div>
         <div style="margin: 20px">
-            <pc-table :columns="columns"
+            <pc-table :columns="columns2"
                       :data="data"
                       stripe
                       height="400"
@@ -19,20 +27,20 @@
             ></pc-table>
         </div>
         <div style="margin: 20px">
-            <pc-table :columns="columns"
+            <pc-table :columns="columns3"
                       :data="data"
                       stripe
                       border
             ></pc-table>
         </div>
-        <div style="margin: 20px">
-            <pc-table :columns="columns"
-                      :data="data"
-                      stripe
-                      height="400"
-                      :rowClassName="rowClassName"
-            ></pc-table>
-        </div>
+        <!--<div style="margin: 20px">-->
+            <!--<pc-table :columns="columns"-->
+                      <!--:data="data"-->
+                      <!--stripe-->
+                      <!--height="400"-->
+                      <!--:rowClassName="rowClassName"-->
+            <!--&gt;</pc-table>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -41,7 +49,185 @@
         name: "table1",
         data(){
             return{
-                columnss: [
+                columns4: [
+                    {
+                        type: 'index',
+                        width: 45,
+                        align: 'center'
+                    },
+                    {
+                        type: 'selection',
+                        width: 48,
+                        align: 'center'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                ],
+                columns2: [
+                    {
+                        type: 'index',
+                        width: 40,
+                        align: 'center'
+                    },
+                    {
+                        type: 'selection',
+                        width: 48,
+                        align: 'center'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
                     {
                         title: '789',
                         key: 'name2',
@@ -65,6 +251,36 @@
                                     {
                                         title: 'Address1',
                                         key: 'Address1',
+                                        children: [
+                                            {
+                                                title: 'Address1',
+                                                key: 'Address1',
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                            {
+                                title: '123',
+                                key: 'Address123456789',
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
                                     },
                                     {
                                         title: 'Address2',
@@ -75,6 +291,273 @@
                         ]
                     },
                     {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                ],
+                columnss: [
+                    {
+                        type: 'index',
+                        width: 40,
+                        align: 'center'
+                    },
+                    {
+                        type: 'selection',
+                        width: 48,
+                        align: 'center'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                        children: [
+                                            {
+                                                title: 'Address1',
+                                                key: 'Address1',
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                            {
+                                title: '123',
+                                key: 'Address123456789',
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        align: 'center',
+                        children: [
+                            {
+                                title: 'Address123456789',
+                                children: [
+                                    {
+                                        title: 'Address1',
+                                        key: 'Address1',
+                                    },
+                                    {
+                                        title: 'Address2',
+                                        key: 'Address2',
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+
+                    {
                         title: '456',
                         key: 'name',
                         width: 100,
@@ -83,6 +566,7 @@
                     {
                         title: '789',
                         key: 'name2',
+                        className: 'y',
                         width: 100,
                         fixed: true
                     },
@@ -94,6 +578,154 @@
                     },
                 ],
                 columns: [
+                    {
+                        type: 'index',
+                        width: 40,
+                        align: 'center'
+                    },
+                    {
+                        title: '123',
+                        key: 'name',
+                        width: 100,
+                        fixed: true
+                    },
+                    {
+                        title: '456',
+                        key: 'name',
+                        width: 100,
+                        fixed: 'right'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                    {
+                        title: '1111',
+                        key: 'name3',
+                    },
+                ],
+                columns3: [
+                    {
+                        type: 'index',
+                        width: 40,
+                        align: 'center'
+                    },
                     {
                         title: '123',
                         key: 'name',
@@ -241,6 +873,10 @@
                         Address2: 'Address2',
                         Address3: 'Address3',
                         Address4: 'Address4',
+                        cellClassName: {
+                            name: 'b',
+                            name3: 'b',
+                        }
                     },
                     {
                         name: '123',
@@ -385,11 +1021,22 @@
                 // console.log(row)
                 // console.log(index)
                 // console.log(data)
+                if (index===2) {
+                    return 'red'
+                }
             }
         }
     }
 </script>
 
-<style scoped>
-
+<style>
+    .red{
+        background: red;
+    }
+    .y{
+        /*background: #f9ff3f;*/
+    }
+    .b{
+        background: #21ff33;
+    }
 </style>

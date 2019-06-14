@@ -10,18 +10,26 @@
                 }
             ]">
         <div :class="tableHeadClass"
-             ref="head" @scroll="handleHeadScroll">
-            <pc-table-head :styles="tableWidth" ref="tableHead" :columns="tableColumns" :childrenShow="childrenShow"></pc-table-head>
+             @mouseenter="handelMouseenter('head')"
+             @mouseleave="handelMouseleave('head')"
+             ref="head">
+            <pc-table-head :styles="tableWidth" ref="tableHead"
+                           :columns="tableColumns"
+                           :AllChildren="AllChildren"
+                           :childrenShow="childrenShow"></pc-table-head>
         </div>
         <!-- left 悬浮-->
-        <div :class="[`${preFixCls}-left`,{[`${preFixCls}-left-box`]:leftBox}]" v-if="leftFixedColumnRows.length>0">
+        <div :class="[`${preFixCls}-left`,{[`${preFixCls}-left-box`]:leftBox}]"
+             v-show="leftFixedColumnRows.length>0">
             <pc-table-head :columns="leftFixedColumnRows"></pc-table-head>
-            <div  :style="{'max-height':height-headHeight+'px','overflow':'auto'}"
-                  @scroll="handleLeftBodyScroll"
+            <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyLeft"
+                  @mouseenter="handelMouseenter('bodyLeft')"
+                  @mouseleave="handelMouseleave('bodyLeft')"
             >
                 <pc-table-body :columns="leftFixedColumnRows"
                                :stripe="stripe"
+                               type="left"
                                :childrenShow="childrenShow"
                                :height="height"
                                :rowClassName="rowClassName"
@@ -30,32 +38,38 @@
             </div>
         </div>
         <!-- right 悬浮-->
-        <div :class="[`${preFixCls}-right`,{[`${preFixCls}-right-box`]:rightBox}]" v-if="rightFixedColumnRows.length>0">
+        <!--@scroll="handleLeftBodyScroll"-->
+        <div :class="[`${preFixCls}-right`,{[`${preFixCls}-right-box`]:rightBox}]" v-show="rightFixedColumnRows.length>0">
             <pc-table-head :columns="rightFixedColumnRows"></pc-table-head>
-            <div  :style="{'max-height':height-headHeight+'px','overflow':'auto'}"
+            <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyRight"
-                  @scroll="handleRightBodyScroll"
+                  @mouseenter="handelMouseenter('bodyRight')"
+                  @mouseleave="handelMouseleave('bodyRight')"
             >
                 <pc-table-body :columns="rightFixedColumnRows"
                                :stripe="stripe"
                                :height="height"
+                               type="right"
                                :childrenShow="childrenShow"
                                :rowClassName="rowClassName"
                                :border="border"
                                :data="tableData"></pc-table-body>
             </div>
         </div>
+        <!--@scroll="handleBodyScroll"-->
         <div :class="[
                 {[`${preFixCls}-body-fixed`]: height,}
             ]"
              ref="body"
-             :style="{'max-height':height-headHeight+'px','overflow':'auto'}"
-             @scroll="handleBodyScroll"
+             @mouseenter="handelMouseenter('body')"
+             @mouseleave="handelMouseleave('body')"
+             :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
         >
             <pc-table-body :columns="!childrenShow?tableColumns:obtainBody"
                            :stripe="stripe"
                            :height="height"
                            :styles="tableWidth"
+                           :AllChildren="AllChildren"
                            :rowClassName="rowClassName"
                            :childrenShow="childrenShow"
                            :border="border"
@@ -70,8 +84,7 @@
     import PcTableHead from './table-head'
     import PcTableBody from './table-body'
     import Render from './render.js'
-    import publics from '../../utils/public'
-    import {tableRecursion,obtainLength,obtainBody} from './utils'
+    import {tableRecursion,obtainLength,obtainBody,obtainAllChildren} from './utils'
     export default {
         name: "PcTable",
         provide(){
@@ -96,6 +109,7 @@
                 rightIndex: [],
                 headHeight: '',
                 bodyHeight: '',
+                type: '',
                 thanWShow: false,
                 thanHShow: false,
                 leftBox: false,
@@ -104,6 +118,7 @@
                 scrollLeft: '',
                 obtainBody: [],
                 leftFixedColumnRows: [],
+                AllChildren: [],
                 rightFixedColumnRows: [],
             }
         },
@@ -126,6 +141,11 @@
                 type: Boolean,
                 default: false
             },
+            // 是否排序
+            sort: {
+                type: Boolean,
+                default: false
+            },
             // 是否需要border
             border: {
                 type: Boolean
@@ -137,7 +157,9 @@
             // 添加row 的class
             rowClassName:{
                 type: Function,
-                default: ()=>{}
+                default () {
+                    return '';
+                }
             }
         },
         computed:{
@@ -148,6 +170,42 @@
             },
         },
         methods:{
+            handelMouseenter(type){
+                this.type = type;
+                this.$refs[type].addEventListener('scroll',this.handelMouse,false)
+            },
+            handelMouse(event){
+                let type = this.type;
+                let {bodyRight,bodyLeft,body,tableHead,head} = this.$refs;
+                let that = this;
+                let scrollLeft = JSON.parse(JSON.stringify(parseInt(event.target.scrollLeft)));
+                let scrollTop = JSON.parse(JSON.stringify(parseInt(event.target.scrollTop)));
+                that.$nextTick(()=>{
+                    if (type==='bodyRight') {
+                        bodyLeft.scrollTop = scrollTop;
+                        body.scrollTop = scrollTop;
+                    }else if (type==='bodyLeft') {
+                        bodyRight.scrollTop = scrollTop;
+                        body.scrollTop = scrollTop;
+                    }else if (type==='head') {
+                        body.scrollLeft = scrollLeft;
+                    }else if (type==='body') {
+                        if (that.leftFixedColumnRows.length>0) {
+                            scrollLeft===0 ? that.leftBox = false:that.leftBox = true;
+                            bodyLeft.scrollTop = scrollTop;
+                        }
+                        // 判断右边是否需要 box-shadow
+                        if (that.rightFixedColumnRows.length>0) {
+                            tableHead.$el.getBoundingClientRect().width - that.$el.offsetWidth - scrollLeft < 2 ?that.rightBox = false:that.rightBox = true;
+                            bodyRight.scrollTop = scrollTop;
+                        }
+                        head.scrollLeft = scrollLeft;
+                    }
+                })
+            },
+            handelMouseleave(type){
+                this.$refs[type].removeEventListener('scroll',this.handelMouse,false);
+            },
             updateValue(){
                 this.headHeight = this.$refs.head.getBoundingClientRect().height;
                 this.bodyHeight = this.$refs.body.getBoundingClientRect().height;
@@ -163,46 +221,7 @@
                     this.tableWidth = this.$refs.tableHead.$el.getBoundingClientRect().width;
                     this.thanHShow = true
                 }
-                // this.tableWidth = this.$el.offsetWidth - 1;
-                // let leftList = this.data.filter((item)=>{return ''})
             },
-            handleLeftBodyScroll:publics._debounce(function(event){
-                this.$refs.body.scrollTop = event.target.scrollTop;
-                this.$refs.bodyRight.scrollTop = event.target.scrollTop;
-            },1),
-            handleRightBodyScroll:publics._debounce(function(event){
-                this.$refs.body.scrollTop = event.target.scrollTop;
-                this.$refs.bodyLeft.scrollTop = event.target.scrollTop;
-            },1),
-            handleBodyScroll:publics._debounce(function(event){
-                if (this.scrollLeft!==event.target.scrollLeft) {
-                    this.$refs.head.scrollLeft = event.target.scrollLeft;
-                    this.scrollLeft = event.target.scrollLeft;
-                    console.log(this.scrollLeft)
-                    console.log(event.target.scrollLeft)
-                }
-                // 判断左边是否需要 box-shadow
-                if (this.leftFixedColumnRows.length>0) {
-                    if (event.target.scrollLeft===0) {
-                        this.leftBox = false
-                    }else {
-                        this.leftBox = true
-                    }
-                    this.$refs.bodyLeft.scrollTop = event.target.scrollTop;
-                }
-                // 判断右边是否需要 box-shadow
-                if (this.rightFixedColumnRows.length>0) {
-                    if (this.$refs.tableHead.$el.getBoundingClientRect().width - this.$el.offsetWidth - event.target.scrollLeft < 2 ) {
-                        this.rightBox = false
-                    }else {
-                        this.rightBox = true
-                    }
-                    this.$refs.bodyRight.scrollTop = event.target.scrollTop;
-                }
-            },1),
-            handleHeadScroll:publics._debounce(function(event){
-                this.$refs.body.scrollLeft = event.target.scrollLeft
-            },1),
         },
         mounted(){
             this.leftFixedColumnRows = this.tableColumns.filter((item)=>{
@@ -217,10 +236,14 @@
             let children = this.tableColumns.filter((item)=>{
                     return item.children&&item.children.length>0
             });
+            // console.log(data)
             this.tableColumns = this.leftFixedColumnRows.concat(...data,...this.rightFixedColumnRows);
             if (children.length>0) {
                 this.childrenShow = true;
                 children = tableRecursion(this.tableColumns);
+                // console.log(children)
+                this.AllChildren = obtainAllChildren(this.tableColumns);
+                // console.log(this.AllChildren)
                 let tableColumns = [];
                 for (let i = 0; i < obtainLength(this.tableColumns) ; i++) {
                     tableColumns[i] = [];
@@ -252,7 +275,7 @@
         },
         watch:{
             data(val){
-                this.tableData = val
+                this.tableData = val;
                 this.updateValue()
             },
         }

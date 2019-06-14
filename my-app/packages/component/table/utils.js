@@ -10,8 +10,10 @@ export const tableRecursion = (children,index=0,max = 0)=> {
             width:child.width,
             index: index+1,
             fixed:child.fixed,
+            className:child.className,
             colspan: child.children&&child.children.length>0?obtainColSpan(child):1,
             rowspan: obtainRowSpan(child,index,max),
+            type: child.type,
         })
         let foundChilds = [];
         if (child.children&&child.children.length>0) {
@@ -61,7 +63,7 @@ export const obtainBody = (children)=>{
     },[])
 };
 
-// 获取横向
+// 获取横向 Children 的最大值
 const obtainColSpan = (children) => {
     return children.children.reduce((components, child)=>{
         if (!child.children||child.children.length===0) {
@@ -74,5 +76,18 @@ const obtainColSpan = (children) => {
         }
         return components + index
     },0)
+};
+// 获取当前需要计算的 colgroup的col值
+export const obtainAllChildren = (children) => {
+    return children.reduce((components, child)=>{
+        if (!child.children||child.children.length===0) {
+            components.push(child)
+        }
+        let children = [];
+        if (child.children&&child.children.length>0) {
+            children = obtainAllChildren(child.children);
+        }
+        return components.concat(children)
+    },[])
 };
 

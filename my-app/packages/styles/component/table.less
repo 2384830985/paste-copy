@@ -5,9 +5,12 @@
   overflow: hidden;
   //border: 1px solid @border-color-base;
   &-left{
+    -webkit-overflow-scrolling: auto;
+    overflow-scrolling: auto;
     position: absolute;
     top: 0;
     left: 0;
+    border-right: 1px solid @border-color-base;
     z-index: 3;
     ::-webkit-scrollbar{
       display:none;
@@ -17,6 +20,8 @@
     }
   }
   &-right{
+    -webkit-overflow-scrolling: auto;
+    overflow-scrolling: auto;
     border-left: 1px solid @border-color-base;
     position: absolute;
     top: 0;
@@ -59,7 +64,19 @@
     border-bottom: 1px solid @border-color-base;
     text-align: left;
     min-width: 100px;
-    min-height: 35px;
+    min-height: 20px;
+  }
+  &-cell{
+    overflow: hidden;
+    box-sizing: border-box;
+    .@{checkbox-prefix-cls}{
+      &-wrapper{
+        position: relative;
+        top: 10px;
+        height: 18px;
+        margin-right: 0;
+      }
+    }
   }
   &-border{
     tbody{
@@ -87,6 +104,7 @@
   &-body-fixed{
     overflow-y: scroll;
     overflow-x: scroll;
+    overflow-scrolling: auto;
   }
   &-border&-thanW{
     border-bottom: 1px solid @border-color-base;

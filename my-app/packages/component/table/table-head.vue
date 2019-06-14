@@ -2,6 +2,20 @@
     <table cellspacing="0"
            :style="{'width':styles+'px'}"
            cellpadding="0" border="0" >
+        <colgroup v-if="!childrenShow">
+            <col v-for="(item,index) in columns"
+                 :key="index"
+                 :width="item.width"
+                 >
+        </colgroup>
+        <template v-else>
+            <colgroup>
+                <col v-for="(item,index) in AllChildren"
+                     :key="index"
+                     :width="item.width"
+                     >
+            </colgroup>
+        </template>
         <thead>
         <tr v-if="!childrenShow">
             <th v-for="(item,index) in columns"
@@ -9,7 +23,15 @@
                 :width="item.width"
                 :height="item.height"
             >
-                {{item.title}}
+                <div v-if="item.type==='index'">
+                    #
+                </div>
+                <div v-else-if="item.type==='selection'">
+                    <pc-checkbox/>
+                </div>
+                <div v-else>
+                    {{item.title}}
+                </div>
             </th>
         </tr>
         <template v-else>
@@ -20,7 +42,15 @@
                     :colspan="item.colspan"
                     :width="item.width"
                 >
-                    {{item.title}}
+                    <div v-if="item.type==='index'">
+                        #
+                    </div>
+                    <div v-else-if="item.type==='selection'">
+                        <pc-checkbox v-model="checkbox"/>
+                    </div>
+                    <div v-else>
+                        {{item.title}}
+                    </div>
                 </th>
             </tr>
         </template>
@@ -51,13 +81,17 @@
             columns:{
                 type: Array
             },
+            AllChildren:{
+                type: Array
+            },
             styles:{
                 type: String|Number
             }
         },
         data(){
             return{
-                preFixCls: preFixCls
+                preFixCls: preFixCls,
+                checkbox: false
             }
         }
     }

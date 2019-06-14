@@ -2,32 +2,65 @@
     <table cellspacing="0" cellpadding="0" border="0"
            :style="{'width':styles+'px'}"
     >
+        <colgroup v-if="!childrenShow">
+            <col v-for="(item,index) in columns"
+                 :key="index"
+                 :width="item.width"
+            >
+        </colgroup>
+        <template v-else>
+            <colgroup>
+                <col v-for="(item,index) in AllChildren"
+                     :key="index"
+                     :width="item.width"
+                >
+            </colgroup>
+        </template>
         <tbody>
         <tr v-for="(item,index) in tableData"
             :key="index"
-            @mouseenter.stop="handelMouseenter(item,index)"
-            @mouseleave.stop="handelMouseleave(item,index)"
-            :height="item.height"
+            @mouseenter="handelMouseenter(item,index)"
+            @mouseleave="handelMouseleave(item,index)"
+            :style="[{'height':type!=='center'?heights[index]+'px':''}]"
             :class="[
                     `${preFixCls}-tr`,
                     stripe?(index%2 !==0) ?`${preFixCls}-stripe`:'':'',
                     item.isHover?`${preFixCls}-isHover`:'',
                         {
-                            // [`${rowClassName({row:item,index,data})}`]: !!rowClassName,
+                            [`${rowClassName({row:item,index,data})}`]: !!rowClassName({row:item,index,data}),
                         }
                     ]"
         >
             <td v-for="(items,indexs) in columns"
                 :width="items.width"
+                :class="[`${items.className?items.className:''}`,{
+                    [`${item.cellClassName?item.cellClassName[items.key]:''}`]: item.cellClassName?item.cellClassName[items.key]:false
+                }]"
                 :key="indexs">
-                <template v-if="items.render">
-                    <Render :row="item" :column="items" :index="index" :render="items.render"></Render>
+                <template v-if="items.type&&items.type==='index'">
+                    <div :class="`${preFixCls}-cell`">
+                        {{index+1}}
+                    </div>
+                </template>
+                <template v-else-if="items.type&&items.type==='selection'">
+                    <div :class="`${preFixCls}-cell`">
+                        <pc-checkbox v-model="item._checkbox" @on-change="checkboxChange(item,indexs)"/>
+                    </div>
+                </template>
+                <template v-else-if="items.render">
+                    <div :class="`${preFixCls}-cell`">
+                        <Render :row="item" :column="items" :index="index" :render="items.render"></Render>
+                    </div>
                 </template>
                 <template v-else-if="items.slot">
-                    <slot :row="item" :column="items" :index="index" :name="items.slot"></slot>
+                    <div :class="`${preFixCls}-cell`">
+                        <slot :row="item" :column="items" :index="index" :name="items.slot"></slot>
+                    </div>
                 </template>
                 <template v-else>
-                    {{item[items.key]}}
+                    <div :class="`${preFixCls}-cell`">
+                        {{item[items.key]?item[items.key]:'&nbsp;'}}
+                    </div>
                 </template>
             </td>
         </tr>
@@ -38,7 +71,7 @@
 
 <script>
     const preFixCls = 'pc-table';
-    import {findComponentUpward,findComponentsDownward} from '../../utils/assist'
+    import {findBrothersComponents,findComponentUpward,findComponentsDownward} from '../../utils/assist'
     export default {
         name: "PcTableBody",
         inject: ['table'],
@@ -50,6 +83,12 @@
                 }
             },
             data: {
+                type: Array,
+                default: ()=>{
+                    return []
+                }
+            },
+            AllChildren: {
                 type: Array,
                 default: ()=>{
                     return []
@@ -74,19 +113,57 @@
             },
             rowClassName:{
                 type: Function,
-                default: ()=>{}
-            }
+                default: ()=>{return ''}
+            },
+            type:{
+                type: String,
+                default: 'center'
+            },
         },
         data(){
+            let data = [];
+            let selection = this.columns.filter((item)=>{return item.type==='selection'});
+            if (selection.length>0) {
+                this.data.forEach((item)=>{
+                    data.push({
+                        ...item,
+                        _checkbox: item._checkbox?item._checkbox:false
+                    })
+                })
+            }
             return{
                 preFixCls: preFixCls,
-                tableData: this.data,
+                tableData: data.length===0?this.data:data,
+                PcTableHead: [],
                 brotherData: [],
+                heights: []
             }
         },
         methods:{
+            //  checkbox
+            checkboxChange(item,index){
+                console.log(this.tableData)
+                let tableData = this.tableData.filter((items)=>{return items._checkbox});
+                // 空的时候
+                if (tableData.length===0) {
+                    this.PcTableHead.forEach(item=>{
+                        item.checkbox = false
+                    })
+                //    都选中的时候
+                }else if (tableData.length===this.tableData.length) {
+                    this.PcTableHead.forEach(item=>{
+                        item.checkbox = true
+                    })
+                }else {
+                    this.PcTableHead.forEach(item=>{
+                        item.checkbox = true
+                    })
+                }
+                console.log(item)
+                console.log(index)
+                this.$emit('checkboxChange',tableData,item,index)
+            },
             handelMouseenter(item,index){
-                this.handelData();
                 this.$nextTick(()=>{
                     this.brotherData.forEach(item=>{
                         item.tableData[index].isHover = true;
@@ -104,30 +181,33 @@
                 })
             },
             handelData(){
-                let table = findComponentUpward(this,'PcTable');
-                this.brotherData = findComponentsDownward(table,'PcTableBody');
-                let index = 0;
-                let max = 0;
-                this.brotherData.forEach((item,indexs)=>{
-                    if (item.columns.length > max) {
-                        max = item.columns.length
-                        index = indexs
-                    }
-                })
-                let height = [];
-                this.brotherData[index].$el.childNodes[0].childNodes.forEach(item=>{
-                    height.push(item.getBoundingClientRect().height)
-                })
-                this.brotherData.forEach((item,indexs)=>{
-                    if (index!==indexs) {
-                        item.tableData.forEach((items,i)=>{
-                            items.height = height[i]
+                let brotherData = findBrothersComponents(this,'PcTableBody');
+                if (this.type==='center') {
+                    this.$nextTick(()=>{
+                        let index = 0;
+                        let max = 0;
+                        brotherData.forEach((item,indexs)=>{
+                            if (item.columns.length > max) {
+                                max = item.columns.length
+                                index = indexs
+                            }
                         })
-                    }
-                })
+                        this.heights = [];
+                        brotherData[index].$el.childNodes[1].childNodes.forEach(item=>{
+                            this.heights.push(item.getBoundingClientRect().height)
+                        });
+                        brotherData.forEach((item,indexs)=>{
+                            if (index!==indexs) {
+                                item.heights = this.heights
+                            }
+                        })
+                    })
+                }
             }
         },
         mounted(){
+            this.brotherData = findBrothersComponents(this,'PcTableBody');
+            this.PcTableHead = findComponentsDownward(this.table,'PcTableHead');
             this.handelData();
         },
         watch:{
