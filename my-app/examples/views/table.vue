@@ -43,6 +43,18 @@
             return{
                 columnss: [
                     {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
                         title: '123',
                         key: 'name',
                         align: 'center',
@@ -60,39 +72,25 @@
                                     },
                                 ]
                             },
-                            {
-                                title: 'Address',
-                                children: [
-                                    {
-                                        title: 'Address3',
-                                        key: 'Address3',
-                                    }
-                                ]
-                            },
-                            {
-                                title: 'Address',
-                                children: [
-                                    {
-                                        title: 'Address4',
-                                        key: 'Address4',
-                                    }
-                                ]
-                            },
                         ]
                     },
                     {
                         title: '456',
                         key: 'name',
                         width: 100,
-                        fixed: true,
+                        fixed: true
                     },
                     {
                         title: '789',
                         key: 'name2',
+                        width: 100,
+                        fixed: true
                     },
                     {
                         title: '1111',
                         key: 'name3',
+                        width: 100,
+                        fixed: 'right'
                     },
                 ],
                 columns: [

@@ -7,6 +7,7 @@
             <th v-for="(item,index) in columns"
                 :key="index"
                 :width="item.width"
+                :height="item.height"
             >
                 {{item.title}}
             </th>
