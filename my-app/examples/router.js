@@ -50,6 +50,10 @@ export default new Router({
       {
         path: '/breadcrumb',
         component: (resolve) => require(['./views/breadcrumb.vue'], resolve)
-    }
+      },
+      {
+        path: '/tag',
+        component: (resolve) => require(['./views/tag.vue'], resolve)
+      }
   ]
 })

@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      list: ['button', 'icon', 'layout', 'radio', 'checkbox', 'input', 'select', 'alert', 'form', 'table', 'breadcrumb']
+      list: ['button', 'icon', 'layout', 'radio', 'checkbox', 'input', 'select', 'alert', 'form', 'table', 'breadcrumb', 'tag']
     }
   }
 }

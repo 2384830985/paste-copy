@@ -1,0 +1,64 @@
+@tag-type: ~"@{css-prefix}tag";
+
+.@{tag-type} {
+    &-wrap {
+        display: inline-block;
+        padding: 5px;
+        border-radius: @border-radius-small;
+    }
+    &-name {
+        padding: 0 10px 0 5px;
+        font-size: 12px;
+    }
+    &-primary {
+        border: @border-width-base @border-style-base tint(@primary-color, 80%);
+        background: tint(@primary-color, 90%);
+        color: @primary-color;
+    }
+    &-success {
+        border: @border-width-base @border-style-base tint(@success-color, 80%);
+        background: tint(@success-color, 90%);
+        color: @success-color;
+    }
+    &-info {
+        border: @border-width-base @border-style-base tint(@info-color, 80%);
+        background: tint(@info-color, 90%);
+        color: @info-color;
+    }
+    &-error {
+        border: @border-width-base @border-style-base tint(@error-color, 80%);
+        background: tint(@error-color, 90%);
+        color: @error-color;
+    }
+    &-warning {
+        border: @border-width-base @border-style-base tint(@warning-color, 80%);
+        background: tint(@warning-color, 90%);
+        color: @warning-color;
+    }
+    &-icon {
+        font-size: 12px;
+        vertical-align: baseline;
+        cursor: pointer;
+        &:hover {
+            opacity: .5;
+        }
+    }
+    &-medium {
+        padding: 3px 5px;
+        .@{tag-type}-icon {
+            transform: scale(.9);
+        }
+    }
+    &-small {
+        padding: 1px 5px;
+        .@{tag-type}-icon {
+            transform: scale(.8);
+        }
+    }
+    &-mini {
+        padding: 0;
+        .@{tag-type}-icon {
+            transform: scale(.7);
+        }
+    }
+}

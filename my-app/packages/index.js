@@ -17,6 +17,7 @@ import PcCol from './component/col'
 import PcAlert from './component/alert'
 import PcBreadcrumb from './component/breadcrumb'
 import PcBreadcrumbItem from './component/breadcrumb-item'
+import PcTag from './component/tag'
 import './styles/index.less'
 
 // 存储组件列表
@@ -39,7 +40,8 @@ const components = [
     PcButton,
     PcAlert,
     PcBreadcrumb,
-    PcBreadcrumbItem
+    PcBreadcrumbItem,
+    PcTag
 ]
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
 const install = function (Vue,opts={}) {
