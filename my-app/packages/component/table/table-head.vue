@@ -27,7 +27,7 @@
                     #
                 </div>
                 <div v-else-if="item.type==='selection'">
-                    <pc-checkbox/>
+                    <pc-checkbox @on-change="checkboxChange" v-model="checkbox" :indeterminate="indeterminate"/>
                 </div>
                 <div v-else>
                     {{item.title}}
@@ -46,7 +46,7 @@
                         #
                     </div>
                     <div v-else-if="item.type==='selection'">
-                        <pc-checkbox v-model="checkbox"/>
+                        <pc-checkbox v-model="checkbox" @on-change="checkboxChange" :indeterminate="indeterminate"/>
                     </div>
                     <div v-else>
                         {{item.title}}
@@ -57,18 +57,14 @@
 
         </thead>
     </table>
-    <!--:class="{-->
-    <!--[`${preFixCls}-hidden`]:-->
-    <!--type==='center'? item.fixed-->
-    <!--: type==='left' ? !item.fixed||item.fixed==='right'-->
-    <!--: type==='right'? !item.fixed||item.fixed==='left':false-->
-    <!--}"-->
 </template>
 
 <script>
     const preFixCls = 'pc-table';
+    import {findComponentsDownward} from '../../utils/assist'
     export default {
         name: "PcTableHead",
+        inject: ['table'],
         props: {
             childrenShow:{
                 type: Boolean,
@@ -91,9 +87,31 @@
         data(){
             return{
                 preFixCls: preFixCls,
-                checkbox: false
+                checkbox: false,
+                indeterminate: false,
             }
-        }
+        },
+        methods:{
+            checkboxChange(checkbox,index){
+                this.checkbox = checkbox;
+                // 部分选中
+                if (index===true||index===false) {
+                    this.indeterminate = index;
+                    return
+                }
+                this.$nextTick(()=>{
+                    if (!checkbox) this.indeterminate = false;
+                    let PcTableBody = findComponentsDownward(this.table,'PcTableBody');
+                    PcTableBody.forEach(item=>{
+                        item.tableData.forEach(items=>{
+                            items._checkbox = checkbox
+                        });
+                        item.$forceUpdate()
+                    });
+                    this.$emit('checkboxChangeHead',checkbox?PcTableBody[0].tableData:[],checkbox)
+                })
+            }
+        },
     }
 </script>
 
