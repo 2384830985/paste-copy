@@ -54,6 +54,10 @@ export default new Router({
       {
         path: '/tag',
         component: (resolve) => require(['./views/tag.vue'], resolve)
+      },
+      {
+        path: '/pagination',
+        component: (resolve) => require(['./views/pagination.vue'], resolve)
       }
   ]
 })
