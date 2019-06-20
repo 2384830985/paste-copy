@@ -20,6 +20,8 @@
         <template v-for="(item,index) in tableData">
             <tr @mouseenter="handelMouseenter(item,index)"
                 @mouseleave="handelMouseleave(item,index)"
+                @click="rowClick(item,index)"
+                @dblclick="dblClick(item,index)"
                 :style="[{'height':type!=='center'?heights[index]+'px':''}]"
                 :class="[
                     `${preFixCls}-tr`,
@@ -219,6 +221,12 @@
                         item.$forceUpdate();
                     })
                 })
+            },
+            rowClick(item,index){
+                this.$emit('on-row-click',item,index)
+            },
+            dblClick(item,index){
+                this.$emit('on-row-dblclick',item,index)
             },
             handelData(){
                 let brotherData = findBrothersComponents(this,'PcTableBody');

@@ -39,6 +39,8 @@
                 <pc-table-body :columns="leftFixedColumnRows"
                                :stripe="stripe"
                                type="left"
+                               @on-row-click="onRowClick"
+                               @on-row-dblclick="onRowdblclick"
                                @checkboxChange="checkboxChange"
                                :childrenShow="childrenShow"
                                :height="height"
@@ -69,6 +71,8 @@
                 <pc-table-body :columns="rightFixedColumnRows"
                                :stripe="stripe"
                                :height="height"
+                               @on-row-click="onRowClick"
+                               @on-row-dblclick="onRowdblclick"
                                type="right"
                                @checkboxChange="checkboxChange"
                                :childrenShow="childrenShow"
@@ -91,6 +95,8 @@
                            :styles="tableWidth"
                            :AllChildren="AllChildren"
                            :rowClassName="rowClassName"
+                           @on-row-click="onRowClick"
+                           @on-row-dblclick="onRowdblclick"
                            :spanMethod="spanMethod"
                            :childrenShow="childrenShow"
                            @checkboxChange="checkboxChange"
@@ -330,6 +336,12 @@
             },
             checkboxChange(tableData,item,index){
                 this.$emit('checkboxChange',tableData,item,index)
+            },
+            onRowClick (item,index) {
+                this.$emit('on-row-click',item,index)
+            },
+            onRowdblclick (item,index) {
+                this.$emit('on-row-dblclick',item,index)
             },
             onSort(item,order){
                 this.$emit('on-sort',item,{order: order});
