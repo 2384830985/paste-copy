@@ -84,6 +84,35 @@
     white-space: normal;
     word-break: break-all;
   }
+  &-sort{
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    margin-top: -1px;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    .@{css-prefix-iconfont}{
+      display: block;
+      height: 6px;
+      line-height: 6px;
+      overflow: hidden;
+      position: absolute;
+      color: tint(@info-color,40);
+      transition: color @transition-time @ease-in-out;
+      font-size: 12px;
+    }
+    .@{css-prefix-iconfont}-caret-down{
+      bottom: -1px;
+    }
+    .@{css-prefix-iconfont}-caret-up{
+      top: 0;
+    }
+    .on{
+      color: @primary-color;
+    }
+  }
   &-cell{
     overflow: hidden;
     box-sizing: border-box;
@@ -174,6 +203,35 @@
   }
   &-isHover{
     background: tint(@primary-color,90)
+  }
+  &-expand{
+    cursor: pointer;
+    .@{css-prefix-iconfont}{
+      font-size: 14px;
+      transition: all .2s ease-in-out;
+    }
+    .on{
+      transform: rotate(90deg);
+    }
+  }
+  &-loading{
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    background: white;
+    opacity: 0.8;
+    color: @primary-color;
+    z-index: 11;
+    .@{css-prefix-iconfont}{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 18px;
+      margin-left: -9px;
+      margin-top: -9px;
+    }
   }
   //&-stripe:hover{
   //  background: tint(@primary-color,90)!important;

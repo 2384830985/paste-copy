@@ -2,6 +2,30 @@
     <div style="margin: 20px;">
         <pc-button @click="click(true)">选中</pc-button>
         <pc-button @click="click(false)">不选中</pc-button>
+        <div style="margin: 20px">上下搜索</div>
+        <div style="margin: 20px">
+            <pc-table :columns="columns5"
+                      :data="data"
+                      stripe
+                      @on-sort="onSort"
+                      border
+            >
+                <span slot="name">123</span>
+                <div slot="111"></div>
+            </pc-table>
+        </div>
+        <div style="margin: 20px">loading</div>
+        <div style="margin: 20px">
+            <pc-table :columns="columns5"
+                      :data="data"
+                      loading
+                      @on-sort="onSort"
+                      border
+            >
+                <span slot="name">123</span>
+                <div slot="111"></div>
+            </pc-table>
+        </div>
         <div style="margin: 20px">合并横坐标</div>
         <div style="margin: 20px">
             <pc-table :columns="columns4"
@@ -78,6 +102,36 @@
         name: "table1",
         data(){
             return{
+                columns5: [
+                    {
+                        type: 'expand',
+                        width: 45,
+                        align: 'center',
+                        render: (h, { row, index }) => {
+                            return h('div',row.name2)
+                        }
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                        sort: true,
+                        order: 'top',
+                        slotSort: 'name'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                        order: 'top'
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                    {
+                        title: '789',
+                        key: 'name2',
+                    },
+                ],
                 columns4: [
                     {
                         type: 'index',
@@ -275,10 +329,12 @@
                         children: [
                             {
                                 title: '321',
+                                sort: true,
                                 children: [
                                     {
                                         title: 'Address1',
                                         key: 'Address1',
+                                        sort: true
                                     },
                                     {
                                         title: 'Address2',
@@ -564,461 +620,6 @@
                         }
                     },
                     {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },{
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
-                        name: '456gfdkjgfd;lgjfdkl;gjkdfkl',
-                        name1: '123gfdgfdgdf',
-                        name2: '789dfg',
-                        name3: '1111',
-                        _checkbox: true,
-                        Address1: 'Address1',
-                        Address2: 'Address2',
-                        Address3: 'Address3',
-                        Address4: 'Address4',
-                        cellClassName: {
-                            name: 'b',
-                            name3: 'b',
-                        }
-                    },
-                    {
                         name: '123',
                         name1: '123',
                         name2: '12323',
@@ -1033,6 +634,10 @@
             }
         },
         methods:{
+            onSort(item,order){
+                console.log(item)
+                console.log(order)
+            },
             rowClassName({row,index,data}){
                 // console.log(row)
                 // console.log(index)

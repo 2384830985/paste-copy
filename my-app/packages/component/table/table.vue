@@ -15,15 +15,24 @@
             <pc-table-head :styles="tableWidth" ref="tableHead"
                            :columns="tableColumns"
                            :AllChildren="AllChildren"
+                           @on-sort="onSort"
                            @checkboxChangeHead="checkboxChangeHead"
-                           :childrenShow="childrenShow"></pc-table-head>
+                           :childrenShow="childrenShow">
+                <span v-if="slotSort.length>0" v-for="(item,index) in slotSort" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
         </div>
         <!-- left 悬浮-->
         <div :class="[`${preFixCls}-left`,{[`${preFixCls}-left-box`]:leftBox}]"
              @mousewheel="handleFixedMousewheel"
              @DOMMouseScroll="handleFixedMousewheel"
              v-show="leftFixedColumnRows.length>0">
-            <pc-table-head :columns="leftFixedColumnRows" ref="tableHeadLeft" @checkboxChangeHead="checkboxChangeHead" ></pc-table-head>
+            <pc-table-head :columns="leftFixedColumnRows"  @on-sort="onSort" ref="tableHeadLeft" @checkboxChangeHead="checkboxChangeHead" >
+                <span v-if="slotSortLeft.length>0" v-for="(item,index) in slotSortLeft" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
             <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyLeft"
             >
@@ -46,9 +55,14 @@
              @DOMMouseScroll="handleFixedMousewheel"
              v-show="rightFixedColumnRows.length>0">
             <pc-table-head
+                    @on-sort="onSort"
                     @checkboxChangeHead="checkboxChangeHead"
                     ref="tableHeadRight"
-                    :columns="rightFixedColumnRows"></pc-table-head>
+                    :columns="rightFixedColumnRows">
+                <span  v-if="slotSortRight.length>0" v-for="(item,index) in slotSortRight" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
             <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyRight"
             >
@@ -83,7 +97,9 @@
                            :border="border"
                            :data="tableData"></pc-table-body>
         </div>
-
+        <div :class="`${preFixCls}-loading`" v-if="loading">
+            <pc-icon class="pc-icon-loading" type="loading5"/>
+        </div>
     </div>
 </template>
 
@@ -91,7 +107,6 @@
     const preFixCls = 'pc-table';
     import PcTableHead from './table-head'
     import PcTableBody from './table-body'
-    import Render from './render.js'
     import {tableRecursion,obtainLength,obtainBody,obtainAllChildren} from './utils'
     export default {
         name: "PcTable",
@@ -101,7 +116,6 @@
             }
         },
         components: {
-            Render,
             PcTableHead,
             PcTableBody
         },
@@ -128,6 +142,9 @@
                 leftFixedColumnRows: [],
                 AllChildren: [],
                 rightFixedColumnRows: [],
+                slotSort: [],
+                slotSortRight: [],
+                slotSortLeft: [],
             }
         },
         props:{
@@ -157,6 +174,10 @@
             // 是否需要border
             border: {
                 type: Boolean
+            },
+            loading: {
+                type: Boolean,
+                default: false
             },
             // 高度
             height: {
@@ -310,6 +331,9 @@
             checkboxChange(tableData,item,index){
                 this.$emit('checkboxChange',tableData,item,index)
             },
+            onSort(item,order){
+                this.$emit('on-sort',item,{order: order});
+            },
             // 全部选中
             selectAll(value,index){
                 let selection = this.tableColumns.filter((item)=>{return item.type==='selection'});
@@ -333,12 +357,24 @@
             },
         },
         mounted(){
+            console.log(this.$slots)
+            // let slotSort
             this.leftFixedColumnRows = this.tableColumns.filter((item)=>{
                 return (item.fixed===true||item.fixed==='left')&&item.width
             });
+            this.leftFixedColumnRows.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSortLeft.push(item.slotSort)
+                }
+            })
             this.rightFixedColumnRows = this.tableColumns.filter((item)=>{
                 return (item.fixed==='right')&&item.width
             });
+            this.rightFixedColumnRows.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSortRight.push(item.slotSort)
+                }
+            })
             let data = this.tableColumns.filter((item)=>{
                 return !item.fixed
             });
@@ -377,6 +413,11 @@
                         item.height = this.$refs.tableHead.$el.getBoundingClientRect().height - 1;
                         this.$set(this.rightFixedColumnRows,index,item)
                     });
+                }
+            })
+            this.tableColumns.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSort.push(item.slotSort)
                 }
             })
             // leftIndex

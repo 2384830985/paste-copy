@@ -14,6 +14,7 @@ export const tableRecursion = (children,index=0,max = 0)=> {
             colspan: child.children&&child.children.length>0?obtainColSpan(child):1,
             rowspan: obtainRowSpan(child,index,max),
             type: child.type,
+            sort: child.sort,
         })
         let foundChilds = [];
         if (child.children&&child.children.length>0) {
