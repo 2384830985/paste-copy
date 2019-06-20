@@ -58,6 +58,10 @@ export default new Router({
       {
         path: '/pagination',
         component: (resolve) => require(['./views/pagination.vue'], resolve)
+      },
+      {
+        path: '/loading',
+        component: (resolve) => require(['./views/loading.vue'], resolve)
       }
   ]
 })
