@@ -10,28 +10,41 @@
                 }
             ]">
         <div :class="tableHeadClass"
-             @mouseenter="handelMouseenter('head')"
-             @mouseleave="handelMouseleave('head')"
+             @mousewheel="handleMouseWheel"
              ref="head">
             <pc-table-head :styles="tableWidth" ref="tableHead"
                            :columns="tableColumns"
                            :AllChildren="AllChildren"
-                           :childrenShow="childrenShow"></pc-table-head>
+                           @on-sort="onSort"
+                           @checkboxChangeHead="checkboxChangeHead"
+                           :childrenShow="childrenShow">
+                <span v-if="slotSort.length>0" v-for="(item,index) in slotSort" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
         </div>
         <!-- left 悬浮-->
         <div :class="[`${preFixCls}-left`,{[`${preFixCls}-left-box`]:leftBox}]"
+             @mousewheel="handleFixedMousewheel"
+             @DOMMouseScroll="handleFixedMousewheel"
              v-show="leftFixedColumnRows.length>0">
-            <pc-table-head :columns="leftFixedColumnRows"></pc-table-head>
+            <pc-table-head :columns="leftFixedColumnRows"  @on-sort="onSort" ref="tableHeadLeft" @checkboxChangeHead="checkboxChangeHead" >
+                <span v-if="slotSortLeft.length>0" v-for="(item,index) in slotSortLeft" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
             <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyLeft"
-                  @mouseenter="handelMouseenter('bodyLeft')"
-                  @mouseleave="handelMouseleave('bodyLeft')"
             >
                 <pc-table-body :columns="leftFixedColumnRows"
                                :stripe="stripe"
                                type="left"
+                               @on-row-click="onRowClick"
+                               @on-row-dblclick="onRowdblclick"
+                               @checkboxChange="checkboxChange"
                                :childrenShow="childrenShow"
                                :height="height"
+                               :spanMethod="spanMethod"
                                :rowClassName="rowClassName"
                                :border="border"
                                :data="tableData"></pc-table-body>
@@ -39,30 +52,41 @@
         </div>
         <!-- right 悬浮-->
         <!--@scroll="handleLeftBodyScroll"-->
-        <div :class="[`${preFixCls}-right`,{[`${preFixCls}-right-box`]:rightBox}]" v-show="rightFixedColumnRows.length>0">
-            <pc-table-head :columns="rightFixedColumnRows"></pc-table-head>
+        <div :class="[`${preFixCls}-right`,{[`${preFixCls}-right-box`]:rightBox}]"
+             @mousewheel="handleFixedMousewheel"
+             @DOMMouseScroll="handleFixedMousewheel"
+             v-show="rightFixedColumnRows.length>0">
+            <pc-table-head
+                    @on-sort="onSort"
+                    @checkboxChangeHead="checkboxChangeHead"
+                    ref="tableHeadRight"
+                    :columns="rightFixedColumnRows">
+                <span  v-if="slotSortRight.length>0" v-for="(item,index) in slotSortRight" :class="item" :key="index" :slot="item">
+                    <slot :name="item"></slot>
+                </span>
+            </pc-table-head>
             <div  :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
                   ref="bodyRight"
-                  @mouseenter="handelMouseenter('bodyRight')"
-                  @mouseleave="handelMouseleave('bodyRight')"
             >
                 <pc-table-body :columns="rightFixedColumnRows"
                                :stripe="stripe"
                                :height="height"
+                               @on-row-click="onRowClick"
+                               @on-row-dblclick="onRowdblclick"
                                type="right"
+                               @checkboxChange="checkboxChange"
                                :childrenShow="childrenShow"
                                :rowClassName="rowClassName"
+                               :spanMethod="spanMethod"
                                :border="border"
                                :data="tableData"></pc-table-body>
             </div>
         </div>
-        <!--@scroll="handleBodyScroll"-->
         <div :class="[
                 {[`${preFixCls}-body-fixed`]: height,}
             ]"
              ref="body"
-             @mouseenter="handelMouseenter('body')"
-             @mouseleave="handelMouseleave('body')"
+             @scroll="handleBodyScroll"
              :style="{'max-height':height-headHeight+'px','overflow':'scroll','overflow-scrolling': 'auto'}"
         >
             <pc-table-body :columns="!childrenShow?tableColumns:obtainBody"
@@ -71,11 +95,17 @@
                            :styles="tableWidth"
                            :AllChildren="AllChildren"
                            :rowClassName="rowClassName"
+                           @on-row-click="onRowClick"
+                           @on-row-dblclick="onRowdblclick"
+                           :spanMethod="spanMethod"
                            :childrenShow="childrenShow"
+                           @checkboxChange="checkboxChange"
                            :border="border"
                            :data="tableData"></pc-table-body>
         </div>
-
+        <div :class="`${preFixCls}-loading`" v-if="loading">
+            <pc-icon class="pc-icon-loading" type="loading5"/>
+        </div>
     </div>
 </template>
 
@@ -83,7 +113,6 @@
     const preFixCls = 'pc-table';
     import PcTableHead from './table-head'
     import PcTableBody from './table-body'
-    import Render from './render.js'
     import {tableRecursion,obtainLength,obtainBody,obtainAllChildren} from './utils'
     export default {
         name: "PcTable",
@@ -93,7 +122,6 @@
             }
         },
         components: {
-            Render,
             PcTableHead,
             PcTableBody
         },
@@ -120,6 +148,9 @@
                 leftFixedColumnRows: [],
                 AllChildren: [],
                 rightFixedColumnRows: [],
+                slotSort: [],
+                slotSortRight: [],
+                slotSortLeft: [],
             }
         },
         props:{
@@ -150,6 +181,10 @@
             border: {
                 type: Boolean
             },
+            loading: {
+                type: Boolean,
+                default: false
+            },
             // 高度
             height: {
                 type: Number|String
@@ -160,7 +195,14 @@
                 default () {
                     return '';
                 }
-            }
+            },
+            // 实现合并行或列
+            spanMethod:{
+                type: Function,
+                default () {
+                    return '';
+                }
+            },
         },
         computed:{
             tableHeadClass(){
@@ -170,41 +212,94 @@
             },
         },
         methods:{
+            // 移动触发当前body的值
+            handleMouseWheel(event){
+                const deltaX = event.deltaX;
+                const body = this.$refs.body;
+                // 当前往左 或者 右边 滑动的时候就滑动 10像素
+                if (deltaX > 0) {
+                    body.scrollLeft = body.scrollLeft + 10;
+                } else {
+                    body.scrollLeft = body.scrollLeft - 10;
+                }
+            },
+            // 移动触发当前body的值
+            handleFixedMousewheel(event){
+                let deltaY = event.deltaY;
+                // 兼容火狐浏览器
+                if(!deltaY && event.detail){
+                    deltaY = event.detail * 30;
+                }
+                if(!deltaY && event.wheelDeltaY){
+                    deltaY = -event.wheelDeltaY;
+                }
+                if(!deltaY && event.wheelDelta){
+                    deltaY = -event.wheelDelta;
+                }
+                if(!deltaY) return;
+                const body = this.$refs.body;
+                const currentScrollTop = body.scrollTop;
+                // 防止抖动
+                if (deltaY < 0 && currentScrollTop !== 0) {
+                    event.preventDefault();
+                }
+                if (deltaY > 0 && body.scrollHeight - body.clientHeight > currentScrollTop) {
+                    event.preventDefault();
+                }
+                let step = 0;
+                let timeId = setInterval(()=>{
+                    step += 5;
+                    if(deltaY>0){
+                        body.scrollTop += 2;
+                    }
+                    else{
+                        body.scrollTop -= 2;
+                    }
+                    if(step >= Math.abs(deltaY)){
+                        clearInterval(timeId);
+                    }
+                }, 5);
+            },
+            handleBodyScroll(event){
+                this.handelMouse(event,'body')
+            },
             handelMouseenter(type){
-                this.type = type;
-                this.$refs[type].addEventListener('scroll',this.handelMouse,false)
+                // console.log(type)
+                // this.type = type;
+                // ['bodyRight','bodyLeft','head','body'].forEach(item=>{
+                //     this.$refs[item].addEventListener('scroll',this[item],false)
+                // })
+            },
+            bodyRight(event){
+                this.handelMouse(event,'bodyRight')
+            },
+            bodyLeft(event){
+                this.handelMouse(event,'bodyLeft')
+            },
+            head(event){
+                this.handelMouse(event,'head')
+            },
+            body(event){
+                this.handelMouse(event,'body')
             },
             handelMouse(event){
-                let type = this.type;
-                let {bodyRight,bodyLeft,body,tableHead,head} = this.$refs;
+                let {bodyRight,bodyLeft,tableHead,head} = this.$refs;
                 let that = this;
                 let scrollLeft = JSON.parse(JSON.stringify(parseInt(event.target.scrollLeft)));
                 let scrollTop = JSON.parse(JSON.stringify(parseInt(event.target.scrollTop)));
-                that.$nextTick(()=>{
-                    if (type==='bodyRight') {
-                        bodyLeft.scrollTop = scrollTop;
-                        body.scrollTop = scrollTop;
-                    }else if (type==='bodyLeft') {
-                        bodyRight.scrollTop = scrollTop;
-                        body.scrollTop = scrollTop;
-                    }else if (type==='head') {
-                        body.scrollLeft = scrollLeft;
-                    }else if (type==='body') {
-                        if (that.leftFixedColumnRows.length>0) {
-                            scrollLeft===0 ? that.leftBox = false:that.leftBox = true;
-                            bodyLeft.scrollTop = scrollTop;
-                        }
-                        // 判断右边是否需要 box-shadow
-                        if (that.rightFixedColumnRows.length>0) {
-                            tableHead.$el.getBoundingClientRect().width - that.$el.offsetWidth - scrollLeft < 2 ?that.rightBox = false:that.rightBox = true;
-                            bodyRight.scrollTop = scrollTop;
-                        }
-                        head.scrollLeft = scrollLeft;
-                    }
-                })
+                if (that.leftFixedColumnRows.length>0) {
+                    scrollLeft===0 ? that.leftBox = false:that.leftBox = true;
+                    bodyLeft.scrollTop = scrollTop;
+                }
+                // 判断右边是否需要 box-shadow
+                if (that.rightFixedColumnRows.length>0) {
+                    tableHead.$el.getBoundingClientRect().width - that.$el.offsetWidth - scrollLeft < 2 ?that.rightBox = false:that.rightBox = true;
+                    bodyRight.scrollTop = scrollTop;
+                }
+                head.scrollLeft = scrollLeft;
             },
             handelMouseleave(type){
-                this.$refs[type].removeEventListener('scroll',this.handelMouse,false);
+                // this.$refs[type].removeEventListener('scroll',this.handelMouse,false);
             },
             updateValue(){
                 this.headHeight = this.$refs.head.getBoundingClientRect().height;
@@ -221,15 +316,77 @@
                     this.tableWidth = this.$refs.tableHead.$el.getBoundingClientRect().width;
                     this.thanHShow = true
                 }
+
+                let selection = this.tableColumns.filter((item)=>{return item.type==='selection'});
+
+                if (selection.length>0) {
+                    this.tableData.forEach((item)=>{
+                        item._checkbox = item._checkbox?item._checkbox:false
+                    })
+                    let tableData = this.tableData.filter((item)=>{return item._checkbox});
+                    if (tableData.length===this.tableData.length) {
+                        this.selectAll(true,false)
+                    }else if (tableData.length>0) {
+                        this.selectAll(true,true)
+                    }
+                }
+            },
+            checkboxChangeHead(tableData,checkbox){
+                this.$emit('checkboxChangeHead',tableData,checkbox)
+            },
+            checkboxChange(tableData,item,index){
+                this.$emit('checkboxChange',tableData,item,index)
+            },
+            onRowClick (item,index) {
+                this.$emit('on-row-click',item,index)
+            },
+            onRowdblclick (item,index) {
+                this.$emit('on-row-dblclick',item,index)
+            },
+            onSort(item,order){
+                this.$emit('on-sort',item,{order: order});
+            },
+            // 全部选中
+            selectAll(value,index){
+                let selection = this.tableColumns.filter((item)=>{return item.type==='selection'});
+                if (selection.length>0) {
+                    let { tableHeadRight, tableHeadLeft, tableHead } = this.$refs;
+                    tableHead.checkboxChange(value,index);
+                    if (this.leftFixedColumnRows.filter((item)=>{return item.type==='selection'}).length>0) {
+                        tableHeadLeft.checkboxChange(value,index)
+                    }
+                    if (this.rightFixedColumnRows.filter((item)=>{return item.type==='selection'}).length>0) {
+                        tableHeadRight.checkboxChange(value,index)
+                    }
+                }
+            },
+            // 获取当前选中
+            searchSelectAll(){
+                let selection = this.tableColumns.filter((item)=>{return item.type==='selection'});
+                if (selection.length>0) {
+                    return this.tableData.filter((item)=>{return item._checkbox});
+                }
             },
         },
         mounted(){
+            console.log(this.$slots)
+            // let slotSort
             this.leftFixedColumnRows = this.tableColumns.filter((item)=>{
                 return (item.fixed===true||item.fixed==='left')&&item.width
             });
+            this.leftFixedColumnRows.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSortLeft.push(item.slotSort)
+                }
+            })
             this.rightFixedColumnRows = this.tableColumns.filter((item)=>{
                 return (item.fixed==='right')&&item.width
             });
+            this.rightFixedColumnRows.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSortRight.push(item.slotSort)
+                }
+            })
             let data = this.tableColumns.filter((item)=>{
                 return !item.fixed
             });
@@ -255,21 +412,26 @@
                 }
                 this.obtainBody = obtainBody(this.tableColumns);
                 this.tableColumns = tableColumns;
-                this.$nextTick(()=>{
-                    if (this.leftFixedColumnRows.length>0) {
-                        this.leftFixedColumnRows.forEach((item,index)=>{
-                            item.height = this.$refs.tableHead.$el.getBoundingClientRect().height - 1;
-                            this.$set(this.leftFixedColumnRows,index,item)
-                        });
-                    }
-                    if (this.rightFixedColumnRows.length>0) {
-                        this.rightFixedColumnRows.forEach((item,index)=>{
-                            item.height = this.$refs.tableHead.$el.getBoundingClientRect().height - 1;
-                            this.$set(this.rightFixedColumnRows,index,item)
-                        });
-                    }
-                })
             }
+            this.$nextTick(()=>{
+                if (this.leftFixedColumnRows.length>0) {
+                    this.leftFixedColumnRows.forEach((item,index)=>{
+                        item.height = this.$refs.tableHead.$el.getBoundingClientRect().height - 1;
+                        this.$set(this.leftFixedColumnRows,index,item)
+                    });
+                }
+                if (this.rightFixedColumnRows.length>0) {
+                    this.rightFixedColumnRows.forEach((item,index)=>{
+                        item.height = this.$refs.tableHead.$el.getBoundingClientRect().height - 1;
+                        this.$set(this.rightFixedColumnRows,index,item)
+                    });
+                }
+            })
+            this.tableColumns.forEach(item=>{
+                if (!!item.slotSort) {
+                    this.slotSort.push(item.slotSort)
+                }
+            })
             // leftIndex
             this.updateValue()
         },
