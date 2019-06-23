@@ -31,7 +31,10 @@
         :showJump='showJump'
         :showSize='showSize'
         :pageSizeOpts='pageSizeOpts'
-        :total='totalPageNum'>
+        :current='currentNum'
+        :totalPage='totalPageNum'
+        @jumpPage='jumpPage'
+        >
         </Options>
     </div>
 </template>
@@ -108,6 +111,10 @@ export default {
                 this.currentNum = Number(e.target.textContent);
             }
                             
+        },
+        jumpPage (page) {
+            console.log(page)
+            this.currentNum = page;
         }
     }
 }
