@@ -59,13 +59,26 @@
 
 .@{option-type}{
     &-wrap {
-        // display: inline;
+        display: inline-block;
     }
     &-jump {
-        input {
-            display: inline;
-            width: 50px;
-            padding-right: 7px;
+        .pc-input-wrapper {
+            display: inline-block;
+            width: 40px;
+            text-align: left;
+            .pc-input-group-input {
+                display: inline-block;
+                input {
+                    height: 28px;
+                    line-height: 28px;
+                    padding-right: 7px;
+                    text-align: center;
+                    font-weight: bold;
+                }
+            }
+        }
+        span {
+            margin: 0 6px;
         }
     }
 }
