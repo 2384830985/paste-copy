@@ -1,0 +1,62 @@
+@loading-prefix-cls: ~"@{css-prefix}loading";
+
+.@{loading-prefix-cls}{
+  &-position{
+    position: relative!important;
+  }
+  &-content{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    opacity: .8;
+  }
+  &-frame{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 50%;
+    left: 50%;
+    margin-left: -11px;
+    margin-top: -11px;
+    span{
+      position: absolute;
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: @primary-color;
+      &:nth-child(1) {
+        left: 0;
+        top: 0;
+        background: tint(@primary-color,75%);
+      }
+      &:nth-child(2) {
+        right: 0;
+        top: 0;
+        background: tint(@primary-color,50%);
+      }
+      &:nth-child(3) {
+        left: 0;
+        bottom: 0;
+        background: tint(@primary-color,25%);
+      }
+      &:nth-child(4) {
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+  &-text{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: @primary-color;
+    font-weight: bold;
+  }
+}

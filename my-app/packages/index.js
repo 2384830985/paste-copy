@@ -24,7 +24,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
-    PcLoading,
+    PcLoading.PcLoading,
     PcTable,
     PcFormItem,
     PcForm,
@@ -53,6 +53,8 @@ const install = function (Vue,opts={}) {
     if (install.installed) return
     // 遍历注册全局组件
     components.map(component => Vue.component(component.name, component))
+
+    Vue.use(PcLoading.loadingDirective)
 
     Vue.prototype.$PASTE = {
         size: opts.size || '',
