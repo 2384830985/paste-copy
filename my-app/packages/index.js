@@ -1,3 +1,4 @@
+import PcUpload from './component/upload'
 import PcLoading from './component/loading'
 import PcTable from './component/table'
 import PcFormItem from './component/form-item'
@@ -24,7 +25,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
-    // PcLoading.PcLoading,
+    PcUpload,
     PcTable,
     PcFormItem,
     PcForm,

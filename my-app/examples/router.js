@@ -62,6 +62,10 @@ export default new Router({
       {
         path: '/loading',
         component: (resolve) => require(['./views/loading.vue'], resolve)
+      },
+      {
+        path: '/upload',
+        component: (resolve) => require(['./views/upload.vue'], resolve)
       }
   ]
 })
