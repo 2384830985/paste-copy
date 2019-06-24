@@ -24,7 +24,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
-    PcLoading.PcLoading,
+    // PcLoading.PcLoading,
     PcTable,
     PcFormItem,
     PcForm,
@@ -59,6 +59,7 @@ const install = function (Vue,opts={}) {
     Vue.prototype.$PASTE = {
         size: opts.size || '',
     }
+    Vue.prototype.$Loading = PcLoading.service;
 }
 
 // 判断是否是直接引入文件

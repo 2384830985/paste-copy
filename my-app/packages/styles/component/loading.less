@@ -3,6 +3,11 @@
 .@{loading-prefix-cls}{
   &-position{
     position: relative!important;
+    z-index: 100;
+  }
+  &-fixed{
+    position: fixed!important;
+    z-index: 101;
   }
   &-content{
     position: absolute;
@@ -12,6 +17,15 @@
     bottom: 0;
     background: white;
     opacity: .8;
+  }
+  &-spinner{
+    position: absolute;
+    font-size: 22px;
+    color: @primary-color;
+    top: 50%;
+    left: 50%;
+    margin-left: -11px;
+    margin-top: -11px;
   }
   &-frame{
     position: absolute;
@@ -58,5 +72,9 @@
     font-size: 14px;
     color: @primary-color;
     font-weight: bold;
+    &-spinner{
+      margin-top: 15px;
+      font-size: 12px;
+    }
   }
 }

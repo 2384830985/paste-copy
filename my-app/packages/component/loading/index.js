@@ -1,11 +1,7 @@
-import PcLoading from './loading';
-import loadingDirective from './directives'
+import loadingDirective from './src/directives';
+import service from './src/index'
 
-PcLoading.install = function (Vue) {
-    Vue.use(loadingDirective);
-    Vue.component(PcLoading.name,PcLoading)
-};
 export default {
-    PcLoading,
+    service,
     loadingDirective
 }
