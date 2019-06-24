@@ -1,7 +1,7 @@
 <template>
     <div class='pc-page-wrap'>
-        <span class='showtotal' v-if='showTotal'>共<span>{{total}}</span>条</span>
-        <ul id='pc-page-farther' @click="pageChange">
+        <span class='showtotal' v-if='showTotal && !simple'>共<span>{{total}}</span>条</span>
+        <ul v-if='!simple' class='page-list' @click="pageChange">
             <li data-name="prev" class="go-icon" :class="{'disabled': currentNum == 1}">
                 <Icon data-name="prev" type='left'/>
             </li>
@@ -33,9 +33,10 @@
         :pageSizeOpts='pageSizeOpts'
         :current='currentNum'
         :totalPage='totalPageNum'
+        :simple='simple'
         @jumpPage='jumpPage'
-        >
-        </Options>
+        @sizeChange='sizeChange'
+        />
     </div>
 </template>
 
@@ -87,6 +88,12 @@ export default {
         },
         pageSize (val) {
             this.pageSizeNum = Number(val);
+        },
+        pageSizeOpts: {
+            deep: true,
+            handler (arr, oldArr) {
+                this.pageSizeNum = arr[0];
+            }
         }
     },
     computed: {
@@ -110,11 +117,17 @@ export default {
             } else {
                 this.currentNum = Number(e.target.textContent);
             }
-                            
+            this.$emit('pageChange', this.currentNum);                
         },
         jumpPage (page) {
-            console.log(page)
             this.currentNum = page;
+            this.$emit('pageChange', this.currentNum);
+        },
+        sizeChange (pageSize) {
+            this.pageSizeNum = pageSize;
+            this.currentNum = 1;
+            this.$emit('pageChange', this.currentNum);
+            this.$emit('sizeChange', pageSize);  
         }
     }
 }
