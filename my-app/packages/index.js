@@ -1,3 +1,4 @@
+import PcUpload from './component/upload'
 import PcLoading from './component/loading'
 import PcTable from './component/table'
 import PcFormItem from './component/form-item'
@@ -24,7 +25,7 @@ import './styles/index.less'
 
 // 存储组件列表
 const components = [
-    PcLoading.PcLoading,
+    PcUpload,
     PcTable,
     PcFormItem,
     PcForm,
@@ -59,6 +60,7 @@ const install = function (Vue,opts={}) {
     Vue.prototype.$PASTE = {
         size: opts.size || '',
     }
+    Vue.prototype.$Loading = PcLoading.service;
 }
 
 // 判断是否是直接引入文件

@@ -1,14 +1,18 @@
 <template>
-    <div :class="`${prefixClass}-${customClass} ${addClasses}`"
+    <div :class="`${prefixClass}-${customClass} ${addClasses} pc-loading-fixed`"
          :style="{'background': background}"
     >
-        <div :class="`${prefixClass}-frame pc-icon-loading` ">
+        <div :class="`${prefixClass}-frame pc-turn-loading` " v-if="spinner===''">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
         </div>
-        <p v-if="text" :class="`${prefixClass}-text`">{{text}}</p>
+        <div v-else>
+            <pc-icon :type="spinner" :class="`${prefixClass}-spinner pc-turn-loading` "></pc-icon>
+        </div>
+        <p v-if="spinner===''&&text" :class="`${prefixClass}-text`">{{text}}</p>
+        <p v-else :class="`${prefixClass}-text ${prefixClass}-text-spinner`">{{text}}</p>
     </div>
 </template>
 
@@ -22,6 +26,7 @@
                 customClass: '',
                 addClasses: '',
                 background: '',
+                spinner: '',
                 text: null,
             }
         }

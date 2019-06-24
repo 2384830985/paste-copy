@@ -9,7 +9,10 @@ loadingDirective.install = Vue => {
     const toggleLoading = (el,binding)=>{
         // 为当前dom 添加loading
         if (binding.value) {
-            el.classList.add("pc-loading-position");
+            if (!binding.modifiers.fullscreen) {
+                el.mask.classList.remove("pc-loading-fixed");
+                el.classList.add("pc-loading-position");
+            }
             el.appendChild(el.mask);
         //    删除当前dom 的loading
         }else {
@@ -24,10 +27,10 @@ loadingDirective.install = Vue => {
     Vue.directive('loading',{
         // 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
         bind: function(el, binding, vnode){
-            console.log('绑定'+'bind')
             let test = el.getAttribute('pc-loading-text');
             let addClasses = el.getAttribute('pc-loading-class');
             let background = el.getAttribute('pc-loading-background');
+            let spinner = el.getAttribute('pc-loading-spinner');
             const mask = new Mask({
                 el: document.createElement('div'),
                 data: {
@@ -35,6 +38,7 @@ loadingDirective.install = Vue => {
                     text: test||'',
                     addClasses: addClasses||'',
                     background: background||'',
+                    spinner: spinner||'',
                 }
             });
             el.instance = mask;
@@ -47,15 +51,11 @@ loadingDirective.install = Vue => {
         // },
         // 更新时候
         update: function(el, binding) {
-            console.log('更新'+'update')
             toggleLoading(el,binding)
         },
         // 结束的时候
         unbind: function(el, binding) {
-            console.log('结束的时候'+'unbind');
             el.classList.remove("pc-loading-position");
-            console.log(el)
-            console.log(binding)
         }
     })
 }
