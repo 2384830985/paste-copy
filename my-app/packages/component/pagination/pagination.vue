@@ -1,7 +1,7 @@
 <template>
     <div class='pc-page-wrap'>
         <span class='showtotal' v-if='showTotal && !simple'>共<span>{{total}}</span>条</span>
-        <ul v-if='!simple' class='page-list' @click="pageChange">
+        <ul v-if='!simple' class='page-list' :class='{"small-list":small}' @click="pageChange">
             <li data-name="prev" class="go-icon" :class="{'disabled': currentNum == 1}">
                 <Icon data-name="prev" type='left'/>
             </li>
@@ -34,6 +34,7 @@
         :current='currentNum'
         :totalPage='totalPageNum'
         :simple='simple'
+        :small='small'
         @jumpPage='jumpPage'
         @sizeChange='sizeChange'
         />
