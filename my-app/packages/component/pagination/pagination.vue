@@ -6,7 +6,8 @@
                 <Icon data-name="prev" type='left'/>
             </li>
             <li :class="{'selected': currentNum == 1}">1</li>
-            <li @mouseenter="leftIconType='doubleleft'" 
+            <li data-name="left" 
+                @mouseenter="leftIconType='doubleleft'" 
                 @mouseleave="leftIconType='ellipsis'"
                  class='no-border' v-if='currentNum - 3 > 1'>
                 <Icon data-name="left" :type='leftIconType'/>
@@ -17,6 +18,7 @@
             <li v-if='currentNum + 1 < totalPageNum'>{{currentNum + 1}}</li>
             <li v-if='currentNum + 2 < totalPageNum'>{{currentNum + 2}}</li>
             <li
+            data-name="right"
             @mouseenter="rightIconType='doubleright'" 
             @mouseleave="rightIconType='ellipsis'"
             class='no-border' v-if='currentNum + 3 < totalPageNum'>
@@ -106,6 +108,7 @@ export default {
     methods: {
         pageChange (e) {
             let target = e.target;
+            console.log(e)
             let domList = document.getElementsByTagName('li');
             if (target.dataset.name == 'prev') {
                 this.currentNum = this.currentNum > 1 ? Number(this.currentNum) - 1 : 1;
