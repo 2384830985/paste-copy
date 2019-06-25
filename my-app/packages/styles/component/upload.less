@@ -1,0 +1,48 @@
+@upload-prefix-cls: ~"@{css-prefix}upload";
+
+input[type="file"] {
+  display: none;
+  cursor: pointer;
+}
+
+.@{upload-prefix-cls}{
+  &-list{
+    margin-top: 8px;
+    &-flies{
+      list-style: none;
+      color: #515a6e;
+      padding: 4px;
+      border-radius: @border-radius-mini;
+      overflow: hidden;
+      position: relative;
+      background: white;
+      transition: background-color @transition-time @ease-in-out;
+      &:hover{
+        color: @primary-color;
+        background: tint(@info-color,90);
+      }
+    }
+  }
+  &-progress{
+    position: relative;
+    width: 90%;
+    height: 4px;
+    border-radius: 2px;
+    background: tint(@info-color,60);
+  }
+  &-percentage{
+    position: absolute;
+    right: -40px;
+    top: -7px;
+    font-size: 12px;
+  }
+  &-line{
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 4px;
+    border-radius: 2px;
+    background: @success-color;
+    transition: width @transition-time @ease-in-out;
+  }
+}
