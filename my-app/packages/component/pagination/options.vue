@@ -12,7 +12,7 @@
             <span>页</span>
         </div>
     </div>
-    <div v-else class='pc-page-simple'>
+    <div v-else class='simple-wrap'>
         <div :class="{'disabled': current == 1}" @click='pageChange(current - 1)' class='simple-jump'>
             <Icon data-name="prev" type='left'/>
         </div>

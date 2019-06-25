@@ -108,8 +108,12 @@ export default {
     methods: {
         pageChange (e) {
             let target = e.target;
-            console.log(e)
             let domList = document.getElementsByTagName('li');
+
+            if (target.tagName == 'UL') {
+                return;
+            }
+
             if (target.dataset.name == 'prev') {
                 this.currentNum = this.currentNum > 1 ? Number(this.currentNum) - 1 : 1;
             } else if (target.dataset.name == 'next') {
