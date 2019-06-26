@@ -1,12 +1,12 @@
 <template>
     <div v-if='!simple' class='pc-options-wrap'>
-        <pc-select :size='small ? "small" : ""' @on-change="sizeChange" class="pc-options-select" v-if='showSize' v-model='currentSize'>
+        <pc-select :size='small ? "small" : "default"' @on-change="sizeChange" class="pc-options-select" v-if='showSize' v-model='currentSize'>
             <pc-option v-for='(item, index) in  pageSizeOpts' :key='index' :label='item+"条/页"' :value='item'></pc-option>
         </pc-select>
         <div v-if='showJump' class='pc-options-jump'>
             <span>跳至</span>
             <pc-input
-            :size='small ? "small" : ""' 
+            :size='small ? "small" : "default"'
             :value='current'
             @keyup.enter.native="jumpPage"/>
             <span>页</span>
