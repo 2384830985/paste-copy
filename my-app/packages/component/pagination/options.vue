@@ -13,13 +13,13 @@
         </div>
     </div>
     <div v-else class='simple-wrap'>
-        <div :class="{'disabled': current == 1}" @click='pageChange(current - 1)' class='simple-jump'>
+        <div :class="{'page-disabled': current == 1}" @click='pageChange(current - 1)' class='simple-jump'>
             <Icon data-name="prev" type='left'/>
         </div>
         <input @keyup.enter="jumpPage" :value='current'/>
         <span>/</span>
         <span>{{totalPage}}</span>
-        <div :class="{'disabled': current == totalPage}" @click='pageChange(current + 1)' class='simple-jump'>
+        <div :class="{'page-disabled': current == totalPage}" @click='pageChange(current + 1)' class='simple-jump'>
             <Icon data-name="right" type='right'/>
         </div>
     </div>

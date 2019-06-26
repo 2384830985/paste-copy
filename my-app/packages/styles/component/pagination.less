@@ -2,7 +2,7 @@
 @option-type: ~"@{css-prefix}options";
 @icon-prefix: ~"@{css-prefix}icon";
 
-.disabled {
+.page-disabled {
     color: @btn-disable-color;
     border: 1px solid tint(@btn-disable-color, 40%);
     cursor: not-allowed!important;
@@ -37,8 +37,8 @@
                     border: 1px solid tint(@primary-color, 40%);
                 }
             }
-            .disabled {
-                &:extend(.disabled);
+            .page-disabled {
+                &:extend(.page-disabled);
                 &:hover {
                     border: 1px solid tint(@btn-disable-color, 40%);
                 }
@@ -84,8 +84,8 @@
                     color: @primary-color;
                 }
             }
-            .disabled {
-                &:extend(.disabled);
+            .page-disabled {
+                &:extend(.page-disabled);
                 border: 0!important;
             }
             input {

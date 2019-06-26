@@ -2,7 +2,7 @@
     <div class='pc-page-wrap'>
         <span class='showtotal' v-if='showTotal && !simple'>共<span>{{total}}</span>条</span>
         <ul v-if='!simple' class='page-list' :class='{"small-list":small}' @click="pageChange">
-            <li data-name="prev" class="go-icon" :class="{'disabled': currentNum == 1}">
+            <li data-name="prev" class="go-icon" :class="{'page-disabled': currentNum == 1}">
                 <Icon data-name="prev" type='left'/>
             </li>
             <li :class="{'selected': currentNum == 1}">1</li>
@@ -25,7 +25,7 @@
                 <Icon data-name="right" :type='rightIconType'/>
             </li>
             <li :class="{'selected': currentNum == totalPageNum}" v-if='totalPageNum > 1'>{{totalPageNum}}</li>
-            <li data-name="next" class="go-icon" :class="{'disabled': currentNum == totalPageNum}">
+            <li data-name="next" class="go-icon" :class="{'page-disabled': currentNum == totalPageNum}">
                 <Icon data-name="next" type='right'/>
             </li>
         </ul>
