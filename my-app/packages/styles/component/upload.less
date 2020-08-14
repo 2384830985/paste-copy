@@ -15,11 +15,27 @@ input[type="file"] {
       border-radius: @border-radius-mini;
       overflow: hidden;
       position: relative;
+      width: 90%;
       background: white;
       transition: background-color @transition-time @ease-in-out;
+      margin-bottom: 4px;
       &:hover{
-        color: @primary-color;
+        span{
+          color: @primary-color;
+        }
         background: tint(@info-color,90);
+      }
+      .@{css-prefix-iconfont}{
+        &-check-circle-fill{
+          color: @success-color;
+        }
+      }
+      .upload-icon{
+        cursor: pointer;
+        position: absolute;
+        font-size: 14px;
+        top: 6px;
+        right: 4px;
       }
     }
   }

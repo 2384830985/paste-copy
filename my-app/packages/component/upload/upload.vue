@@ -7,7 +7,7 @@
             <slot></slot>
         </div>
         <slot name="tip"></slot>
-        <upload-list></upload-list>
+        <upload-list :percent="percent" @uploadClose="uploadClose" :fileList="uploadFileList"></upload-list>
     </div>
 </template>
 
@@ -88,7 +88,25 @@
                 type: String
             },
         },
+        data(){
+            return{
+                percent: {
+                    percent: 0,
+                    show: false,
+                },
+                uploadFileList: this.fileList
+            }
+        },
+        watch:{
+            fileList(val){
+                this.uploadFileList = val
+            }
+        },
         methods:{
+            // 删除
+            uploadClose(item,index){
+                this.$emit('uploadClose',item,index,this.uploadFileList);
+            },
             seeUpload(){
                 if (this.disabled) return;
                 let {input} = this.$refs;
@@ -145,13 +163,15 @@
                         console.log(e)
                     },
                     onProgress: e => {
-                        console.log(e)
                         this.handleProgress(e, file);
                     },
                 })
             },
-            handleProgress(e, file){
-                this.onProgress(e, file, this.fileList);
+            handleProgress(e){
+                console.log(e)
+                this.percent.percent = parseInt(e.percent);
+                this.percent.show = parseInt(e.percent)!==100;
+                this.onProgress(e, this.fileList);
             }
         }
     }
